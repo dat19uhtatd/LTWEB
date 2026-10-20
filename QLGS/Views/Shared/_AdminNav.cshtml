@@ -1,0 +1,13 @@
+@{
+    var ctrl = ViewContext.RouteData.Values["controller"]?.ToString() ?? "";
+    string A(string c) => string.Equals(ctrl, c, StringComparison.OrdinalIgnoreCase) ? "active" : "";
+}
+<div class="sub-nav">
+    <a class="@A("HomeAdmin")" asp-area="Admin" asp-controller="HomeAdmin" asp-action="Index"><i class="fa-solid fa-gauge-high me-1"></i>Tổng quan</a>
+    <a class="@A("Tutors")" asp-area="Admin" asp-controller="Tutors" asp-action="Index"><i class="fa-solid fa-user-check me-1"></i>Gia sư & Xác minh</a>
+    <a class="@A("Bookings")" asp-area="Admin" asp-controller="Bookings" asp-action="Index"><i class="fa-regular fa-calendar-check me-1"></i>Đăng ký học thử</a>
+    <a class="@A("Reviews")" asp-area="Admin" asp-controller="Reviews" asp-action="Index"><i class="fa-regular fa-star me-1"></i>Đánh giá</a>
+    <a class="@A("Subjects")" asp-area="Admin" asp-controller="Subjects" asp-action="Index"><i class="fa-solid fa-book me-1"></i>Môn học</a>
+    <a class="@A("Grades")" asp-area="Admin" asp-controller="Grades" asp-action="Index"><i class="fa-solid fa-layer-group me-1"></i>Khối lớp</a>
+    <a class="@A("Users")" asp-area="Admin" asp-controller="Users" asp-action="Index"><i class="fa-solid fa-users-gear me-1"></i>Người dùng</a>
+</div>

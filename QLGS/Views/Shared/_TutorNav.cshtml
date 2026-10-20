@@ -1,0 +1,13 @@
+@{
+    var action = ViewContext.RouteData.Values["action"]?.ToString() ?? "";
+    string A(params string[] names) => names.Contains(action, StringComparer.OrdinalIgnoreCase) ? "active" : "";
+    int pending = ViewBag.PendingCount is int p ? p : 0;
+}
+<div class="sub-nav">
+    <a class="@A("Index")" asp-controller="TutorPortal" asp-action="Index"><i class="fa-solid fa-gauge-high me-1"></i>Tổng quan</a>
+    <a class="@A("Schedule", "ClassForm", "SaveClass")" asp-controller="TutorPortal" asp-action="Schedule"><i class="fa-regular fa-calendar-days me-1"></i>Thời khóa biểu</a>
+    <a class="@A("Assignments", "CreateAssignment")" asp-controller="TutorPortal" asp-action="Assignments"><i class="fa-solid fa-list-check me-1"></i>Bài tập</a>
+    <a class="@A("Bookings")" asp-controller="TutorPortal" asp-action="Bookings"><i class="fa-regular fa-envelope-open me-1"></i>Yêu cầu học thử @if (pending > 0){<span class="badge bg-danger rounded-pill">@pending</span>}</a>
+    <a class="@A("Availability")" asp-controller="TutorPortal" asp-action="Availability"><i class="fa-solid fa-table-cells me-1"></i>Lịch rảnh</a>
+    <a class="@A("Profile", "UpdateProfile", "SaveSubjects")" asp-controller="TutorPortal" asp-action="Profile"><i class="fa-solid fa-user-pen me-1"></i>Hồ sơ & môn dạy</a>
+</div>

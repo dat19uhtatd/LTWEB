@@ -1,0 +1,80 @@
+@model ParentDashboardViewModel
+@{
+    ViewData["Title"] = "Lịch học thử của tôi";
+}
+<div class="d-flex flex-wrap justify-content-between align-items-center mb-3 gap-2">
+    <h3 class="section-title mb-0"><i class="fa-regular fa-calendar-check text-primary me-2"></i>Lịch học thử của tôi</h3>
+    <a asp-controller="Home" asp-action="Index" class="btn btn-primary rounded-pill px-4"><i class="fa-solid fa-plus me-1"></i>Tìm thêm gia sư</a>
+</div>
+
+<div class="row g-3 mb-4">
+    @foreach (var (label, val, css, icon) in new[] {
+        ("Tổng yêu cầu", Model.Bookings.Count, "primary", "fa-paper-plane"),
+        ("Chờ duyệt", Model.Bookings.Count(b => b.TrangThai == "Chờ duyệt"), "warning", "fa-hourglass-half"),
+        ("Đã xác nhận", Model.Bookings.Count(b => b.TrangThai == "Đã xác nhận"), "success", "fa-circle-check"),
+        ("Đánh giá đã viết", Model.Reviews.Count, "info", "fa-star") })
+    {
+        <div class="col-6 col-lg-3">
+            <div class="card-soft stat-card">
+                <span class="icon-box bg-@css-subtle text-@css"><i class="fa-solid @icon"></i></span>
+                <div><div class="num">@val</div><div class="lbl">@label</div></div>
+            </div>
+        </div>
+    }
+</div>
+
+<div class="card-soft p-4 mb-4">
+    <h5 class="fw-bold mb-3">Các yêu cầu đã gửi</h5>
+    @if (Model.Bookings.Count == 0)
+    {
+        <div class="empty-state"><i class="fa-regular fa-calendar-xmark d-block"></i><p>Bạn chưa đăng ký buổi học thử nào.</p></div>
+    }
+    else
+    {
+        <div class="table-responsive">
+            <table class="table table-modern">
+                <thead><tr><th>Gia sư</th><th>Môn học</th><th>Thời gian mong muốn</th><th>Trình độ HS</th><th>Trạng thái</th><th></th></tr></thead>
+                <tbody>
+                    @foreach (var b in Model.Bookings)
+                    {
+                        <tr>
+                            <td>
+                                <a asp-controller="Home" asp-action="Details" asp-route-id="@b.MaGiaSu" class="fw-semibold text-decoration-none">@b.MaGiaSuNavigation.MaNguoiDungNavigation.HoTen</a>
+                                <div class="small text-muted">Gửi @VnFormat.TimeAgo(b.NgayTao)</div>
+                            </td>
+                            <td><span class="badge-soft m-0">@b.MaMonHocNavigation.TenMonHoc</span></td>
+                            <td>@b.KhungGioMongMuon.ToString("dd/MM/yyyy HH:mm")</td>
+                            <td class="small">@b.TrinhDoHienTaiHs</td>
+                            <td><span class="status-badge @VnFormat.BookingBadge(b.TrangThai)">@b.TrangThai</span></td>
+                            <td class="text-end">
+                                @if (b.TrangThai == "Chờ duyệt")
+                                {
+                                    <form asp-action="CancelBooking" asp-route-id="@b.MaDangKy" method="post" data-confirm="Bạn chắc chắn muốn hủy yêu cầu này?">
+                                        <button class="btn btn-sm btn-outline-danger rounded-pill">Hủy</button>
+                                    </form>
+                                }
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    }
+</div>
+
+<div class="card-soft p-4">
+    <h5 class="fw-bold mb-3">Đánh giá của tôi</h5>
+    @if (Model.Reviews.Count == 0)
+    {
+        <p class="text-muted mb-0">Bạn chưa viết đánh giá nào. Hãy vào hồ sơ gia sư để chia sẻ trải nghiệm.</p>
+    }
+    @foreach (var r in Model.Reviews)
+    {
+        <div class="border-top pt-3 mt-3">
+            <a asp-controller="Home" asp-action="Details" asp-route-id="@r.MaGiaSu" class="fw-semibold text-decoration-none">@r.MaGiaSuNavigation.MaNguoiDungNavigation.HoTen</a>
+            <partial name="_Stars" model="(double)r.SoSao" />
+            @if (r.HienThi != true) { <span class="badge bg-secondary ms-2">Đang bị ẩn</span> }
+            <div class="small text-secondary">@r.NoiDungBinhLuan</div>
+        </div>
+    }
+</div>

@@ -1,0 +1,53 @@
+@{
+    ViewData["Title"] = "Lịch rảnh";
+    var free = ViewBag.Free as HashSet<string> ?? new HashSet<string>();
+}
+<partial name="_TutorNav" />
+<div class="row justify-content-center">
+    <div class="col-lg-10">
+        <div class="card-soft p-4 p-lg-5">
+            <h4 class="section-title"><i class="fa-solid fa-table-cells text-primary me-2"></i>Ma trận lịch rảnh</h4>
+            <p class="text-muted">Bấm vào từng ô để đánh dấu khung giờ bạn <strong>còn trống</strong> (màu xanh). Phụ huynh sẽ thấy lịch này trên hồ sơ của bạn khi chọn giờ học thử.</p>
+            <form asp-action="SaveAvailability" method="post">
+                <div class="table-responsive avail-edit">
+                    <table class="avail-table">
+                        <thead>
+                            <tr><th></th>@foreach (var d in VnFormat.Days) { <th>@d</th> }</tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var s in VnFormat.Sessions)
+                            {
+                                <tr>
+                                    <th class="text-start">@s<div class="small fw-normal">@VnFormat.SessionTimes[s]</div></th>
+                                    @foreach (var d in VnFormat.Days)
+                                    {
+                                        var key = d + "|" + s;
+                                        <td>
+                                            <label>
+                                                <input type="checkbox" name="slots" value="@key" checked="@free.Contains(key)" />
+                                                <div class="cell py-3"><i class="fa-solid fa-check"></i></div>
+                                            </label>
+                                        </td>
+                                    }
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+                <div class="d-flex flex-wrap justify-content-between align-items-center gap-2 mt-4">
+                    <div class="btn-group btn-group-sm">
+                        <button type="button" class="btn btn-outline-secondary" id="selAll" data-no-lock>Chọn tất cả</button>
+                        <button type="button" class="btn btn-outline-secondary" id="selNone" data-no-lock>Bỏ chọn tất cả</button>
+                    </div>
+                    <button class="btn btn-primary rounded-pill px-4"><i class="fa-solid fa-floppy-disk me-1"></i>Lưu lịch rảnh</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+@section Scripts {
+    <script>
+        document.getElementById('selAll').onclick = function () { document.querySelectorAll('input[name=slots]').forEach(function (c) { c.checked = true; }); };
+        document.getElementById('selNone').onclick = function () { document.querySelectorAll('input[name=slots]').forEach(function (c) { c.checked = false; }); };
+    </script>
+}

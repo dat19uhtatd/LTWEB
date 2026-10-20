@@ -1,0 +1,127 @@
+@model TutorProfilePageViewModel
+@{
+    ViewData["Title"] = "Hồ sơ & môn dạy";
+    var f = Model.Form;
+}
+<partial name="_TutorNav" />
+<div class="row g-4">
+    <div class="col-lg-8">
+        <div class="card-soft p-4 mb-4">
+            <h5 class="fw-bold mb-3"><i class="fa-solid fa-user-pen text-primary me-2"></i>Hồ sơ năng lực</h5>
+            <form asp-action="UpdateProfile" method="post" enctype="multipart/form-data" novalidate>
+                <div asp-validation-summary="ModelOnly" class="alert alert-danger small py-2"></div>
+                <div class="row g-3 mb-3">
+                    <div class="col-md-4">
+                        <label asp-for="Form.TrinhDo" class="form-label"></label>
+                        <select asp-for="Form.TrinhDo" class="form-select">
+                            @foreach (var lv in new[] { "Sinh viên giỏi", "Cử nhân", "Thạc sĩ", "Giáo viên chuyên" }) { <option value="@lv" selected="@(f.TrinhDo == lv)">@lv</option> }
+                        </select>
+                        <span asp-validation-for="Form.TrinhDo"></span>
+                    </div>
+                    <div class="col-md-8">
+                        <label asp-for="Form.TruongDaoTao" class="form-label"></label>
+                        <input asp-for="Form.TruongDaoTao" class="form-control" placeholder="VD: ĐH Giao thông Vận tải" />
+                        <span asp-validation-for="Form.TruongDaoTao"></span>
+                    </div>
+                    <div class="col-md-4">
+                        <label asp-for="Form.HocPhiTheoGio" class="form-label"></label>
+                        <div class="input-group"><input asp-for="Form.HocPhiTheoGio" type="number" step="10000" class="form-control" /><span class="input-group-text">đ</span></div>
+                        <span asp-validation-for="Form.HocPhiTheoGio"></span>
+                    </div>
+                    <div class="col-md-4">
+                        <label asp-for="Form.KhuVucDay" class="form-label"></label>
+                        <input asp-for="Form.KhuVucDay" class="form-control" placeholder="VD: Cầu Giấy, Đống Đa" />
+                        <span asp-validation-for="Form.KhuVucDay"></span>
+                    </div>
+                    <div class="col-md-4">
+                        <label asp-for="Form.HinhThucDay" class="form-label"></label>
+                        <select asp-for="Form.HinhThucDay" class="form-select">
+                            @foreach (var h in new[] { "Cả hai", "Offline", "Online" }) { <option value="@h" selected="@(f.HinhThucDay == h)">@h</option> }
+                        </select>
+                        <span asp-validation-for="Form.HinhThucDay"></span>
+                    </div>
+                    <div class="col-12">
+                        <label asp-for="Form.ThanhTichNoiBat" class="form-label"></label>
+                        <input asp-for="Form.ThanhTichNoiBat" class="form-control" placeholder="Các thành tích ngăn cách bằng dấu •" />
+                        <span asp-validation-for="Form.ThanhTichNoiBat"></span>
+                    </div>
+                    <div class="col-12">
+                        <label asp-for="Form.FileAnhBangCap" class="form-label">Ảnh bằng cấp / thẻ sinh viên (jpg, png, webp ≤ 3MB)</label>
+                        <input asp-for="Form.FileAnhBangCap" type="file" class="form-control" accept=".jpg,.jpeg,.png,.webp" />
+                        <span asp-validation-for="Form.FileAnhBangCap"></span>
+                        @if (!string.IsNullOrEmpty(f.AnhBangCapHienTai))
+                        {
+                            <div class="mt-2 small text-muted">Ảnh hiện tại:<br /><img src="@f.AnhBangCapHienTai" class="cert-thumb mt-1" alt="Bằng cấp" /></div>
+                        }
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <label asp-for="Form.GioiThieuBio" class="form-label"></label>
+                    <textarea asp-for="Form.GioiThieuBio" id="bioEditor" class="form-control" rows="6" data-val="false"></textarea>
+                    <span asp-validation-for="Form.GioiThieuBio"></span>
+                </div>
+                <div class="text-end"><button class="btn btn-primary rounded-pill px-4">Lưu hồ sơ</button></div>
+            </form>
+        </div>
+
+        <div class="card-soft p-4">
+            <h5 class="fw-bold mb-1"><i class="fa-solid fa-book-open text-primary me-2"></i>Môn học & khối lớp nhận dạy</h5>
+            <p class="text-muted small">Tích vào các ô tương ứng (hàng = môn, cột = khối lớp). Phụ huynh có thể lọc gia sư theo lựa chọn này.</p>
+            <form asp-action="SaveSubjects" method="post">
+                <div class="table-responsive">
+                    <table class="table table-modern table-sm text-center align-middle">
+                        <thead>
+                            <tr>
+                                <th class="text-start">Môn học</th>
+                                @foreach (var k in Model.Grades) { <th title="@k.TenKhoiLop">@k.TenKhoiLop.Replace("Lớp ", "L").Replace("Luyện thi Đại học", "LT ĐH")</th> }
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var m in Model.Subjects)
+                            {
+                                <tr>
+                                    <td class="text-start fw-semibold text-nowrap"><i class="fa-solid @(m.IconClass ?? "fa-book") text-primary me-1"></i>@m.TenMonHoc</td>
+                                    @foreach (var k in Model.Grades)
+                                    {
+                                        var key = m.MaMonHoc + "_" + k.MaKhoiLop;
+                                        <td><input class="form-check-input" type="checkbox" name="pairs" value="@key" checked="@Model.SelectedPairs.Contains(key)" /></td>
+                                    }
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+                <div class="text-end"><button class="btn btn-primary rounded-pill px-4">Lưu môn dạy</button></div>
+            </form>
+        </div>
+    </div>
+
+    <div class="col-lg-4">
+        <div class="card-soft p-4 sticky-side">
+            <h6 class="fw-bold">Trạng thái xác minh</h6>
+            @if (Model.Tutor.DaXacMinh == true)
+            {
+                <div class="badge-verified mb-2"><i class="fa-solid fa-circle-check me-1"></i>Đã xác minh</div>
+                <p class="small text-muted mb-0">Hồ sơ của bạn hiển thị Tích xanh. Nếu thay ảnh bằng cấp, Admin sẽ xác minh lại.</p>
+            }
+            else
+            {
+                <div class="badge bg-warning-subtle text-warning-emphasis rounded-pill px-3 py-2 mb-2">Chờ xác minh</div>
+                <p class="small text-muted mb-0">Tải lên ảnh bằng cấp/thẻ sinh viên rõ nét. Quản trị viên sẽ kiểm tra và cấp Tích xanh để tăng độ tin cậy với phụ huynh.</p>
+            }
+            <hr />
+            <a asp-controller="Home" asp-action="Details" asp-route-id="@Model.Tutor.MaGiaSu" class="btn btn-outline-primary w-100 rounded-pill"><i class="fa-regular fa-eye me-1"></i>Xem hồ sơ công khai</a>
+        </div>
+    </div>
+</div>
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+    <script src="https://cdn.ckeditor.com/ckeditor5/41.1.0/classic/ckeditor.js"></script>
+    <script>
+        if (window.ClassicEditor) {
+            ClassicEditor.create(document.querySelector('#bioEditor'), {
+                toolbar: ['heading', '|', 'bold', 'italic', 'link', 'bulletedList', 'numberedList', 'blockQuote', '|', 'undo', 'redo']
+            }).catch(function (e) { console.error(e); });
+        }
+    </script>
+}

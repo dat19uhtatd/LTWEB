@@ -1,0 +1,59 @@
+@model RegisterViewModel
+@{
+    ViewData["Title"] = "Đăng ký tài khoản";
+}
+<div class="row justify-content-center py-3">
+    <div class="col-lg-6 col-xl-5">
+        <div class="card-soft p-4 p-lg-5">
+            <h3 class="fw-bold mb-1">Tạo tài khoản EduMatch</h3>
+            <p class="text-muted small mb-4">Đã có tài khoản? <a asp-action="Login">Đăng nhập</a></p>
+
+            <form asp-action="Register" method="post" novalidate>
+                <div asp-validation-summary="ModelOnly" class="alert alert-danger py-2 small"></div>
+                <div class="row g-2 mb-3">
+                    <div class="col-6">
+                        <input type="radio" class="btn-check" name="VaiTro" id="rParent" value="Parent" checked="@(Model.VaiTro == "Parent")" />
+                        <label class="btn btn-outline-primary w-100 py-3 rounded-4" for="rParent"><i class="fa-solid fa-people-roof d-block fs-4 mb-1"></i>Phụ huynh / Học sinh</label>
+                    </div>
+                    <div class="col-6">
+                        <input type="radio" class="btn-check" name="VaiTro" id="rTutor" value="Tutor" checked="@(Model.VaiTro == "Tutor")" />
+                        <label class="btn btn-outline-primary w-100 py-3 rounded-4" for="rTutor"><i class="fa-solid fa-chalkboard-user d-block fs-4 mb-1"></i>Gia sư</label>
+                    </div>
+                </div>
+                <span asp-validation-for="VaiTro"></span>
+                <div class="mb-3">
+                    <label asp-for="HoTen" class="form-label"></label>
+                    <input asp-for="HoTen" class="form-control" placeholder="Nguyễn Văn A" autocomplete="name" />
+                    <span asp-validation-for="HoTen"></span>
+                </div>
+                <div class="row g-2">
+                    <div class="col-md-7 mb-3">
+                        <label asp-for="Email" class="form-label"></label>
+                        <input asp-for="Email" class="form-control" placeholder="email@example.com" autocomplete="email" />
+                        <span asp-validation-for="Email"></span>
+                    </div>
+                    <div class="col-md-5 mb-3">
+                        <label asp-for="SoDienThoai" class="form-label"></label>
+                        <input asp-for="SoDienThoai" class="form-control" placeholder="09xxxxxxxx" autocomplete="tel" />
+                        <span asp-validation-for="SoDienThoai"></span>
+                    </div>
+                </div>
+                <div class="row g-2">
+                    <div class="col-md-6 mb-3">
+                        <label asp-for="Password" class="form-label"></label>
+                        <input asp-for="Password" type="password" class="form-control" autocomplete="new-password" />
+                        <span asp-validation-for="Password"></span>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label asp-for="ConfirmPassword" class="form-label"></label>
+                        <input asp-for="ConfirmPassword" type="password" class="form-control" autocomplete="new-password" />
+                        <span asp-validation-for="ConfirmPassword"></span>
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-primary w-100 py-2 rounded-pill">Đăng ký</button>
+                <p class="small text-muted text-center mt-3 mb-0">Gia sư mới cần tải lên bằng cấp / thẻ sinh viên để được quản trị viên cấp Tích xanh.</p>
+            </form>
+        </div>
+    </div>
+</div>
+@section Scripts { <partial name="_ValidationScriptsPartial" /> }

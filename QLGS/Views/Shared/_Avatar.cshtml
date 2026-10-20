@@ -1,0 +1,13 @@
+@model AvatarModel
+@{
+    bool hasImg = !string.IsNullOrEmpty(Model.Url) && Model.Url.StartsWith("/uploads/");
+    var size = $"width:{Model.Size}px;height:{Model.Size}px;font-size:{Math.Max(10, Model.Size * 0.38):0}px;";
+}
+@if (hasImg)
+{
+    <img src="@Model.Url" alt="@Model.Name" class="avatar" style="@size" />
+}
+else
+{
+    <span class="avatar" style="@size background:@VnFormat.AvatarColor(Model.Seed)" title="@Model.Name">@VnFormat.Initials(Model.Name)</span>
+}

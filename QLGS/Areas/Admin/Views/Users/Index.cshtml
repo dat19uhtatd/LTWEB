@@ -1,0 +1,49 @@
+@model PagedResult<NguoiDung>
+@{
+    ViewData["Title"] = "Quản lý người dùng";
+    string role = ViewBag.Role as string ?? "all";
+    string q = ViewBag.Q as string ?? "";
+    var pager = new PagerViewModel { Page = Model.Page, TotalPages = Model.TotalPages, Action = "Index", Controller = "Users", Area = "Admin", Query = new() { ["q"] = q, ["role"] = role } };
+}
+<partial name="_AdminNav" />
+<div class="card-soft p-4">
+    <div class="d-flex flex-wrap justify-content-between align-items-center gap-2 mb-3">
+        <h5 class="fw-bold mb-0">Tài khoản người dùng <span class="text-muted fw-normal">(@Model.TotalItems)</span></h5>
+        <form method="get" class="d-flex gap-2">
+            <input name="q" value="@q" class="form-control form-control-sm" placeholder="Tên / email / SĐT..." style="width:210px" />
+            <select name="role" class="form-select form-select-sm" style="width:140px" onchange="this.form.submit()">
+                <option value="all" selected="@(role == "all")">Mọi vai trò</option>
+                <option value="Admin" selected="@(role == "Admin")">Admin</option>
+                <option value="Tutor" selected="@(role == "Tutor")">Gia sư</option>
+                <option value="Parent" selected="@(role == "Parent")">Phụ huynh</option>
+            </select>
+            <button class="btn btn-sm btn-primary rounded-pill px-3">Tìm</button>
+        </form>
+    </div>
+    <div class="table-responsive">
+        <table class="table table-modern">
+            <thead><tr><th>Người dùng</th><th>Liên hệ</th><th>Vai trò</th><th>Ngày tạo</th><th>Trạng thái</th><th></th></tr></thead>
+            <tbody>
+                @foreach (var u in Model.Items)
+                {
+                    var r = Roles.Normalize(u.VaiTro);
+                    <tr>
+                        <td><div class="d-flex align-items-center gap-2"><partial name="_Avatar" model="@(new AvatarModel(u.HoTen, u.AnhDaiDien, u.MaNguoiDung, 36))" /><span class="fw-semibold">@u.HoTen</span></div></td>
+                        <td class="small">@u.Email<div class="text-muted">@u.SoDienThoai</div></td>
+                        <td><span class="role-pill role-@r">@(r == "Admin" ? "Admin" : r == "Tutor" ? "Gia sư" : "Phụ huynh")</span></td>
+                        <td class="small">@(u.NgayTao?.ToString("dd/MM/yyyy") ?? "—")</td>
+                        <td><span class="status-badge @(u.TrangThai == false ? "bg-danger-subtle text-danger-emphasis" : "bg-success-subtle text-success-emphasis")">@(u.TrangThai == false ? "Đã khóa" : "Hoạt động")</span></td>
+                        <td class="text-end text-nowrap">
+                            <form asp-action="ResetPassword" asp-route-id="@u.MaNguoiDung" method="post" class="d-inline" data-confirm="Đặt lại mật khẩu cho @u.HoTen? Mật khẩu cũ sẽ không dùng được nữa."><button class="btn btn-sm btn-outline-secondary rounded-pill" title="Đặt lại mật khẩu"><i class="fa-solid fa-key"></i></button></form>
+                            @if (r != "Admin")
+                            {
+                                <form asp-action="ToggleLock" asp-route-id="@u.MaNguoiDung" method="post" class="d-inline" data-confirm="@(u.TrangThai == false ? "Mở khóa" : "Khóa") tài khoản @u.HoTen?"><button class="btn btn-sm btn-outline-@(u.TrangThai == false ? "success" : "danger") rounded-pill" title="@(u.TrangThai == false ? "Mở khóa" : "Khóa")"><i class="fa-solid @(u.TrangThai == false ? "fa-lock-open" : "fa-lock")"></i></button></form>
+                            }
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+    <partial name="_Pager" model="pager" />
+</div>

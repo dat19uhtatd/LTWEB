@@ -1,0 +1,14 @@
+@model ErrorViewModel
+@{
+    ViewData["Title"] = "Đã xảy ra lỗi";
+}
+<div class="empty-state card-soft my-5">
+    <i class="fa-solid fa-bug d-block text-danger"></i>
+    <h3 class="fw-bold">Rất tiếc, đã có lỗi xảy ra</h3>
+    <p>Hệ thống không thể xử lý yêu cầu của bạn. Vui lòng thử lại sau hoặc quay về trang chủ.</p>
+    @if (Model.ShowRequestId)
+    {
+        <p class="small">Mã yêu cầu: <code>@Model.RequestId</code></p>
+    }
+    <a asp-action="Index" class="btn btn-primary rounded-pill px-4">Về trang chủ</a>
+</div>

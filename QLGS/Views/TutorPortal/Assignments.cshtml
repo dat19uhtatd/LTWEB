@@ -1,0 +1,97 @@
+@model AssignmentsPageViewModel
+@{
+    ViewData["Title"] = "Quản lý bài tập";
+    string F(string f) => Model.Filter == f ? "active" : "";
+}
+<partial name="_TutorNav" />
+<div class="row g-4">
+    <div class="col-lg-7">
+        <div class="card-soft p-4">
+            <div class="d-flex flex-wrap justify-content-between align-items-center gap-2 mb-3">
+                <h5 class="fw-bold mb-0"><i class="fa-solid fa-list-check text-primary me-2"></i>Bài tập đã giao (@Model.Items.Count)</h5>
+                <div class="btn-group btn-group-sm">
+                    <a class="btn btn-outline-primary @F("all")" asp-action="Assignments" asp-route-filter="all">Tất cả</a>
+                    <a class="btn btn-outline-primary @F("pending")" asp-action="Assignments" asp-route-filter="pending">Cần làm</a>
+                    <a class="btn btn-outline-primary @F("done")" asp-action="Assignments" asp-route-filter="done">Đã xong</a>
+                </div>
+            </div>
+            @if (Model.Items.Count == 0)
+            {
+                <div class="empty-state"><i class="fa-regular fa-folder-open d-block"></i><p class="mb-0">Chưa có bài tập nào trong mục này.</p></div>
+            }
+            @foreach (var bt in Model.Items)
+            {
+                bool done = bt.TrangThai == "Completed";
+                bool overdue = !done && bt.HanNop < DateTime.Now;
+                <div class="border rounded-4 p-3 mb-2">
+                    <div class="d-flex justify-content-between align-items-start gap-2">
+                        <div>
+                            <div class="fw-semibold">@bt.TieuDe</div>
+                            <div class="small text-muted">@bt.MaLichHocNavigation.TenHocSinh • @bt.MaLichHocNavigation.MaMonHocNavigation.TenMonHoc</div>
+                            @if (!string.IsNullOrWhiteSpace(bt.NoiDungBaiTap)) { <div class="small text-secondary mt-1">@bt.NoiDungBaiTap</div> }
+                            <div class="small mt-1">Hạn nộp: <strong class="@(overdue ? "text-danger" : "")">@bt.HanNop.ToString("dd/MM/yyyy HH:mm")</strong>@if (overdue){<span class="badge bg-danger ms-2">Quá hạn</span>}</div>
+                        </div>
+                        <div class="d-flex flex-column gap-1 align-items-end">
+                            <button class="btn btn-sm rounded-pill assign-toggle @(done ? "btn-success" : "btn-warning")" data-id="@bt.MaBaiTap" data-no-lock>@(done ? "Đã hoàn thành" : "Cần làm")</button>
+                            <form asp-action="DeleteAssignment" asp-route-id="@bt.MaBaiTap" method="post" data-confirm="Xóa bài tập này?">
+                                <button class="btn btn-sm btn-link text-danger p-0">Xóa</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+    <div class="col-lg-5">
+        <div class="card-soft p-4 sticky-side">
+            <h5 class="fw-bold mb-3"><i class="fa-solid fa-plus text-primary me-2"></i>Giao bài tập mới</h5>
+            @if (Model.Classes.Count == 0)
+            {
+                <p class="text-muted small mb-0">Bạn cần <a asp-action="ClassForm">thêm lớp học</a> trước khi giao bài.</p>
+            }
+            else
+            {
+                <form asp-action="CreateAssignment" method="post" novalidate>
+                    <div asp-validation-summary="ModelOnly" class="alert alert-danger small py-2"></div>
+                    <div class="mb-3">
+                        <label asp-for="Form.MaLichHoc" class="form-label"></label>
+                        <select asp-for="Form.MaLichHoc" class="form-select">
+                            @foreach (var l in Model.Classes) { <option value="@l.MaLichHoc" selected="@(l.MaLichHoc == Model.Form.MaLichHoc)">@l.TenHocSinh (@l.MaMonHocNavigation.TenMonHoc)</option> }
+                        </select>
+                        <span asp-validation-for="Form.MaLichHoc"></span>
+                    </div>
+                    <div class="mb-3">
+                        <label asp-for="Form.TieuDe" class="form-label"></label>
+                        <input asp-for="Form.TieuDe" class="form-control" placeholder="VD: Bài tập Hàm số bậc hai" />
+                        <span asp-validation-for="Form.TieuDe"></span>
+                    </div>
+                    <div class="mb-3">
+                        <label asp-for="Form.NoiDungBaiTap" class="form-label"></label>
+                        <textarea asp-for="Form.NoiDungBaiTap" class="form-control" rows="3" placeholder="Mô tả yêu cầu, trang sách, link tài liệu..."></textarea>
+                    </div>
+                    <div class="mb-3">
+                        <label asp-for="Form.HanNop" class="form-label"></label>
+                        <input asp-for="Form.HanNop" type="datetime-local" class="form-control" asp-format="{0:yyyy-MM-ddTHH:mm}" />
+                        <span asp-validation-for="Form.HanNop"></span>
+                    </div>
+                    <button class="btn btn-primary w-100 rounded-pill">Giao bài</button>
+                </form>
+            }
+        </div>
+    </div>
+</div>
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+    <script>
+        document.querySelectorAll('.assign-toggle').forEach(function (btn) {
+            btn.addEventListener('click', function () {
+                apiFetch('@Url.Content("~/api/ApiTutor/assignment-status/")' + btn.dataset.id, 'PUT').then(function (res) {
+                    var done = res.newStatus === 'Completed';
+                    btn.classList.toggle('btn-success', done); btn.classList.toggle('btn-warning', !done);
+                    btn.textContent = done ? 'Đã hoàn thành' : 'Cần làm';
+                    showToast(done ? 'Đã đánh dấu hoàn thành' : 'Đã chuyển về "Cần làm"', 'success');
+                }).catch(function (e) { showToast(e.message, 'danger'); });
+            });
+        });
+    </script>
+}

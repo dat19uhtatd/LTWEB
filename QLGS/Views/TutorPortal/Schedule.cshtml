@@ -1,0 +1,66 @@
+@model List<LopHocThoiKhoaBieu>
+@{
+    ViewData["Title"] = "Thời khóa biểu";
+}
+<partial name="_TutorNav" />
+
+<div class="d-flex flex-wrap justify-content-between align-items-center gap-2 mb-3">
+    <h4 class="section-title mb-0"><i class="fa-regular fa-calendar-days text-primary me-2"></i>Thời khóa biểu hàng tuần</h4>
+    <a asp-action="ClassForm" class="btn btn-primary rounded-pill px-4"><i class="fa-solid fa-plus me-1"></i>Thêm lớp học</a>
+</div>
+
+<div class="card-soft p-3 p-lg-4 mb-4">
+    <div class="week-grid">
+        @foreach (var day in VnFormat.Days)
+        {
+            var items = Model.Where(c => VnFormat.NormalizeDay(c.ThuTrongTuan) == day).OrderBy(c => c.GioBatDau).ToList();
+            <div class="week-col">
+                <h6>@day</h6>
+                @foreach (var c in items)
+                {
+                    <div class="class-tile @(c.TrangThai == "Đang học" ? "" : "paused")">
+                        <div class="time">@c.GioBatDau.ToString("HH:mm") - @c.GioKetThuc.ToString("HH:mm")</div>
+                        <div class="fw-semibold">@c.MaMonHocNavigation.TenMonHoc</div>
+                        <div class="text-muted">@c.TenHocSinh</div>
+                    </div>
+                }
+                @if (items.Count == 0) { <div class="text-center text-muted small py-2">—</div> }
+            </div>
+        }
+    </div>
+</div>
+
+<div class="card-soft p-4">
+    <h5 class="fw-bold mb-3">Danh sách lớp học (@Model.Count)</h5>
+    @if (Model.Count == 0)
+    {
+        <div class="empty-state"><i class="fa-regular fa-calendar-plus d-block"></i><p>Chưa có lớp học nào.</p></div>
+    }
+    else
+    {
+        <div class="table-responsive">
+            <table class="table table-modern">
+                <thead><tr><th>Lịch</th><th>Môn / Học sinh</th><th>Phòng / Link</th><th>Học phí/ca</th><th>Nhắc</th><th>Trạng thái</th><th></th></tr></thead>
+                <tbody>
+                    @foreach (var c in Model)
+                    {
+                        <tr>
+                            <td><span class="badge bg-primary">@c.ThuTrongTuan</span><div class="small text-muted mt-1">@c.GioBatDau.ToString("HH:mm")-@c.GioKetThuc.ToString("HH:mm")<br />Từ @c.NgayHocTiepTheo.ToString("dd/MM/yyyy")</div></td>
+                            <td><div class="fw-semibold">@c.MaMonHocNavigation.TenMonHoc</div><div class="small text-muted">@c.TenHocSinh</div></td>
+                            <td class="small">@c.PhongHocHoacLink</td>
+                            <td class="fw-semibold text-success">@c.HocPhiCaDay.Vnd()</td>
+                            <td>@if (c.BatNhacNhoTruoc30P == true){<i class="fa-solid fa-bell text-warning"></i>}else{<i class="fa-regular fa-bell-slash text-muted"></i>}</td>
+                            <td><span class="status-badge @(c.TrangThai == "Đang học" ? "bg-success-subtle text-success-emphasis" : "bg-secondary-subtle text-secondary-emphasis")">@c.TrangThai</span></td>
+                            <td class="text-end text-nowrap">
+                                <a asp-action="ClassForm" asp-route-id="@c.MaLichHoc" class="btn btn-sm btn-outline-primary rounded-pill"><i class="fa-solid fa-pen"></i></a>
+                                <form asp-action="DeleteClass" asp-route-id="@c.MaLichHoc" method="post" class="d-inline" data-confirm="Xóa lớp của @c.TenHocSinh? Các bài tập của lớp cũng sẽ bị xóa.">
+                                    <button class="btn btn-sm btn-outline-danger rounded-pill"><i class="fa-solid fa-trash"></i></button>
+                                </form>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    }
+</div>

@@ -1,0 +1,154 @@
+@model HomeIndexViewModel
+@{
+    ViewData["Title"] = "Tìm gia sư uy tín - Đăng ký học thử miễn phí";
+}
+
+<section class="hero mb-4">
+    <span class="badge bg-white text-primary px-3 py-2 rounded-pill fw-bold mb-3 shadow-sm"><i class="fa-solid fa-graduation-cap me-1"></i> Nền tảng kết nối gia sư dành cho sinh viên & phụ huynh</span>
+    <h1 class="display-5 mb-3">Tìm đúng gia sư,<br />học thử 01 buổi trước khi quyết định</h1>
+    <p class="lead opacity-90 mb-4" style="max-width: 680px;">Lọc theo môn, khối lớp, khu vực và học phí. Xem lịch rảnh thực tế của gia sư, đặt lịch học thử ngay trên website.</p>
+
+    <div class="hero-search mb-4">
+        <input id="searchBox" list="suggestList" class="form-control" placeholder="Nhập tên gia sư, môn học, trường đại học..." autocomplete="off" />
+        <datalist id="suggestList"></datalist>
+        <button id="btnSearch" class="btn btn-primary rounded-pill px-4"><i class="fa-solid fa-magnifying-glass me-1"></i> Tìm kiếm</button>
+    </div>
+
+    <div class="row mt-4 pt-3 border-top border-light border-opacity-25 g-3">
+        <div class="col-6 col-md-3 hero-stat"><div class="n">@Model.TutorCount</div><div class="t">Gia sư trên hệ thống</div></div>
+        <div class="col-6 col-md-3 hero-stat"><div class="n">@Model.VerifiedCount</div><div class="t">Đã xác minh bằng cấp</div></div>
+        <div class="col-6 col-md-3 hero-stat"><div class="n">@(Model.ReviewCount > 0 ? Model.AverageRating.ToString("0.0") + " ★" : "—")</div><div class="t">Điểm đánh giá trung bình</div></div>
+        <div class="col-6 col-md-3 hero-stat"><div class="n">@Model.ClassCount</div><div class="t">Lớp học đang quản lý</div></div>
+    </div>
+</section>
+
+@if (!string.IsNullOrEmpty(Model.LastViewedTutor))
+{
+    <div class="card-soft px-4 py-3 mb-4 d-flex flex-wrap align-items-center justify-content-between gap-2 border-warning-subtle" style="background:#fffbeb">
+        <div class="d-flex align-items-center gap-3">
+            <i class="fa-solid fa-clock-rotate-left text-warning fs-4"></i>
+            <div>
+                <div class="small text-muted">Bạn vừa xem gần đây (lưu bằng Cookie):</div>
+                @if (int.TryParse(Model.LastViewedTutorId, out var lastId))
+                {
+                    <a asp-action="Details" asp-route-id="@lastId" class="fw-bold text-dark text-decoration-none">@Model.LastViewedTutor <i class="fa-solid fa-arrow-right ms-1 small"></i></a>
+                }
+                else
+                {
+                    <strong>@Model.LastViewedTutor</strong>
+                }
+            </div>
+        </div>
+        <form asp-action="ClearHistory" method="post" class="m-0">
+            <button class="btn btn-sm btn-outline-dark rounded-pill px-3" data-no-lock>Xóa lịch sử</button>
+        </form>
+    </div>
+}
+
+<div class="mb-4">
+    <h6 class="fw-bold text-secondary mb-3"><i class="fa-solid fa-fire text-danger me-2"></i>Chọn nhanh môn học:</h6>
+    @await Component.InvokeAsync("SubjectMenu")
+</div>
+
+<div class="card-soft p-4 mb-4" id="filterSection">
+    <div class="d-flex align-items-center justify-content-between mb-3">
+        <div class="d-flex align-items-center gap-3">
+            <span class="icon-box bg-grad"><i class="fa-solid fa-sliders"></i></span>
+            <div>
+                <h5 class="fw-bold mb-0">Bộ lọc nâng cao</h5>
+                <small class="text-muted">Kết quả cập nhật ngay khi bạn thay đổi lựa chọn</small>
+            </div>
+        </div>
+        <button id="btnReset" class="btn btn-sm btn-outline-secondary rounded-pill"><i class="fa-solid fa-rotate-left me-1"></i>Đặt lại</button>
+    </div>
+    <div class="row g-3">
+        <div class="col-md-6 col-lg-3">
+            <label class="form-label" for="filterMon">Môn học</label>
+            <select id="filterMon" class="form-select">
+                <option value="">Tất cả môn học</option>
+                @foreach (var m in Model.Subjects) { <option value="@m.MaMonHoc">@m.TenMonHoc</option> }
+            </select>
+        </div>
+        <div class="col-md-6 col-lg-3">
+            <label class="form-label" for="filterKhoi">Khối lớp</label>
+            <select id="filterKhoi" class="form-select">
+                <option value="">Tất cả khối lớp</option>
+                @foreach (var k in Model.Grades) { <option value="@k.MaKhoiLop">@k.TenKhoiLop</option> }
+            </select>
+        </div>
+        <div class="col-md-6 col-lg-3">
+            <label class="form-label" for="filterKhuVuc">Khu vực dạy</label>
+            <select id="filterKhuVuc" class="form-select">
+                <option value="">Tất cả khu vực</option>
+                <option value="Online">Dạy Online</option>
+                @foreach (var d in new[] { "Cầu Giấy", "Đống Đa", "Thanh Xuân", "Ba Đình", "Hà Đông", "Hoàng Mai", "Nam Từ Liêm" }) { <option value="@d">@d</option> }
+            </select>
+        </div>
+        <div class="col-md-6 col-lg-3">
+            <label class="form-label" for="filterMucGia">Học phí / giờ</label>
+            <select id="filterMucGia" class="form-select">
+                <option value="">Mọi mức giá</option>
+                <option value="duoi150">Dưới 150.000đ</option>
+                <option value="150_250">150.000đ - 250.000đ</option>
+                <option value="tren250">Trên 250.000đ</option>
+            </select>
+        </div>
+        <div class="col-md-6 col-lg-3">
+            <label class="form-label" for="filterTrinhDo">Trình độ gia sư</label>
+            <select id="filterTrinhDo" class="form-select">
+                <option value="">Tất cả trình độ</option>
+                <option value="Giáo viên chuyên">Giáo viên chuyên</option>
+                <option value="Thạc sĩ">Thạc sĩ</option>
+                <option value="Cử nhân">Cử nhân</option>
+                <option value="Sinh viên giỏi">Sinh viên giỏi</option>
+            </select>
+        </div>
+        <div class="col-md-6 col-lg-3">
+            <label class="form-label" for="sortBy">Sắp xếp theo</label>
+            <select id="sortBy" class="form-select">
+                <option value="rating_desc">Đánh giá cao nhất</option>
+                <option value="review_desc">Nhiều đánh giá nhất</option>
+                <option value="price_asc">Học phí tăng dần</option>
+                <option value="price_desc">Học phí giảm dần</option>
+            </select>
+        </div>
+        <div class="col-lg-6 d-flex align-items-end">
+            <div class="form-check form-switch fs-6">
+                <input class="form-check-input" type="checkbox" id="onlyVerified" />
+                <label class="form-check-label fw-semibold" for="onlyVerified"><i class="fa-solid fa-circle-check text-success me-1"></i>Chỉ hiện gia sư đã xác minh bằng cấp</label>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="resultsAnchor" class="d-flex flex-wrap justify-content-between align-items-center mb-3 gap-2">
+    <h4 class="section-title mb-0"><i class="fa-solid fa-users-rectangle text-primary me-2"></i>Danh sách gia sư</h4>
+    <span id="resultSummary" class="text-muted small"></span>
+</div>
+<div id="activeChips" class="d-flex flex-wrap gap-2 mb-3"></div>
+
+<div class="row g-4 mb-4" id="tutorsContainer"></div>
+<div id="pager" class="mb-5"></div>
+
+<section class="card-soft p-4 p-lg-5 mb-2">
+    <div class="row g-4 align-items-center">
+        <div class="col-lg-8">
+            <h4 class="section-title">Bạn là sinh viên/giáo viên muốn dạy kèm?</h4>
+            <p class="text-muted mb-0">Tạo hồ sơ gia sư, tải lên bằng cấp để nhận Tích xanh, quản lý thời khóa biểu, giao bài tập và nhận nhắc lịch dạy trước 30 phút.</p>
+        </div>
+        <div class="col-lg-4 text-lg-end">
+            <a asp-controller="Account" asp-action="Register" asp-route-role="Tutor" class="btn btn-primary btn-lg rounded-pill px-4"><i class="fa-solid fa-chalkboard-user me-2"></i>Đăng ký làm gia sư</a>
+        </div>
+    </div>
+</section>
+
+@section Scripts {
+    <script>
+        window.TUTOR_SEARCH = {
+            apiUrl: '@Url.Content("~/api/ApiTutor/filter")',
+            suggestUrl: '@Url.Content("~/api/ApiTutor/suggest")',
+            detailsUrl: '@Url.Action("Details", "Home")'
+        };
+    </script>
+    <script src="~/js/tutor-search.js" asp-append-version="true"></script>
+}

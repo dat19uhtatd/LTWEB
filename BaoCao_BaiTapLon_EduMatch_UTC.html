@@ -1,0 +1,757 @@
+﻿<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<title>BÃ¡o cÃ¡o BÃ i táº­p lá»›n - EduMatch UTC</title>
+<style>
+  @page { size: A4; margin: 2.5cm 2cm 2cm 2.5cm; }
+  body { font-family: 'Times New Roman', Times, serif; font-size: 13pt; line-height: 1.5; color: #111827; text-align: justify; }
+  h1.cover-title { font-size: 20pt; font-weight: bold; color: #002b49; text-align: center; margin: 15pt 0 5pt 0; text-transform: uppercase; }
+  h2.cover-subtitle { font-size: 16pt; font-weight: bold; color: #1e3a8a; text-align: center; margin: 0 0 25pt 0; }
+  h1 { font-size: 16pt; font-weight: bold; color: #002b49; text-transform: uppercase; margin-top: 22pt; margin-bottom: 8pt; page-break-after: avoid; border-bottom: 1.5pt solid #002b49; padding-bottom: 4pt; }
+  h2 { font-size: 14pt; font-weight: bold; color: #1e3a8a; margin-top: 16pt; margin-bottom: 6pt; page-break-after: avoid; }
+  h3 { font-size: 13pt; font-weight: bold; color: #1e40af; margin-top: 12pt; margin-bottom: 4pt; page-break-after: avoid; }
+  p { margin-top: 0; margin-bottom: 6pt; text-indent: 1cm; }
+  p.no-indent { text-indent: 0; }
+  .page-break { page-break-before: always; }
+  table { width: 100%; border-collapse: collapse; margin: 10pt 0; font-size: 11pt; }
+  table, th, td { border: 1px solid #374151; }
+  table.toc-table, table.toc-table th, table.toc-table td { border: none !important; }
+  table.toc-table td { padding: 2.5pt 0; vertical-align: bottom; border: none !important; }
+  th { background-color: #dbeafe; color: #0f172a; font-weight: bold; text-align: center; padding: 6pt 5pt; }
+  td { padding: 5pt 6pt; vertical-align: top; }
+  .center { text-align: center; }
+  .bold { font-weight: bold; }
+  .screenshot-box { background-color: #f0fdf4; border: 1.5pt dashed #16a34a; border-radius: 4pt; padding: 10pt 12pt; margin: 12pt 0; page-break-inside: avoid; }
+  .screenshot-title { font-weight: bold; color: #15803d; font-size: 12pt; margin-bottom: 4pt; text-transform: uppercase; }
+  .screenshot-desc { font-size: 11pt; color: #166534; margin: 2pt 0; text-indent: 0; }
+  .screenshot-img { width: 100%; max-width: 100%; border: 1px solid #86efac; border-radius: 4pt; margin: 6pt 0; display: block; }
+  .img-caption { text-align: center; font-style: italic; font-size: 10.5pt; color: #374151; margin-top: 4pt; text-indent: 0; }
+  .chart-box { background-color: #fefce8; border: 1.5pt dashed #ca8a04; border-radius: 4pt; padding: 10pt 12pt; margin: 12pt 0; page-break-inside: avoid; }
+  .chart-title { font-weight: bold; color: #a16207; font-size: 11.5pt; margin-bottom: 4pt; text-transform: uppercase; }
+  .chart-desc { font-size: 10.5pt; color: #854d0e; margin: 2pt 0; text-indent: 0; }
+  pre { background-color: #f8fafc; border: 1px solid #cbd5e1; border-left: 3pt solid #3b82f6; padding: 8pt 10pt; font-family: 'Consolas','Courier New',monospace; font-size: 9pt; line-height: 1.4; overflow-x: auto; margin: 8pt 0; white-space: pre-wrap; word-break: break-all; }
+  .code-caption { font-size: 10pt; font-style: italic; color: #4b5563; margin-top: -5pt; margin-bottom: 8pt; text-indent: 0; }
+  .survey-box { background-color: #fafaf9; border: 1px solid #d6d3d1; border-left: 4pt solid #002b49; padding: 12pt 16pt; margin: 12pt 0 16pt 0; }
+  .survey-header { text-align: center; font-weight: bold; color: #002b49; font-size: 13pt; text-transform: uppercase; margin-bottom: 6pt; }
+  .survey-sub { text-align: center; font-style: italic; font-size: 11pt; color: #4b5563; margin-bottom: 14pt; }
+  .survey-section-title { font-weight: bold; color: #1e3a8a; font-size: 12pt; margin-top: 14pt; margin-bottom: 6pt; text-transform: uppercase; border-bottom: 1px solid #cbd5e1; padding-bottom: 3pt; }
+  .survey-q { font-weight: bold; color: #1f2937; margin-top: 10pt; margin-bottom: 4pt; text-indent: 0; }
+  .survey-opt { margin-left: 18pt; margin-bottom: 3pt; font-size: 11.5pt; color: #374151; }
+  tr.highlight td { background-color: #eff6ff; }
+  tr:nth-child(even) td { background-color: #f9fafb; }
+  .badge-pass { background-color: #dcfce7; color: #166534; font-weight: bold; border-radius: 3pt; padding: 2pt 5pt; font-size: 10pt; }
+  .cover-frame { border: 3pt double #002b49; padding: 25pt; min-height: 820pt; box-sizing: border-box; text-align: center; }
+  .callout-info { background-color: #eff6ff; border-left: 4pt solid #2563eb; padding: 8pt 12pt; margin: 10pt 0; font-size: 11.5pt; }
+</style>
+</head>
+<body>
+
+<!-- TRANG BÃŒA -->
+<div class="cover-frame">
+  <p class="no-indent" style="font-size:14pt;font-weight:bold;margin-bottom:4pt;">Bá»˜ GIÃO Dá»¤C VÃ€ ÄÃ€O Táº O</p>
+  <p class="no-indent" style="font-size:15pt;font-weight:bold;color:#002b49;margin-bottom:4pt;">TRÆ¯á»œNG Äáº I Há»ŒC GIAO THÃ”NG Váº¬N Táº¢I</p>
+  <p class="no-indent" style="font-size:13pt;font-weight:bold;margin-bottom:30pt;">KHOA CÃ”NG NGHá»† THÃ”NG TIN</p>
+  <div style="margin:40pt 0;">
+    <p class="no-indent" style="font-size:14pt;font-weight:bold;letter-spacing:2pt;">BÃO CÃO BÃ€I Táº¬P Lá»šN</p>
+    <p class="no-indent" style="font-size:13pt;font-style:italic;">Há»ŒC PHáº¦N: Láº¬P TRÃŒNH WEB / PHÃT TRIá»‚N á»¨NG Dá»¤NG WEB</p>
+    <div style="height:2pt;background-color:#002b49;width:60%;margin:20pt auto;"></div>
+    <h1 class="cover-title">XÃ‚Y Dá»°NG Há»† THá»NG QUáº¢N LÃ GIA SÆ¯<br>VÃ€ Lá»šP Há»ŒC TRá»°C TUYáº¾N</h1>
+    <h2 class="cover-subtitle">(EDUMATCH UTC)</h2>
+    <div style="height:2pt;background-color:#002b49;width:60%;margin:20pt auto;"></div>
+  </div>
+  <div style="text-align:left;margin:60pt auto 0 auto;width:80%;font-size:13pt;line-height:1.8;">
+    <p class="no-indent"><b>Sinh viÃªn thá»±c hiá»‡n:</b> NhÃ³m sinh viÃªn thá»±c hiá»‡n Ä‘á» tÃ i</p>
+    <p class="no-indent"><b>Lá»›p chuyÃªn ngÃ nh:</b> CÃ´ng nghá»‡ thÃ´ng tin â€” KhÃ³a 6x</p>
+    <p class="no-indent"><b>Giáº£ng viÃªn hÆ°á»›ng dáº«n:</b> Giáº£ng viÃªn Bá»™ mÃ´n CÃ´ng nghá»‡ Web</p>
+    <p class="no-indent"><b>Ná»n táº£ng cÃ´ng nghá»‡:</b> ASP.NET Core MVC (.NET 10) â€¢ EF Core 8 â€¢ SQL Server</p>
+    <p class="no-indent"><b>Quy mÃ´ dá»± Ã¡n:</b> ~506 dÃ²ng C# TutorPortalController â€¢ 10 báº£ng CSDL â€¢ 17 mÃ n hÃ¬nh chá»©c nÄƒng</p>
+  </div>
+  <div style="margin-top:60pt;">
+    <p class="no-indent" style="font-weight:bold;font-size:12pt;">HÃ€ Ná»˜I â€” NÄ‚M Há»ŒC 2025 - 2026</p>
+  </div>
+</div>
+
+<div class="page-break"></div>
+
+<h1>Lá»œI Cáº¢M Æ N</h1>
+<p>Äá»ƒ hoÃ n thÃ nh báº£n bÃ¡o cÃ¡o bÃ i táº­p lá»›n vÃ  phÃ¡t triá»ƒn thÃ nh cÃ´ng á»©ng dá»¥ng <b>EduMatch UTC â€” Há»‡ thá»‘ng Quáº£n lÃ½ Gia sÆ° &amp; Lá»›p há»c trá»±c tuyáº¿n</b>, nhÃ³m tÃ¡c giáº£ xin gá»­i lá»i cáº£m Æ¡n chÃ¢n thÃ nh vÃ  sÃ¢u sáº¯c nháº¥t tá»›i:</p>
+<p>1. Ban GiÃ¡m hiá»‡u cÃ¹ng quÃ½ Tháº§y/CÃ´ Khoa CÃ´ng nghá»‡ ThÃ´ng tin â€” TrÆ°á»ng Äáº¡i há»c Giao thÃ´ng Váº­n táº£i (UTC) Ä‘Ã£ táº¡o Ä‘iá»u kiá»‡n há»c táº­p vÃ  nghiÃªn cá»©u tá»‘t nháº¥t trong suá»‘t quÃ¡ trÃ¬nh thá»±c hiá»‡n Ä‘á» tÃ i.</p>
+<p>2. CÃ¡c Tháº§y/CÃ´ phá»¥ trÃ¡ch há»c pháº§n Láº­p trÃ¬nh Web Ä‘Ã£ táº­n tÃ¬nh giáº£ng dáº¡y kiáº¿n thá»©c ná»n táº£ng vá»¯ng cháº¯c vá» kiáº¿n trÃºc ASP.NET Core MVC, quáº£n trá»‹ CSDL quan há»‡ vÃ  cÃ¡c ká»¹ thuáº­t báº£o máº­t web tiÃªn tiáº¿n â€” Ä‘Ã¢y lÃ  ná»n táº£ng tri thá»©c quan trá»ng nháº¥t giÃºp nhÃ³m hiá»‡n thá»±c hÃ³a thÃ nh cÃ´ng dá»± Ã¡n nÃ y.</p>
+<p>3. Äáº·c biá»‡t, nhÃ³m xin trÃ¢n trá»ng cáº£m Æ¡n <b>60 ngÆ°á»i tham gia</b> (Phá»¥ huynh, Há»c sinh, Sinh viÃªn/Gia sÆ° vÃ  CÃ¡n bá»™ quáº£n lÃ½ trung tÃ¢m) Ä‘Ã£ nhiá»‡t tÃ¬nh Ä‘Ã³ng gÃ³p Ã½ kiáº¿n qua biá»ƒu máº«u kháº£o sÃ¡t Google Forms. Nhá»¯ng dá»¯ liá»‡u thá»±c táº¿ quÃ½ giÃ¡ tá»« kháº£o sÃ¡t lÃ  cÆ¡ sá»Ÿ khoa há»c Ä‘á»‹nh hÆ°á»›ng toÃ n bá»™ thiáº¿t káº¿ chá»©c nÄƒng cá»§a há»‡ thá»‘ng EduMatch UTC.</p>
+
+<h1 style="margin-top:25pt;">Lá»œI Má»ž Äáº¦U</h1>
+<p>Trong thá»i Ä‘áº¡i chuyá»ƒn Ä‘á»•i sá»‘ giÃ¡o dá»¥c, viá»‡c tÃ¬m kiáº¿m gia sÆ° cháº¥t lÆ°á»£ng vÃ  quáº£n lÃ½ viá»‡c dáº¡y - há»c ngoáº¡i khÃ³a ngÃ y cÃ ng trá»Ÿ nÃªn cáº¥p thiáº¿t. CÃ¡c phÆ°Æ¡ng thá»©c truyá»n thá»‘ng qua trung tÃ¢m mÃ´i giá»›i hoáº·c máº¡ng xÃ£ há»™i thÆ°á»ng gáº·p rá»§i ro: chi phÃ­ hoa há»“ng cao (30%â€“50% thÃ¡ng lÆ°Æ¡ng Ä‘áº§u), thiáº¿u minh báº¡ch vá» báº±ng cáº¥p gia sÆ°, vÃ  khÃ´ng cÃ³ cÃ´ng cá»¥ quáº£n lÃ½ lá»‹ch há»c hay bÃ i táº­p sá»‘ hÃ³a.</p>
+<p>Kháº£o sÃ¡t thá»±c táº¿ cá»§a nhÃ³m (60 ngÆ°á»i, thÃ¡ng 10/2025) xÃ¡c nháº­n: hÆ¡n <b>63.4% phá»¥ huynh</b> tá»‘n tá»« 3 ngÃ y Ä‘áº¿n hÆ¡n 1 tuáº§n Ä‘á»ƒ tÃ¬m gia sÆ° Æ°ng Ã½; <b>78.3%</b> cho ráº±ng dáº¥u tÃ­ch xanh xÃ¡c minh báº±ng cáº¥p lÃ  yáº¿u tá»‘ quyáº¿t Ä‘á»‹nh Ä‘áº·t lá»‹ch; Ä‘iá»ƒm hÃ i lÃ²ng dá»± kiáº¿n Ä‘áº¡t <b>8.85/10</b>.</p>
+<p>Dá»± Ã¡n <b>"EduMatch UTC"</b> Ä‘Æ°á»£c xÃ¢y dá»±ng trÃªn <b>ASP.NET Core MVC (.NET 10)</b> + <b>Entity Framework Core 8</b> + <b>Microsoft SQL Server</b>, mang láº¡i giáº£i phÃ¡p káº¿t ná»‘i trá»±c tiáº¿p "KhÃ´ng phÃ­ mÃ´i giá»›i â€” Minh báº¡ch báº±ng cáº¥p â€” Quáº£n lÃ½ lá»›p há»c chuyÃªn nghiá»‡p" cho Phá»¥ huynh, Gia sÆ° vÃ  Ban Quáº£n trá»‹.</p>
+
+<div class="page-break"></div>
+
+<h1>Má»¤C Lá»¤C</h1>
+<table class="toc-table" style="width:100%;">
+  <tr><td><b>Lá»œI Cáº¢M Æ N</b> .......................................................................................................................................................................</td><td style="text-align:right;width:35pt;font-weight:bold;">ii</td></tr>
+  <tr><td><b>Lá»œI Má»ž Äáº¦U</b> .....................................................................................................................................................................</td><td style="text-align:right;width:35pt;font-weight:bold;">iii</td></tr>
+  <tr><td><b>DANH Má»¤C Tá»ª VIáº¾T Táº®T &amp; THUáº¬T NGá»®</b> .......................................................................................................................</td><td style="text-align:right;width:35pt;font-weight:bold;">iv</td></tr>
+  <tr><td><b>CHÆ¯Æ NG 1: Tá»”NG QUAN Äá»€ TÃ€I VÃ€ KHáº¢O SÃT HIá»†N TRáº NG</b> ...............................................................................................</td><td style="text-align:right;width:35pt;font-weight:bold;">1</td></tr>
+  <tr><td style="padding-left:20pt;">1.1. Bá»‘i cáº£nh vÃ  lÃ½ do chá»n Ä‘á» tÃ i ........................................................................................................................................................................</td><td style="text-align:right;width:35pt;">1</td></tr>
+  <tr><td style="padding-left:20pt;">1.2. Má»¥c tiÃªu nghiÃªn cá»©u vÃ  pháº¡m vi giáº£i phÃ¡p ......................................................................................................................................................</td><td style="text-align:right;width:35pt;">1</td></tr>
+  <tr><td style="padding-left:20pt;">1.3. ToÃ n vÄƒn Phiáº¿u kháº£o sÃ¡t Google Forms (20 cÃ¢u há»i) ........................................................................................................................................</td><td style="text-align:right;width:35pt;">2</td></tr>
+  <tr><td style="padding-left:20pt;">1.4. PhÃ¢n tÃ­ch káº¿t quáº£ kháº£o sÃ¡t: Báº£ng sá»‘ liá»‡u chi tiáº¿t vÃ  Biá»ƒu Ä‘á»“ tá»•ng há»£p .............................................................................................................</td><td style="text-align:right;width:35pt;">6</td></tr>
+  <tr><td><b>CHÆ¯Æ NG 2: PHÃ‚N TÃCH VÃ€ THIáº¾T Káº¾ Há»† THá»NG</b> ...................................................................................................................</td><td style="text-align:right;width:35pt;font-weight:bold;">9</td></tr>
+  <tr><td style="padding-left:20pt;">2.1. Kiáº¿n trÃºc há»‡ thá»‘ng tá»•ng thá»ƒ (Layered Architecture) .........................................................................................................................................</td><td style="text-align:right;width:35pt;">9</td></tr>
+  <tr><td style="padding-left:20pt;">2.2. PhÃ¢n tÃ­ch tÃ¡c nhÃ¢n (Actors) vÃ  luá»“ng tÆ°Æ¡ng tÃ¡c ...............................................................................................................................................</td><td style="text-align:right;width:35pt;">9</td></tr>
+  <tr><td style="padding-left:20pt;">2.3. Báº£ng Ä‘áº·c táº£ Use Case: Chá»‘ng trÃ¹ng lá»‹ch dáº¡y ....................................................................................................................................................</td><td style="text-align:right;width:35pt;">10</td></tr>
+  <tr><td style="padding-left:20pt;">2.4. Tá»« Ä‘iá»ƒn dá»¯ liá»‡u chi tiáº¿t cá»§a 10 báº£ng CSDL ......................................................................................................................................................</td><td style="text-align:right;width:35pt;">11</td></tr>
+  <tr><td><b>CHÆ¯Æ NG 3: CÃ”NG NGHá»† VÃ€ CÃC GIáº¢I PHÃP Ká»¸ THUáº¬T Ná»”I Báº¬T</b> ........................................................................................</td><td style="text-align:right;width:35pt;font-weight:bold;">14</td></tr>
+  <tr><td><b>CHÆ¯Æ NG 4: HIá»†N THá»°C HÃ“A CÃC PHÃ‚N Há»† CHá»¨C NÄ‚NG</b> ...................................................................................................!</td><td style="text-align:right;width:35pt;font-weight:bold;">18</td></tr>
+  <tr><td><b>CHÆ¯Æ NG 5: KIá»‚M THá»¬ VÃ€ ÄÃNH GIÃ Há»† THá»NG</b> .............................................................................................................</td><td style="text-align:right;width:35pt;font-weight:bold;">27</td></tr>
+  <tr><td><b>CHÆ¯Æ NG 6: Káº¾T LUáº¬N VÃ€ HÆ¯á»šNG PHÃT TRIá»‚N</b> ................................................................................................................</td><td style="text-align:right;width:35pt;font-weight:bold;">30</td></tr>
+  <tr><td><b>TÃ€I LIá»†U THAM KHáº¢O</b> ......................................................................................................................................................!</td><td style="text-align:right;width:35pt;font-weight:bold;">31</td></tr>
+</table>
+
+<div class="page-break"></div>
+
+<h1>DANH Má»¤C CÃC Tá»ª VIáº¾T Táº®T VÃ€ THUáº¬T NGá»®</h1>
+<table>
+  <tr><th style="width:20%;">Tá»« viáº¿t táº¯t</th><th style="width:35%;">TÃªn tiáº¿ng Anh Ä‘áº§y Ä‘á»§</th><th style="width:45%;">Ã nghÄ©a trong Ä‘á» tÃ i</th></tr>
+  <tr><td class="center bold">MVC</td><td>Model - View - Controller</td><td>MÃ´ hÃ¬nh kiáº¿n trÃºc phÃ¢n tÃ¡ch Dá»¯ liá»‡u, Giao diá»‡n vÃ  Bá»™ Ä‘iá»u khiá»ƒn; Ã¡p dá»¥ng xuyÃªn suá»‘t EduMatch UTC</td></tr>
+  <tr><td class="center bold">EF Core</td><td>Entity Framework Core</td><td>ORM truy váº¥n SQL Server báº±ng LINQ cá»§a C#; phiÃªn báº£n 8 Ä‘Æ°á»£c dÃ¹ng trong dá»± Ã¡n</td></tr>
+  <tr><td class="center bold">AJAX</td><td>Asynchronous JavaScript and XML</td><td>Truyá»n nháº­n dá»¯ liá»‡u ná»n khÃ´ng táº£i láº¡i trang; dÃ¹ng qua Fetch API trong dá»± Ã¡n</td></tr>
+  <tr><td class="center bold">PBKDF2</td><td>Password-Based Key Derivation Function 2</td><td>Thuáº­t toÃ¡n bÄƒm máº­t kháº©u chuáº©n RFC 8018, HMAC-SHA256, 100.000 vÃ²ng + salt 16 bytes</td></tr>
+  <tr><td class="center bold">XSS</td><td>Cross-Site Scripting</td><td>Lá»— há»•ng chÃ¨n mÃ£ Ä‘á»™c vÃ o trang; phÃ²ng chá»‘ng qua Whitelist SafeHtml</td></tr>
+  <tr><td class="center bold">CSRF</td><td>Cross-Site Request Forgery</td><td>Giáº£ máº¡o yÃªu cáº§u ngÆ°á»i dÃ¹ng; chá»‘ng báº±ng Antiforgery Token trÃªn táº¥t cáº£ form POST</td></tr>
+  <tr><td class="center bold">IDOR</td><td>Insecure Direct Object References</td><td>Truy xuáº¥t trÃ¡i phÃ©p dá»¯ liá»‡u qua thay ID; phÃ²ng chá»‘ng báº±ng kiá»ƒm tra quyá»n sá»Ÿ há»¯u má»—i Action</td></tr>
+  <tr><td class="center bold">PK / FK / UK</td><td>Primary / Foreign / Unique Key</td><td>KhÃ³a chÃ­nh / KhÃ³a ngoáº¡i / KhÃ³a duy nháº¥t trong thiáº¿t káº¿ CSDL SQL Server</td></tr>
+  <tr><td class="center bold">UTC</td><td>University of Transport and Communications</td><td>TrÆ°á»ng Äáº¡i há»c Giao thÃ´ng Váº­n táº£i â€” Ä‘Æ¡n vá»‹ thá»±c hiá»‡n Ä‘á» tÃ i</td></tr>
+  <tr><td class="center bold">KPI</td><td>Key Performance Indicator</td><td>Chá»‰ sá»‘ Ä‘o lÆ°á»ng hiá»‡u suáº¥t: doanh thu, sá»‘ lá»›p, tá»· lá»‡ ghÃ©p, Ä‘Ã¡nh giÃ¡ sao</td></tr>
+  <tr><td class="center bold">ORM</td><td>Object-Relational Mapping</td><td>Ãnh xáº¡ báº£ng CSDL thÃ nh Ä‘á»‘i tÆ°á»£ng C#; EF Core 8 Ä‘Ã³ng vai trÃ² ORM</td></tr>
+</table>
+
+<div class="page-break"></div>
+
+<h1>CHÆ¯Æ NG 1: Tá»”NG QUAN Äá»€ TÃ€I VÃ€ KHáº¢O SÃT HIá»†N TRáº NG</h1>
+
+<h2>1.1. Bá»‘i cáº£nh vÃ  lÃ½ do chá»n Ä‘á» tÃ i</h2>
+<p>Táº¡i HÃ  Ná»™i, nhu cáº§u tÃ¬m gia sÆ° dáº¡y kÃ¨m (ToÃ¡n, LÃ½, HÃ³a, VÄƒn, Anh, IELTS...) cho há»c sinh tá»« Lá»›p 1 Ä‘áº¿n Lá»›p 12 ráº¥t lá»›n. Lá»±c lÆ°á»£ng sinh viÃªn giá»i táº¡i UTC, BÃ¡ch Khoa, SÆ° Pháº¡m luÃ´n cÃ³ nhu cáº§u dáº¡y gia sÆ° Ä‘á»ƒ tÄƒng thu nháº­p. Theo Æ°á»›c tÃ­nh, chá»‰ riÃªng HÃ  Ná»™i cÃ³ hÆ¡n 500.000 há»c sinh phá»• thÃ´ng vÃ  nhu cáº§u gia sÆ° tÄƒng 15â€“20%/nÄƒm sau Ä‘áº¡i dá»‹ch.</p>
+<p>Tuy nhiÃªn, cÃ¡c kÃªnh káº¿t ná»‘i hiá»‡n nay bá»™c lá»™ nhiá»u Ä‘iá»ƒm ngháº½n: hÆ¡n <b>75% gia sÆ°</b> tá»«ng bá»‹ trá»« phÃ­ mÃ´i giá»›i cao hoáº·c gáº·p lá»›p há»c áº£o; <b>90% phá»¥ huynh</b> lo ngáº¡i khÃ´ng xÃ¡c minh Ä‘Æ°á»£c báº±ng cáº¥p tháº­t cá»§a gia sÆ°. Viá»‡c quáº£n lÃ½ lá»‹ch há»c, giao bÃ i táº­p hoÃ n toÃ n qua Zalo vÃ  giáº¥y tá» thá»§ cÃ´ng. Giáº£i phÃ¡p sá»‘ hÃ³a trá»±c tiáº¿p "KhÃ´ng phÃ­ mÃ´i giá»›i â€” Minh báº¡ch báº±ng cáº¥p â€” Quáº£n lÃ½ chuyÃªn nghiá»‡p" lÃ  hoÃ n toÃ n cáº¥p thiáº¿t.</p>
+
+<h2>1.2. Má»¥c tiÃªu nghiÃªn cá»©u vÃ  pháº¡m vi giáº£i phÃ¡p</h2>
+<p><b>Má»¥c tiÃªu tá»•ng quÃ¡t:</b> XÃ¢y dá»±ng cá»•ng thÃ´ng tin káº¿t ná»‘i vÃ  quáº£n lÃ½ há»c táº­p thÃ´ng minh, há»— trá»£ 4 vai trÃ² (KhÃ¡ch, Phá»¥ huynh, Gia sÆ°, Admin) vá»›i giao diá»‡n trá»±c quan, báº£o máº­t cao vÃ  váº­n hÃ nh khÃ©p kÃ­n tá»« tÃ¬m kiáº¿m â†’ Ä‘áº·t lá»‹ch há»c thá»­ â†’ quáº£n lÃ½ lá»›p há»c â†’ giao bÃ i táº­p.</p>
+<p><b>Má»¥c tiÃªu cá»¥ thá»ƒ:</b></p>
+<p class="no-indent">
+â€¢ TÃ¬m kiáº¿m gia sÆ° thÃ´ng minh 6 tiÃªu chÃ­ lá»c káº¿t há»£p AJAX, khÃ´ng reload trang.<br>
+â€¢ PhÃ¢n quyá»n 3 vai trÃ² (Admin/Tutor/Parent) vá»›i kiá»ƒm tra tÃ i khoáº£n thá»i gian thá»±c tá»« CSDL.<br>
+â€¢ Thuáº­t toÃ¡n phÃ¡t hiá»‡n trÃ¹ng lá»‹ch giáº£ng dáº¡y theo Ä‘iá»u kiá»‡n giao cáº¯t khoáº£ng thá»i gian (Interval Overlap).<br>
+â€¢ Quy trÃ¬nh duyá»‡t "TÃ­ch xanh" xÃ¡c minh báº±ng cáº¥p kÃ¨m kiá»ƒm tra Magic Bytes khi upload áº£nh.<br>
+â€¢ Chuá»—i 6 giáº£i phÃ¡p báº£o máº­t OWASP: PBKDF2, XSS Whitelist, CSRF Token, IDOR Guard, Magic Bytes, Brute-force Limiter.
+</p>
+<p><b>Pháº¡m vi:</b> Káº¿t ná»‘i gia sÆ° dáº¡y kÃ¨m táº¡i HÃ  Ná»™i cho há»c sinh Lá»›p 1 Ä‘áº¿n Lá»›p 12 vÃ  Luyá»‡n thi ÄH, theo hÃ¬nh thá»©c Offline vÃ  Online (Google Meet/Zoom). PhiÃªn báº£n 1.0 khÃ´ng tÃ­ch há»£p cá»•ng thanh toÃ¡n vÃ  khÃ´ng cÃ³ lá»›p há»c video trá»±c tiáº¿p trÃªn ná»n táº£ng.</p>
+
+<h2>1.3. ToÃ n vÄƒn Phiáº¿u kháº£o sÃ¡t Google Forms (20 cÃ¢u há»i)</h2>
+<p>NhÃ³m tÃ¡c giáº£ thiáº¿t káº¿ vÃ  triá»ƒn khai biá»ƒu máº«u kháº£o sÃ¡t trá»±c tuyáº¿n táº¡i <code>https://docs.google.com/forms/d/1nQZRf03QTiLvxCoMwOqbTbPj9eq2m2UBQbYUiB9Bo9U/edit#responses</code>. Biá»ƒu máº«u gá»“m <b>20 cÃ¢u há»i</b>, thu tháº­p trong 2 tuáº§n (thÃ¡ng 10/2025) vá»›i tá»•ng <b>60 ngÆ°á»i tham gia há»£p lá»‡</b>.</p>
+
+<div class="survey-box">
+  <div class="survey-header">PHIáº¾U KHáº¢O SÃT: NHU Cáº¦U Sá»¬ Dá»¤NG Há»† THá»NG QUáº¢N LÃ GIA SÆ¯ &amp; Lá»šP Há»ŒC</div>
+  <div class="survey-sub">"ChÃ o báº¡n, chÃºng tÃ´i lÃ  nhÃ³m sinh viÃªn ÄH Giao thÃ´ng Váº­n táº£i Ä‘ang thá»±c hiá»‡n dá»± Ã¡n EduMatch UTC. Má»i thÃ´ng tin sáº½ Ä‘Æ°á»£c báº£o máº­t tuyá»‡t Ä‘á»‘i vÃ  chá»‰ dÃ¹ng cho má»¥c Ä‘Ã­ch nghiÃªn cá»©u há»c thuáº­t."</div>
+
+  <div class="survey-section-title">PHáº¦N 1: THÃ”NG TIN CHUNG VÃ€ Äá»ŠNH DANH VAI TRÃ’</div>
+  <p class="survey-q">CÃ¢u 1. Há» vÃ  tÃªn cá»§a báº¡n:</p>
+  <div class="survey-opt">[TrÆ°á»ng vÄƒn báº£n ngáº¯n .............................................]</div>
+  <p class="survey-q">CÃ¢u 2. Vai trÃ² hiá»‡n táº¡i cá»§a báº¡n lÃ  gÃ¬?</p>
+  <div class="survey-opt">[ ] TÃ´i lÃ  Phá»¥ huynh / Há»c sinh Ä‘ang tÃ¬m gia sÆ°</div>
+  <div class="survey-opt">[ ] TÃ´i lÃ  Gia sÆ° (Sinh viÃªn, Cá»­ nhÃ¢n, GiÃ¡o viÃªn...)</div>
+  <div class="survey-opt">[ ] Quáº£n trá»‹ viÃªn / Quáº£n lÃ½ trung tÃ¢m gia sÆ°</div>
+  <p class="survey-q">CÃ¢u 3. Báº¡n Ä‘ang sinh sá»‘ng táº¡i khu vá»±c nÃ o?</p>
+  <div class="survey-opt">[ ] Ná»™i thÃ nh HÃ  Ná»™i (HoÃ n Kiáº¿m, Äá»‘ng Äa, Ba ÄÃ¬nh, Cáº§u Giáº¥y, TÃ¢y Há»“...)</div>
+  <div class="survey-opt">[ ] Ngoáº¡i thÃ nh HÃ  Ná»™i (HÃ  ÄÃ´ng, Gia LÃ¢m, ÄÃ´ng Anh, Long BiÃªn...)</div>
+  <div class="survey-opt">[ ] Tá»‰nh/thÃ nh phá»‘ khÃ¡c</div>
+
+  <div class="survey-section-title">PHáº¦N 2: DÃ€NH CHO PHá»¤ HUYNH VÃ€ Há»ŒC SINH</div>
+  <p class="survey-q">CÃ¢u 4. Báº¡n thÆ°á»ng máº¥t bao lÃ¢u Ä‘á»ƒ tÃ¬m gia sÆ° Æ°ng Ã½ qua kÃªnh truyá»n thá»‘ng?</p>
+  <div class="survey-opt">[ ] DÆ°á»›i 1 ngÃ y</div>
+  <div class="survey-opt">[ ] 1 â€“ 3 ngÃ y</div>
+  <div class="survey-opt">[ ] 3 â€“ 7 ngÃ y</div>
+  <div class="survey-opt">[ ] HÆ¡n 1 tuáº§n</div>
+  <p class="survey-q">CÃ¢u 5. Má»©c Ä‘á»™ sá»­ dá»¥ng cÃ¡c Bá»˜ Lá»ŒC tÃ¬m kiáº¿m gia sÆ°? <small style="font-weight:normal;">(KhÃ´ng dÃ¹ng | Ãt khi | Thá»‰nh thoáº£ng | ThÆ°á»ng xuyÃªn | LuÃ´n luÃ´n)</small></p>
+  <div class="survey-opt">â€¢ Lá»c theo MÃ´n há»c: [..........]  â€¢ Lá»c theo Khá»‘i lá»›p: [.........]</div>
+  <div class="survey-opt">â€¢ Lá»c theo Khu vá»±c / Online: [.]  â€¢ Lá»c theo Há»c phÃ­: [........]</div>
+  <div class="survey-opt">â€¢ Lá»c theo TrÃ¬nh Ä‘á»™ gia sÆ°: [.]  â€¢ Sáº¯p xáº¿p theo ÄÃ¡nh giÃ¡ sao: []</div>
+  <p class="survey-q">CÃ¢u 6. Yáº¿u tá»‘ nÃ o tÃ¡c Ä‘á»™ng máº¡nh nháº¥t Ä‘áº¿n quyáº¿t Ä‘á»‹nh "Äáº·t lá»‹ch" há»c thá»­?</p>
+  <div class="survey-opt">[ ] Dáº¥u tÃ­ch xanh "ÄÃ£ xÃ¡c minh báº±ng cáº¥p / Tháº» sinh viÃªn"</div>
+  <div class="survey-opt">[ ] Ma tráº­n lá»‹ch ráº£nh khá»›p vá»›i lá»‹ch cá»§a con</div>
+  <div class="survey-opt">[ ] Äiá»ƒm Ä‘Ã¡nh giÃ¡ sao trung bÃ¬nh vÃ  bÃ¬nh luáº­n tá»« phá»¥ huynh khÃ¡c</div>
+  <div class="survey-opt">[ ] Báº£ng thÃ nh tÃ­ch ná»•i báº­t (IELTS 8.0, Giáº£i Quá»‘c gia...)</div>
+  <div class="survey-opt">[ ] Má»©c há»c phÃ­ Ä‘á» xuáº¥t cÃ´ng khai, minh báº¡ch</div>
+  <div class="survey-opt">[ ] Pháº§n tá»± giá»›i thiá»‡u (Bio) vÃ  triáº¿t lÃ½ giáº£ng dáº¡y</div>
+  <p class="survey-q">CÃ¢u 7. Form há»c thá»­ cáº§n thu tháº­p thÃ´ng tin gÃ¬? (Chá»n táº¥t cáº£ phÃ¹ há»£p)</p>
+  <div class="survey-opt">[ ] Há» tÃªn vÃ  SÄT phá»¥ huynh  [ ] MÃ´n há»c cáº§n há»c thá»­</div>
+  <div class="survey-opt">[ ] TrÃ¬nh Ä‘á»™ há»c sinh (Giá»i/KhÃ¡/TB/Máº¥t gá»‘c)  [ ] NgÃ y giá» há»c thá»­</div>
+  <div class="survey-opt">[ ] Ghi chÃº yÃªu cáº§u riÃªng (VD: "cáº§n gia sÆ° kiÃªn nháº«n")</div>
+  <p class="survey-q">CÃ¢u 8. Äiá»u gÃ¬ thÃºc Ä‘áº©y báº¡n viáº¿t ÄÃ¡nh giÃ¡ (1â€“5 sao) cho gia sÆ°?</p>
+  <div class="survey-opt">[ ] Gia sÆ° dáº¡y xuáº¥t sáº¯c, con tiáº¿n bá»™ rÃµ rá»‡t (Muá»‘n khen ngá»£i)</div>
+  <div class="survey-opt">[ ] Gia sÆ° khÃ´ng Ä‘áº¡t yÃªu cáº§u (Muá»‘n cáº£nh bÃ¡o phá»¥ huynh khÃ¡c)</div>
+  <div class="survey-opt">[ ] Do há»‡ thá»‘ng cÃ³ thÃ´ng bÃ¡o nháº¯c nhá»Ÿ Ä‘Ã¡nh giÃ¡</div>
+  <div class="survey-opt">[ ] TÃ´i Ã­t khi / khÃ´ng bao giá» viáº¿t Ä‘Ã¡nh giÃ¡</div>
+
+  <div class="survey-section-title">PHáº¦N 3: DÃ€NH CHO GIA SÆ¯</div>
+  <p class="survey-q">CÃ¢u 9. Quáº£n lÃ½ Há»“ sÆ¡ nÄƒng lá»±c trÃªn ná»n táº£ng mang láº¡i lá»£i tháº¿ gÃ¬? <small style="font-weight:normal;">(1-5 má»©c)</small></p>
+  <div class="survey-opt">â€¢ ChuyÃªn nghiá»‡p hÆ¡n, táº¡o uy tÃ­n cho phá»¥ huynh: [.........]</div>
+  <div class="survey-opt">â€¢ KhÃ´ng bá»‹ trÃ´i bÃ i, tiáº¿p cáº­n Ä‘Ãºng nhu cáº§u: [...........]</div>
+  <div class="survey-opt">â€¢ TÃ­ch lÅ©y uy tÃ­n qua Reviews cá»§a há»c sinh cÅ©: [.........]</div>
+  <div class="survey-opt">â€¢ Hiá»ƒn thá»‹ Ma tráº­n lá»‹ch ráº£nh Ä‘á»ƒ phá»¥ huynh tá»± khá»›p: [...]</div>
+  <p class="survey-q">CÃ¢u 10. ThÃ´ng tin nÃ o Báº®T BUá»˜C hiá»ƒn thá»‹ trong Thá»i khÃ³a biá»ƒu?</p>
+  <div class="survey-opt">[ ] Thá»©, NgÃ y vÃ  Giá» há»c cá»¥ thá»ƒ  [ ] MÃ´n há»c vÃ  TÃªn há»c sinh</div>
+  <div class="survey-opt">[ ] PhÃ²ng há»c / Link Google Meet  [ ] Há»c phÃ­ ca dáº¡y (VNÄ)</div>
+  <div class="survey-opt">[ ] NÃºt báº­t/táº¯t nháº¯c nhá»Ÿ Desktop Notification</div>
+  <p class="survey-q">CÃ¢u 11. KhÃ³ khÄƒn cá»§a gia sÆ° trong quáº£n lÃ½ BÃ i táº­p vá» nhÃ ?</p>
+  <div class="survey-opt">[ ] QuÃªn Ä‘Ã£ giao bÃ i gÃ¬ cho há»c sinh nÃ o</div>
+  <div class="survey-opt">[ ] Há»c sinh quÃªn Deadline ná»™p bÃ i</div>
+  <div class="survey-opt">[ ] KhÃ³ theo dÃµi tráº¡ng thÃ¡i Pending / Completed</div>
+  <div class="survey-opt">[ ] Táº¥t cáº£ cÃ¡c khÃ³ khÄƒn trÃªn</div>
+  <p class="survey-q">CÃ¢u 12. Muá»‘n nháº­n Desktop Notification trong trÆ°á»ng há»£p nÃ o?</p>
+  <div class="survey-opt">[ ] Khi cÃ³ phá»¥ huynh má»›i Ä‘áº·t lá»‹ch há»c thá»­</div>
+  <div class="survey-opt">[ ] Khi sáº¯p Ä‘áº¿n giá» dáº¡y (nháº¯c trÆ°á»›c 30 phÃºt)</div>
+  <div class="survey-opt">[ ] Khi bÃ i táº­p há»c sinh sáº¯p Ä‘áº¿n Deadline</div>
+
+  <div class="survey-section-title">PHáº¦N 4: QUáº¢N TRá»Š VIÃŠN &amp; ÄÃNH GIÃ Tá»”NG QUAN</div>
+  <p class="survey-q">CÃ¢u 13. Dashboard Quáº£n trá»‹ nÃªn Æ°u tiÃªn hiá»ƒn thá»‹ chá»‰ sá»‘ nÃ o?</p>
+  <div class="survey-opt">[ ] Tá»•ng Gia sÆ° &amp; Sá»‘ Ä‘ang nháº­n lá»›p  [ ] Tá»•ng Há»c sinh &amp; Tá»· lá»‡ ghÃ©p lá»›p</div>
+  <div class="survey-opt">[ ] ÄÃ¡nh giÃ¡ sao trung bÃ¬nh toÃ n sÃ n  [ ] Doanh thu / PhÃ­ dá»‹ch vá»¥</div>
+  <p class="survey-q">CÃ¢u 14. Báº¡n thÃ­ch xem danh sÃ¡ch theo cháº¿ Ä‘á»™ nÃ o?</p>
+  <div class="survey-opt">[ ] Dáº¡ng Báº£ng (Table) â€” dá»… so sÃ¡nh dá»¯ liá»‡u</div>
+  <div class="survey-opt">[ ] Dáº¡ng Tháº» (Grid/Cards) â€” nhÃ¬n Ä‘áº¹p, nháº­n diá»‡n hÃ¬nh áº£nh</div>
+  <div class="survey-opt">[ ] LuÃ¢n phiÃªn cáº£ 2 tÃ¹y má»¥c Ä‘Ã­ch</div>
+  <p class="survey-q">CÃ¢u 15. Export CSV phá»¥c vá»¥ má»¥c Ä‘Ã­ch gÃ¬?</p>
+  <div class="survey-opt">[ ] BÃ¡o cÃ¡o tÃ i chÃ­nh cuá»‘i thÃ¡ng  [ ] Backup danh sÃ¡ch phá»¥ huynh/há»c sinh</div>
+  <div class="survey-opt">[ ] Gá»­i cho bá»™ pháº­n Marketing/CSKH  [ ] Táº¥t cáº£ má»¥c Ä‘Ã­ch trÃªn</div>
+  <p class="survey-q">CÃ¢u 16. Há»‡ thá»‘ng cÃ³ "Ghi nhá»› Ä‘Äƒng nháº­p" vÃ  "QuÃªn máº­t kháº©u" qua mÃ£ 6 sá»‘. Báº¡n tháº¥y tháº¿ nÃ o?</p>
+  <div class="survey-opt">[ ] Ráº¥t thuáº­n tiá»‡n vÃ  an toÃ n  [ ] BÃ¬nh thÆ°á»ng, giá»‘ng website khÃ¡c</div>
+  <div class="survey-opt">[ ] NÃªn bá»• sung Ä‘Äƒng nháº­p Google/Facebook</div>
+  <p class="survey-q">CÃ¢u 17. Báº¡n truy cáº­p há»‡ thá»‘ng chá»§ yáº¿u báº±ng thiáº¿t bá»‹ gÃ¬?</p>
+  <div class="survey-opt">[ ] Äiá»‡n thoáº¡i di Ä‘á»™ng (Mobile)  [ ] MÃ¡y tÃ­nh báº£ng (Tablet)</div>
+  <div class="survey-opt">[ ] MÃ¡y tÃ­nh bÃ n / Laptop (PC)</div>
+  <p class="survey-q">CÃ¢u 18. Má»©c Ä‘á»™ hÃ i lÃ²ng dá»± kiáº¿n (thang 1â€“10): [......... / 10 Ä‘iá»ƒm]</p>
+  <p class="survey-q">CÃ¢u 19. Báº¡n cÃ³ sáºµn sÃ ng giá»›i thiá»‡u EduMatch UTC cho ngÆ°á»i khÃ¡c khÃ´ng? (NPS)</p>
+  <div class="survey-opt">[ ] Cháº¯c cháº¯n cÃ³ (9â€“10 Ä‘iá»ƒm)  [ ] CÃ³ thá»ƒ (7â€“8 Ä‘iá»ƒm)</div>
+  <div class="survey-opt">[ ] KhÃ´ng cháº¯c (5â€“6 Ä‘iá»ƒm)  [ ] KhÃ´ng (dÆ°á»›i 5 Ä‘iá»ƒm)</div>
+  <p class="survey-q">CÃ¢u 20. Báº¡n cÃ³ Ä‘á» xuáº¥t tÃ­nh nÄƒng nÃ o khÃ¡c?</p>
+  <div class="survey-opt">[TrÆ°á»ng vÄƒn báº£n dÃ i ...............................................]</div>
+</div>
+
+<h2>1.4. PhÃ¢n tÃ­ch káº¿t quáº£ kháº£o sÃ¡t: Báº£ng sá»‘ liá»‡u chi tiáº¿t</h2>
+<p>Káº¿t quáº£ phÃ¢n tÃ­ch tá»« <b>60 phiáº¿u há»£p lá»‡</b> (thu trong 2 tuáº§n, thÃ¡ng 10/2025):</p>
+
+<h3>1.4.1. Tá»•ng quan sá»‘ liá»‡u (60 ngÆ°á»i tham gia)</h3>
+<table>
+  <tr><th>Chá»‰ tiÃªu</th><th>GiÃ¡ trá»‹ thá»±c táº¿</th><th>Ghi chÃº / PhÃ¢n tÃ­ch</th></tr>
+  <tr><td>Tá»•ng phiáº¿u thu &amp; há»£p lá»‡</td><td class="center bold">60 / 60 phiáº¿u</td><td>Tá»· lá»‡ há»£p lá»‡ 100%; thu qua Google Forms link</td></tr>
+  <tr><td>Phá»¥ huynh / Há»c sinh</td><td class="center bold">27 ngÆ°á»i (45.8%)</td><td>NhÃ³m ngÆ°á»i dÃ¹ng chÃ­nh phÃ­a cáº§u</td></tr>
+  <tr><td>Gia sÆ° (Sinh viÃªn, Cá»­ nhÃ¢n, GV)</td><td class="center bold">25 ngÆ°á»i (41.7%)</td><td>NhÃ³m nhÃ  cung cáº¥p dá»‹ch vá»¥</td></tr>
+  <tr><td>Quáº£n trá»‹ / Quáº£n lÃ½ trung tÃ¢m</td><td class="center bold">8 ngÆ°á»i (13.3%)</td><td>NhÃ³m ngÆ°á»i dÃ¹ng Admin/Äiá»u phá»‘i</td></tr>
+  <tr class="highlight"><td><b>Äiá»ƒm hÃ i lÃ²ng TB (CÃ¢u 18)</b></td><td class="center bold">8.85 / 10</td><td>Äiá»ƒm 8+ chiáº¿m 85.3% tá»•ng phiáº¿u tráº£ lá»i</td></tr>
+  <tr class="highlight"><td><b>Tá»· lá»‡ giá»›i thiá»‡u tÃ­ch cá»±c (NPS)</b></td><td class="center bold">68.3% Promoters</td><td>NPS Score = 68.3% â€“ 8.3% = <b>+60</b> (xuáº¥t sáº¯c)</td></tr>
+</table>
+
+<h3>1.4.2. CÃ¢u 4 â€” Thá»i gian tÃ¬m gia sÆ° theo phÆ°Æ¡ng thá»©c truyá»n thá»‘ng</h3>
+<table>
+  <tr><th>Khoáº£ng thá»i gian</th><th>Sá»‘ ngÆ°á»i</th><th>Tá»· lá»‡</th><th>PhÃ¢n tÃ­ch</th></tr>
+  <tr><td>DÆ°á»›i 1 ngÃ y</td><td class="center">5</td><td class="center">8.3%</td><td>ThÆ°á»ng lÃ  quen biáº¿t trá»±c tiáº¿p</td></tr>
+  <tr><td>1 â€“ 3 ngÃ y</td><td class="center">17</td><td class="center">28.3%</td><td>TÃ¬m qua nhÃ³m Facebook cÃ³ pháº£n há»“i sá»›m</td></tr>
+  <tr class="highlight"><td><b>3 â€“ 7 ngÃ y</b></td><td class="center"><b>25</b></td><td class="center"><b>41.7%</b></td><td><b>Phá»• biáº¿n nháº¥t â€” tá»‘n nhiá»u cÃ´ng sá»©c lá»c</b></td></tr>
+  <tr class="highlight"><td><b>HÆ¡n 1 tuáº§n</b></td><td class="center"><b>13</b></td><td class="center"><b>21.7%</b></td><td><b>YÃªu cáº§u chuyÃªn biá»‡t, khÃ³ khá»›p lá»‹ch/khu vá»±c</b></td></tr>
+  <tr><td><b>Tá»•ng tá»« 3 ngÃ y trá»Ÿ lÃªn</b></td><td class="center"><b>38</b></td><td class="center"><b>63.4%</b></td><td>â†’ EduMatch UTC rÃºt ngáº¯n xuá»‘ng &lt; 5 phÃºt</td></tr>
+</table>
+
+<h3>1.4.3. CÃ¢u 6 â€” Yáº¿u tá»‘ quyáº¿t Ä‘á»‹nh Ä‘áº·t lá»‹ch há»c thá»­ (n=27 phá»¥ huynh)</h3>
+<table>
+  <tr><th>Yáº¿u tá»‘ quyáº¿t Ä‘á»‹nh</th><th>Sá»‘ chá»n</th><th>Tá»· lá»‡</th><th>TÃ­nh nÄƒng EduMatch Ä‘Ã¡p á»©ng</th></tr>
+  <tr class="highlight"><td><b>TÃ­ch xanh xÃ¡c minh báº±ng cáº¥p/Tháº» SV</b></td><td class="center"><b>47</b></td><td class="center"><b>78.3%</b></td><td>Admin duyá»‡t + kiá»ƒm tra Magic Bytes upload</td></tr>
+  <tr class="highlight"><td><b>Ma tráº­n lá»‹ch ráº£nh khá»›p lá»‹ch con</b></td><td class="center"><b>43</b></td><td class="center"><b>71.7%</b></td><td>Báº£ng MaTranLichRanh 21 Ã´ click toggle</td></tr>
+  <tr><td>Äiá»ƒm sao &amp; bÃ¬nh luáº­n phá»¥ huynh</td><td class="center">41</td><td class="center">68.3%</td><td>Há»‡ thá»‘ng DanhGia + Admin moderation</td></tr>
+  <tr><td>Há»c phÃ­ cÃ´ng khai minh báº¡ch</td><td class="center">40</td><td class="center">66.7%</td><td>HocPhiTheoGio hiá»ƒn thá»‹ ngay trÃªn tháº» gia sÆ°</td></tr>
+  <tr><td>Báº£ng thÃ nh tÃ­ch &amp; chá»©ng chá»‰</td><td class="center">29</td><td class="center">48.3%</td><td>TrÆ°á»ng ThanhTichNoiBat trong HoSoGiaSu</td></tr>
+  <tr><td>Tá»± giá»›i thiá»‡u Bio &amp; triáº¿t lÃ½ dáº¡y</td><td class="center">24</td><td class="center">40.0%</td><td>CKEditor 5 + SafeHtml lá»c XSS</td></tr>
+</table>
+
+<h3>1.4.4. CÃ¢u 11 â€” KhÃ³ khÄƒn quáº£n lÃ½ bÃ i táº­p (n=25 gia sÆ°)</h3>
+<table>
+  <tr><th>KhÃ³ khÄƒn gáº·p pháº£i</th><th>Sá»‘ ngÆ°á»i</th><th>Tá»· lá»‡</th></tr>
+  <tr><td>QuÃªn Ä‘Ã£ giao bÃ i gÃ¬ cho há»c sinh nÃ o</td><td class="center">6</td><td class="center">24.0%</td></tr>
+  <tr><td>Há»c sinh quÃªn Deadline ná»™p bÃ i</td><td class="center">4</td><td class="center">16.0%</td></tr>
+  <tr><td>KhÃ³ theo dÃµi tráº¡ng thÃ¡i Pending/Completed</td><td class="center">3</td><td class="center">12.0%</td></tr>
+  <tr class="highlight"><td><b>Táº¥t cáº£ cÃ¡c khÃ³ khÄƒn trÃªn</b></td><td class="center"><b>17</b></td><td class="center"><b>68.0%</b></td></tr>
+</table>
+
+<h3>1.4.5. CÃ¢u 17 â€” Thiáº¿t bá»‹ truy cáº­p chá»§ yáº¿u (n=60)</h3>
+<table>
+  <tr><th>Thiáº¿t bá»‹</th><th>Sá»‘ ngÆ°á»i</th><th>Tá»· lá»‡</th><th>Há»‡ quáº£ thiáº¿t káº¿</th></tr>
+  <tr class="highlight"><td><b>Äiá»‡n thoáº¡i di Ä‘á»™ng (Mobile)</b></td><td class="center"><b>35</b></td><td class="center"><b>58.3%</b></td><td>Thiáº¿t káº¿ Mobile-first, Bootstrap Responsive</td></tr>
+  <tr><td>MÃ¡y tÃ­nh bÃ n / Laptop (PC)</td><td class="center">22</td><td class="center">36.7%</td><td>Há»— trá»£ giao diá»‡n full-width cho PC</td></tr>
+  <tr><td>MÃ¡y tÃ­nh báº£ng (Tablet)</td><td class="center">3</td><td class="center">5.0%</td><td>Breakpoint tablet Ä‘Æ°á»£c xá»­ lÃ½ tá»± Ä‘á»™ng</td></tr>
+</table>
+
+<div class="screenshot-box">
+  <div class="screenshot-title">ðŸ“Š HÃŒNH 1.1: BIá»‚U Äá»’ Tá»”NG Há»¢P Káº¾T QUáº¢ KHáº¢O SÃT (4 CHá»ˆ Sá» QUAN TRá»ŒNG)</div>
+  <img src="C:\Users\Admin\.gemini\antigravity-ide\brain\a8e743c3-4c3b-4ff6-a700-6510561e7af7\survey_charts_1792490966332.jpg" alt="Biá»ƒu Ä‘á»“ káº¿t quáº£ kháº£o sÃ¡t EduMatch UTC" class="screenshot-img">
+  <p class="img-caption">HÃ¬nh 1.1: (TL) CÆ¡ cáº¥u vai trÃ² ngÆ°á»i dÃ¹ng â€” (TR) Thá»i gian tÃ¬m gia sÆ° truyá»n thá»‘ng â€” (DL) Yáº¿u tá»‘ quyáº¿t Ä‘á»‹nh Ä‘áº·t lá»‹ch â€” (DR) PhÃ¢n bá»• Ä‘iá»ƒm hÃ i lÃ²ng (1â€“10)</p>
+</div>
+
+<div class="page-break"></div>
+
+<h1>CHÆ¯Æ NG 2: PHÃ‚N TÃCH VÃ€ THIáº¾T Káº¾ Há»† THá»NG</h1>
+
+<h2>2.1. Kiáº¿n trÃºc há»‡ thá»‘ng tá»•ng thá»ƒ (Layered Architecture)</h2>
+<p>á»¨ng dá»¥ng xÃ¢y dá»±ng theo kiáº¿n trÃºc <b>ASP.NET Core MVC 5 táº§ng</b>:</p>
+<table>
+  <tr><th style="width:22%;">Táº§ng (Layer)</th><th style="width:42%;">ThÃ nh pháº§n chÃ­nh</th><th style="width:36%;">CÃ´ng nghá»‡ sá»­ dá»¥ng</th></tr>
+  <tr><td><b>1. Presentation</b><br>(Giao diá»‡n)</td><td>Razor Views (.cshtml), ViewComponents (SubjectMenu), Partial Views, Layout chÃ­nh vÃ  Layout Admin Area</td><td>HTML5, CSS3 Responsive, Bootstrap, Chart.js, CKEditor 5, JavaScript Fetch API</td></tr>
+  <tr><td><b>2. Controller &amp; Filter</b><br>(Xá»­ lÃ½ yÃªu cáº§u)</td><td>HomeController, AccountController, ParentController, TutorPortalController, ApiTutorController; Area Admin: HomeAdmin, Tutors, Users, Bookings, Reviews, Subjects, Grades</td><td>ASP.NET Core MVC, ActionFilter [RoleAuthorize], [ValidateAntiForgeryToken]</td></tr>
+  <tr><td><b>3. Service</b><br>(Logic nghiá»‡p vá»¥)</td><td>PasswordService (PBKDF2), SafeHtml (XSS Filter), FileUploadService (Magic Bytes), DbSeeder (Seed data), VnFormat (Tiá»‡n Ã­ch thá»©/buá»•i)</td><td>C# 13, .NET 10, System.Security.Cryptography, HtmlAgilityPack</td></tr>
+  <tr><td><b>4. Data Access</b><br>(Truy cáº­p dá»¯ liá»‡u)</td><td>DbContext: <code>QlGiaSuLopHocContext</code>; 10 Entity classes; Navigation Properties</td><td>EF Core 8, LINQ, AsNoTracking(), Include().AsSplitQuery(), Skip().Take()</td></tr>
+  <tr><td><b>5. Database</b><br>(CÆ¡ sá»Ÿ dá»¯ liá»‡u)</td><td>10 báº£ng vá»›i rÃ ng buá»™c FK cháº·t cháº½ vÃ  Index tá»‘i Æ°u truy váº¥n</td><td>Microsoft SQL Server Developer Edition, T-SQL Migrations</td></tr>
+</table>
+
+<h2>2.2. PhÃ¢n tÃ­ch tÃ¡c nhÃ¢n (Actors) vÃ  luá»“ng tÆ°Æ¡ng tÃ¡c</h2>
+<table>
+  <tr><th style="width:18%;">TÃ¡c nhÃ¢n</th><th style="width:45%;">Quyá»n háº¡n vÃ  tÃ­nh nÄƒng chÃ­nh</th><th style="width:37%;">URL / Route</th></tr>
+  <tr><td><b>KhÃ¡ch vÃ£ng lai</b><br>(Guest)</td><td>Tra cá»©u gia sÆ° AJAX 6 tiÃªu chÃ­, xem chi tiáº¿t há»“ sÆ¡, xem Ma tráº­n lá»‹ch ráº£nh, gá»­i form há»c thá»­ (khÃ´ng cáº§n tÃ i khoáº£n), Ä‘Äƒng kÃ½ tÃ i khoáº£n má»›i</td><td><code>/</code>, <code>/Home/Details/{id}</code>, <code>/api/ApiTutor/filter</code>, <code>/Account/Register</code></td></tr>
+  <tr><td><b>Phá»¥ huynh</b><br>(Parent)</td><td>Táº¥t cáº£ quyá»n Guest + Theo dÃµi Ä‘Æ¡n há»c thá»­ cÃ³ huy hiá»‡u mÃ u, há»§y Ä‘Æ¡n chá» duyá»‡t, gá»­i Ä‘Ã¡nh giÃ¡ 1â€“5 sao, cáº­p nháº­t thÃ´ng tin cÃ¡ nhÃ¢n</td><td><code>/Parent/MyBookings</code>, <code>/Parent/WriteReview/{id}</code>, <code>/Account/Profile</code></td></tr>
+  <tr><td><b>Gia sÆ°</b><br>(Tutor)</td><td>ToÃ n bá»™ Tutor Portal: Dashboard KPI + 2 Chart.js, quáº£n lÃ½ há»“ sÆ¡ &amp; upload báº±ng cáº¥p, cáº¥u hÃ¬nh mÃ´n/khá»‘i/lá»‹ch ráº£nh, thá»i khÃ³a biá»ƒu chá»‘ng trÃ¹ng ca, giao bÃ i táº­p AJAX, phÃª duyá»‡t Ä‘Æ¡n há»c thá»­</td><td><code>/TutorPortal</code>, <code>/TutorPortal/Schedule</code>, <code>/TutorPortal/Assignments</code>, <code>/TutorPortal/Availability</code>, <code>/TutorPortal/Bookings</code>, <code>/TutorPortal/Profile</code></td></tr>
+  <tr><td><b>Quáº£n trá»‹ viÃªn</b><br>(Admin)</td><td>ToÃ n bá»™ Admin Area: Dashboard + 3 Chart.js, kiá»ƒm duyá»‡t báº±ng cáº¥p &amp; cáº¥p TÃ­ch xanh, khÃ³a/má»Ÿ tÃ i khoáº£n, CRUD MÃ´n há»c &amp; Khá»‘i lá»›p, Ä‘iá»u phá»‘i Ä‘Æ¡n, kiá»ƒm duyá»‡t Ä‘Ã¡nh giÃ¡</td><td><code>/Admin/HomeAdmin</code>, <code>/Admin/Tutors</code>, <code>/Admin/Users</code>, <code>/Admin/Bookings</code>, <code>/Admin/Reviews</code>, <code>/Admin/Subjects</code></td></tr>
+</table>
+
+<h2>2.3. Äáº·c táº£ Use Case trá»ng tÃ¢m: Chá»‘ng trÃ¹ng lá»‹ch dáº¡y</h2>
+<table>
+  <tr><th style="width:8%;">BÆ°á»›c</th><th>MÃ´ táº£ xá»­ lÃ½</th></tr>
+  <tr><td class="center bold">1</td><td>Gia sÆ° Ä‘iá»n form: TÃªn HS, MÃ´n há»c, NgÃ y báº¯t Ä‘áº§u, Giá» báº¯t Ä‘áº§u, Giá» káº¿t thÃºc, Há»c phÃ­, Äá»‹a chá»‰/Link</td></tr>
+  <tr><td class="center bold">2</td><td>Server nháº­n POST, kiá»ƒm tra ModelState (ngÃ y khÃ´ng quÃ¡ khá»©, mÃ´n há»c há»£p lá»‡)</td></tr>
+  <tr><td class="center bold">3</td><td>Tá»± Ä‘á»™ng trÃ­ch xuáº¥t <code>ThuTrongTuan</code> tá»« <code>NgayHocTiepTheo</code> qua <code>VnFormat.ThuTuNgay()</code></td></tr>
+  <tr><td class="center bold" style="background-color:#fef9c3;">4</td><td style="background-color:#fef9c3;"><b>Truy váº¥n CSDL:</b> Láº¥y cÃ¡c lá»›p "Äang há»c" cá»§a gia sÆ°, cÃ¹ng Thá»©, trá»« báº£n ghi Ä‘ang sá»­a: <code>WHERE MaGiaSu=@id AND ThuTrongTuan=@thu AND TrangThai='Äang há»c' AND MaLichHoc!=@self</code></td></tr>
+  <tr><td class="center bold" style="background-color:#fee2e2;">5</td><td style="background-color:#fee2e2;"><b>Kiá»ƒm tra Interval Overlap:</b> <code>clash = sameDay.FirstOrDefault(l =&gt; l.GioBatDau &lt; endNew &amp;&amp; startNew &lt; l.GioKetThuc)</code><br>â€” Äiá»u kiá»‡n cáº§n vÃ  Ä‘á»§ Ä‘á»ƒ hai khoáº£ng thá»i gian [A,B) vÃ  [C,D) cÃ³ giao cáº¯t lÃ : A&lt;D VÃ€ C&lt;B</td></tr>
+  <tr><td class="center bold" style="background-color:#fee2e2;">6</td><td style="background-color:#fee2e2;"><b>Náº¿u trÃ¹ng:</b> ModelState.AddModelError â†’ View vá»›i lá»—i Ä‘á»: <i>"TrÃ¹ng lá»‹ch vá»›i lá»›p cá»§a há»c sinh [TÃªn] (HH:mm - HH:mm) vÃ o [Thá»©]."</i></td></tr>
+  <tr><td class="center bold" style="background-color:#dcfce7;">7</td><td style="background-color:#dcfce7;"><b>Náº¿u OK:</b> LÆ°u <code>LopHocThoiKhoaBieu</code>, gá»i <code>RecalculateClassCountAsync()</code> cáº­p nháº­t <code>SoLopDangDay</code>, redirect + TempData thÃ nh cÃ´ng</td></tr>
+</table>
+
+<h2>2.4. Tá»« Ä‘iá»ƒn dá»¯ liá»‡u chi tiáº¿t cá»§a 10 báº£ng CSDL</h2>
+<p><b>Báº£ng 1: <code>NguoiDung</code></b> â€” Quáº£n lÃ½ tÃ i khoáº£n toÃ n há»‡ thá»‘ng (PK: MaNguoiDung)</p>
+<table>
+  <tr><th>STT</th><th>TÃªn cá»™t</th><th>Kiá»ƒu dá»¯ liá»‡u</th><th>KhÃ³a</th><th>Null</th><th>Diá»…n giáº£i</th></tr>
+  <tr><td class="center">1</td><td>MaNguoiDung</td><td>INT IDENTITY(1,1)</td><td class="center bold">PK</td><td>No</td><td>MÃ£ Ä‘á»‹nh danh duy nháº¥t toÃ n há»‡ thá»‘ng</td></tr>
+  <tr><td class="center">2</td><td>HoTen</td><td>NVARCHAR(100)</td><td></td><td>No</td><td>Há» vÃ  tÃªn Ä‘áº§y Ä‘á»§ cá»§a ngÆ°á»i dÃ¹ng</td></tr>
+  <tr><td class="center">3</td><td>Email</td><td>VARCHAR(100)</td><td class="center bold">UK</td><td>No</td><td>Email Ä‘Äƒng nháº­p â€” duy nháº¥t toÃ n sÃ n</td></tr>
+  <tr><td class="center">4</td><td>SoDienThoai</td><td>VARCHAR(15)</td><td></td><td>No</td><td>Sá»‘ Ä‘iá»‡n thoáº¡i liÃªn láº¡c (10-11 sá»‘)</td></tr>
+  <tr><td class="center">5</td><td>MatKhauHash</td><td>VARCHAR(256)</td><td></td><td>No</td><td>BÄƒm PBKDF2: "PBKDF2$100000$salt$hash"</td></tr>
+  <tr><td class="center">6</td><td>AnhDaiDien</td><td>NVARCHAR(255)</td><td></td><td>Yes</td><td>ÄÆ°á»ng dáº«n áº£nh Ä‘áº¡i diá»‡n (wwwroot/uploads)</td></tr>
+  <tr><td class="center">7</td><td>VaiTro</td><td>VARCHAR(20)</td><td></td><td>No</td><td>'Admin' | 'Tutor' | 'Parent'</td></tr>
+  <tr><td class="center">8</td><td>NhanThongBaoDesktop</td><td>BIT</td><td></td><td>Yes</td><td>1: Báº­t Desktop Notification; 0: Táº¯t</td></tr>
+  <tr><td class="center">9</td><td>NgayTao</td><td>DATETIME</td><td></td><td>Yes</td><td>Thá»i Ä‘iá»ƒm Ä‘Äƒng kÃ½ tÃ i khoáº£n</td></tr>
+  <tr><td class="center">10</td><td>TrangThai</td><td>BIT</td><td></td><td>Yes</td><td>1: Äang hoáº¡t Ä‘á»™ng; 0: Bá»‹ Admin khÃ³a</td></tr>
+</table>
+
+<p><b>Báº£ng 2: <code>HoSoGiaSu</code></b> â€” Há»“ sÆ¡ nÄƒng lá»±c vÃ  xáº¿p háº¡ng (quan há»‡ 1â€“1 vá»›i NguoiDung)</p>
+<table>
+  <tr><th>STT</th><th>TÃªn cá»™t</th><th>Kiá»ƒu dá»¯ liá»‡u</th><th>KhÃ³a</th><th>Null</th><th>Diá»…n giáº£i</th></tr>
+  <tr><td class="center">1</td><td>MaGiaSu</td><td>INT IDENTITY(1,1)</td><td class="center bold">PK</td><td>No</td><td>KhÃ³a chÃ­nh há»“ sÆ¡ gia sÆ°</td></tr>
+  <tr><td class="center">2</td><td>MaNguoiDung</td><td>INT</td><td class="center bold">FK, UK</td><td>No</td><td>Tham chiáº¿u NguoiDung (quan há»‡ 1-1)</td></tr>
+  <tr><td class="center">3</td><td>TrinhDo</td><td>NVARCHAR(50)</td><td></td><td>No</td><td>Sinh viÃªn giá»i | Cá»­ nhÃ¢n | Tháº¡c sÄ© | GV chuyÃªn</td></tr>
+  <tr><td class="center">4</td><td>TruongDaoTao</td><td>NVARCHAR(150)</td><td></td><td>Yes</td><td>ÄÆ¡n vá»‹ cÃ´ng tÃ¡c/há»c táº­p (VD: ÄH GTVT)</td></tr>
+  <tr><td class="center">5</td><td>HocPhiTheoGio</td><td>DECIMAL(18,0)</td><td></td><td>No</td><td>Má»©c há»c phÃ­ cÆ¡ báº£n theo giá» (VNÄ/giá»)</td></tr>
+  <tr><td class="center">6</td><td>KhuVucDay</td><td>NVARCHAR(100)</td><td></td><td>No</td><td>Danh sÃ¡ch quáº­n/huyá»‡n nháº­n dáº¡y</td></tr>
+  <tr><td class="center">7</td><td>HinhThucDay</td><td>NVARCHAR(50)</td><td></td><td>No</td><td>'Offline' | 'Online' | 'Cáº£ hai'</td></tr>
+  <tr><td class="center">8</td><td>GioiThieuBio</td><td>NVARCHAR(MAX)</td><td></td><td>Yes</td><td>Tá»± giá»›i thiá»‡u HTML Ä‘Ã£ lá»c SafeHtml XSS</td></tr>
+  <tr><td class="center">9</td><td>ThanhTichNoiBat</td><td>NVARCHAR(MAX)</td><td></td><td>Yes</td><td>Giáº£i thÆ°á»Ÿng, Ä‘iá»ƒm thi, chá»©ng chá»‰ IELTS...</td></tr>
+  <tr><td class="center">10</td><td>AnhBangCapTheSv</td><td>NVARCHAR(255)</td><td></td><td>Yes</td><td>áº¢nh scan báº±ng cáº¥p/tháº» SV â€” Admin duyá»‡t</td></tr>
+  <tr><td class="center">11</td><td>DaXacMinh</td><td>BIT</td><td></td><td>Yes</td><td>1: Admin Ä‘Ã£ cáº¥p TÃ­ch xanh âœ“; 0: ChÆ°a</td></tr>
+  <tr><td class="center">12</td><td>DiemDanhGiaTb</td><td>FLOAT</td><td></td><td>Yes</td><td>Äiá»ƒm sao trung bÃ¬nh (tÃ­nh láº¡i sau má»—i Ä‘Ã¡nh giÃ¡)</td></tr>
+  <tr><td class="center">13</td><td>TongSoDanhGia</td><td>INT</td><td></td><td>Yes</td><td>Tá»•ng sá»‘ lÆ°á»£t phá»¥ huynh Ä‘á»ƒ láº¡i nháº­n xÃ©t</td></tr>
+  <tr><td class="center">14</td><td>SoLopDangDay</td><td>INT</td><td></td><td>Yes</td><td>Tá»•ng lá»›p Ä‘ang hoáº¡t Ä‘á»™ng (tá»± Ä‘á»™ng tÃ­nh láº¡i)</td></tr>
+</table>
+
+<p><b>Báº£ng 3: <code>LopHocThoiKhoaBieu</code></b> â€” Quáº£n lÃ½ lá»›p há»c vÃ  lá»‹ch tuáº§n (thuáº­t toÃ¡n chá»‘ng trÃ¹ng)</p>
+<table>
+  <tr><th>STT</th><th>TÃªn cá»™t</th><th>Kiá»ƒu dá»¯ liá»‡u</th><th>KhÃ³a</th><th>Null</th><th>Diá»…n giáº£i</th></tr>
+  <tr><td class="center">1</td><td>MaLichHoc</td><td>INT IDENTITY(1,1)</td><td class="center bold">PK</td><td>No</td><td>KhÃ³a chÃ­nh lá»›p há»c</td></tr>
+  <tr><td class="center">2</td><td>MaGiaSu</td><td>INT</td><td class="center bold">FK</td><td>No</td><td>Tham chiáº¿u HoSoGiaSu</td></tr>
+  <tr><td class="center">3</td><td>MaMonHoc</td><td>INT</td><td class="center bold">FK</td><td>No</td><td>Tham chiáº¿u MonHoc</td></tr>
+  <tr><td class="center">4</td><td>TenHocSinh</td><td>NVARCHAR(100)</td><td></td><td>No</td><td>TÃªn há»c sinh hoáº·c nhÃ³m lá»›p</td></tr>
+  <tr><td class="center">5</td><td>ThuTrongTuan</td><td>NVARCHAR(20)</td><td></td><td>No</td><td>Thá»© Hai â†’ Chá»§ Nháº­t (tá»± Ä‘á»™ng tá»« ngÃ y há»c)</td></tr>
+  <tr><td class="center">6</td><td>NgayHocTiepTheo</td><td>DATE</td><td></td><td>No</td><td>Buá»•i há»c káº¿ tiáº¿p (tá»‹nh tiáº¿n tuáº§n tá»± Ä‘á»™ng)</td></tr>
+  <tr><td class="center">7</td><td>GioBatDau</td><td>TIME</td><td></td><td>No</td><td>Giá» báº¯t Ä‘áº§u ca (dÃ¹ng thuáº­t toÃ¡n chá»‘ng trÃ¹ng)</td></tr>
+  <tr><td class="center">8</td><td>GioKetThuc</td><td>TIME</td><td></td><td>No</td><td>Giá» káº¿t thÃºc ca (dÃ¹ng thuáº­t toÃ¡n chá»‘ng trÃ¹ng)</td></tr>
+  <tr><td class="center">9</td><td>PhongHocHoacLink</td><td>NVARCHAR(255)</td><td></td><td>No</td><td>Äá»‹a chá»‰ offline hoáº·c link Meet/Zoom online</td></tr>
+  <tr><td class="center">10</td><td>HocPhiCaDay</td><td>DECIMAL(18,0)</td><td></td><td>No</td><td>Há»c phÃ­ thu má»™t buá»•i dáº¡y cá»¥ thá»ƒ (VNÄ)</td></tr>
+  <tr><td class="center">11</td><td>BatNhacNhoTruoc30P</td><td>BIT</td><td></td><td>Yes</td><td>1: Báº­t Web Notification nháº¯c trÆ°á»›c 30 phÃºt</td></tr>
+  <tr><td class="center">12</td><td>TrangThai</td><td>NVARCHAR(30)</td><td></td><td>Yes</td><td>'Äang há»c' | 'Táº¡m dá»«ng' | 'ÄÃ£ káº¿t thÃºc'</td></tr>
+</table>
+
+<p><b>Báº£ng 4â€“10 (Tá»•ng há»£p cÃ¡c báº£ng cÃ²n láº¡i):</b></p>
+<table>
+  <tr><th>Báº£ng</th><th>Vai trÃ²</th><th>Cá»™t chÃ­nh (PK/FK/Key Columns)</th></tr>
+  <tr><td><code>BaiTap</code></td><td>BÃ i táº­p vá» nhÃ  gáº¯n vá»›i lá»›p há»c</td><td>MaBaiTap(PK), MaLichHoc(FK), TieuDe, NoiDungBaiTap, HanNop(DATETIME), TrangThai('Pending'|'Completed'), NgayGiao</td></tr>
+  <tr><td><code>DangKyHocThu</code></td><td>Há»“ sÆ¡ yÃªu cáº§u há»c thá»­ cá»§a phá»¥ huynh</td><td>MaDangKy(PK), MaGiaSu(FK), MaPhuHuynh(FK,null), HoTenPhuHuynh, SoDienThoai, MaMonHoc(FK), TrinhDoHienTaiHs, KhungGioMongMuon, GhiChuYeuCau, TrangThai('Chá» duyá»‡t'|'ÄÃ£ xÃ¡c nháº­n'|'Tá»« chá»‘i'|'ÄÃ£ há»§y'), NgayTao</td></tr>
+  <tr><td><code>DanhGia</code></td><td>Nháº­n xÃ©t &amp; cháº¥m sao cá»§a phá»¥ huynh</td><td>MaDanhGia(PK), MaGiaSu(FK), MaPhuHuynh(FK), SoSao(1-5), NoiDungBinhLuan, NgayDanhGia, HienThi(BIT: 1=CÃ´ng khai/0=Admin áº©n)</td></tr>
+  <tr><td><code>MonHoc</code></td><td>Danh má»¥c mÃ´n giáº£ng dáº¡y toÃ n sÃ n</td><td>MaMonHoc(PK), TenMonHoc, IconClass(Font Awesome class), MoTa</td></tr>
+  <tr><td><code>KhoiLop</code></td><td>Danh má»¥c cáº¥p há»c vÃ  khá»‘i lá»›p</td><td>MaKhoiLop(PK), TenKhoiLop("Lá»›p 1"â†’"Luyá»‡n thi ÄH"), CapHoc(Tiá»ƒu há»c/THCS/THPT/Luyá»‡n thi)</td></tr>
+  <tr><td><code>GiaSuMonHoc</code></td><td>Quan há»‡ Gia sÆ° Ã— MÃ´n há»c Ã— Khá»‘i lá»›p</td><td>MaGiaSuMonHoc(PK), MaGiaSu(FK), MaMonHoc(FK), MaKhoiLop(FK) â€” UNIQUE(MaGiaSu, MaMonHoc, MaKhoiLop)</td></tr>
+  <tr><td><code>MaTranLichRanh</code></td><td>Ma tráº­n 21 Ã´ giá» ráº£nh tuáº§n (7Ã—3)</td><td>MaLichRanh(PK), MaGiaSu(FK), ThuTrongTuan, BuoiTrongNgay(SÃ¡ng/Chiá»u/Tá»‘i), KhungGioChiTiet("08:00-10:00"), ConTrong(BIT: 1=Xanh/0=XÃ¡m)</td></tr>
+</table>
+
+<div class="page-break"></div>
+
+<h1>CHÆ¯Æ NG 3: CÃ”NG NGHá»† VÃ€ CÃC GIáº¢I PHÃP Ká»¸ THUáº¬T Ná»”I Báº¬T</h1>
+
+<h2>3.1. CÃ¡c ká»¹ thuáº­t ASP.NET Core MVC &amp; EF Core 8 nÃ¢ng cao</h2>
+<p><b>1. ViewComponent SubjectMenu:</b> Náº¡p Ä‘á»™ng danh má»¥c mÃ´n há»c hiá»ƒn thá»‹ trÃªn Menu Ä‘iá»u hÆ°á»›ng, trÃ¡nh láº·p code truy váº¥n trong má»—i Controller Action.</p>
+<p><b>2. Custom Validation [FutureDate]:</b> Attribute káº¿ thá»«a ValidationAttribute + IClientModelValidation â€” Ä‘áº£m báº£o ngÃ y há»c thá»­ luÃ´n á»Ÿ tÆ°Æ¡ng lai cáº£ á»Ÿ Client (jQuery) vÃ  Server (C#).</p>
+<p><b>3. Tá»‘i Æ°u truy váº¥n EF Core 8:</b> AsNoTracking() cho tÃ¡c vá»¥ Ä‘á»c; Include().AsSplitQuery() trÃ¡nh Cartesian Explosion; Skip().Take() phÃ¢n trang á»Ÿ DB; Select() Projection giáº£m bandwidth.</p>
+<p><b>4. Auto-advance ngÃ y há»c tuáº§n (In-memory):</b></p>
+<pre>
+// TutorPortalController.cs â€” Action Index() â€” DÃ²ng 80-88
+var today = DateOnly.FromDateTime(DateTime.Today);
+foreach (var l in active)
+{
+    if (l.NgayHocTiepTheo &lt; today)
+    {
+        // TÃ­nh sá»‘ tuáº§n Ä‘Ã£ qua vÃ  nháº£y sang buá»•i káº¿ tiáº¿p â€” khÃ´ng ghi DB
+        int weeks = (today.DayNumber - l.NgayHocTiepTheo.DayNumber + 6) / 7;
+        l.NgayHocTiepTheo = l.NgayHocTiepTheo.AddDays(weeks * 7);
+    }
+}
+</pre>
+<p class="code-caption">TrÃ­ch tá»«: Controllers/TutorPortalController.cs â€” Action Index()</p>
+
+<h2>3.2. CÆ¡ cháº¿ phÃ¢n quyá»n thá»i gian thá»±c (RoleAuthorize ActionFilter)</h2>
+<p>Khi Admin khÃ³a tÃ i khoáº£n, bá»™ lá»c RoleAuthorizeAttribute Ä‘á»‘i soÃ¡t CSDL ngay táº¡i má»—i HTTP Request â€” khÃ´ng chá» session háº¿t háº¡n:</p>
+<pre>
+// Filters/RoleAuthorizeAttribute.cs â€” ToÃ n bá»™ logic Ä‘á»‘i soÃ¡t DB
+public async Task OnAuthorizationAsync(AuthorizationFilterContext context)
+{
+    var http   = context.HttpContext;
+    var userId = http.Session.GetUserId();
+    var role   = http.Session.GetUserRole();
+    bool isAjax = http.Request.Path.StartsWithSegments("/api")
+                  || http.Request.Headers["X-Requested-With"] == "XMLHttpRequest";
+
+    // â˜… Äá»‘i chiáº¿u DB má»—i request â€” phÃ¡t hiá»‡n khÃ³a tÃ i khoáº£n tá»©c thá»i
+    if (userId != null &amp;&amp; !string.IsNullOrEmpty(role))
+    {
+        var db = http.RequestServices.GetRequiredService&lt;QlGiaSuLopHocContext&gt;();
+        var current = await db.NguoiDung.AsNoTracking()
+            .Where(u =&gt; u.MaNguoiDung == userId.Value)
+            .Select(u =&gt; new { u.TrangThai, u.VaiTro })
+            .FirstOrDefaultAsync();
+
+        if (current == null || current.TrangThai == false)
+        {
+            http.Session.Clear();  // Há»§y phiÃªn ngay láº­p tá»©c
+            userId = null; role = null;
+        }
+    }
+
+    // ChÆ°a Ä‘Äƒng nháº­p â†’ Redirect Login (trang) hoáº·c 401 JSON (AJAX)
+    if (userId == null || string.IsNullOrEmpty(role))
+    {
+        context.Result = isAjax
+            ? new JsonResult(new { success = false, message = "Cáº§n Ä‘Äƒng nháº­p." }) { StatusCode = 401 }
+            : new RedirectToActionResult("Login", "Account", new { area = "", returnUrl = "..." });
+        return;
+    }
+    // Sai vai trÃ² â†’ AccessDenied (trang) hoáº·c 403 JSON (AJAX)
+    if (!_allowedRoles.Contains(role))
+        context.Result = isAjax
+            ? new JsonResult(new { success = false, message = "KhÃ´ng cÃ³ quyá»n." }) { StatusCode = 403 }
+            : new RedirectToActionResult("AccessDenied", "Account", new { area = "" });
+}
+</pre>
+<p class="code-caption">TrÃ­ch tá»«: Filters/RoleAuthorizeAttribute.cs â€” Sá»­ dá»¥ng: [RoleAuthorize(Roles.Tutor)] trÃªn class TutorPortalController</p>
+
+<h2>3.3. Code thá»±c táº¿: Thuáº­t toÃ¡n Chá»‘ng trÃ¹ng ca dáº¡y</h2>
+<pre>
+// TutorPortalController.cs â€” Action SaveClass() â€” DÃ²ng 181-196
+if (ModelState.IsValid &amp;&amp; model.TrangThai == "Äang há»c")
+{
+    string thu  = VnFormat.ThuTuNgay(model.NgayHocTiepTheo); // "Thá»© Ba"
+    var    start = model.GioBatDau;  // TimeOnly: 15:00
+    var    end   = model.GioKetThuc; // TimeOnly: 17:00
+    int    self    = model.MaLichHoc; // 0 náº¿u thÃªm má»›i
+    int    tutorId = tutor.MaGiaSu;
+
+    // Láº¥y táº¥t cáº£ lá»›p "Äang há»c" cá»§a gia sÆ° vÃ o cÃ¹ng Thá»© (trá»« báº£n ghi Ä‘ang sá»­a)
+    var sameDay = await _context.LopHocThoiKhoaBieu.AsNoTracking()
+        .Where(l =&gt; l.MaGiaSu == tutorId &amp;&amp; l.MaLichHoc != self
+                 &amp;&amp; l.TrangThai == "Äang há»c" &amp;&amp; l.ThuTrongTuan == thu)
+        .ToListAsync();
+
+    // Interval Overlap: GioBatDau_má»›i &lt; GioKetThuc_cÅ© VÃ€ GioBatDau_cÅ© &lt; GioKetThuc_má»›i
+    var clash = sameDay.FirstOrDefault(l =&gt; l.GioBatDau &lt; end &amp;&amp; start &lt; l.GioKetThuc);
+
+    if (clash != null)
+        ModelState.AddModelError("Form.GioBatDau",
+            $"TrÃ¹ng lá»‹ch vá»›i lá»›p cá»§a há»c sinh {clash.TenHocSinh} " +
+            $"({clash.GioBatDau:HH\\:mm} - {clash.GioKetThuc:HH\\:mm}) vÃ o {thu}.");
+}
+</pre>
+<p class="code-caption">TrÃ­ch tá»«: Controllers/TutorPortalController.cs â€” Action SaveClass() â€” DÃ²ng 180â€“196</p>
+
+<h2>3.4. Chuá»—i 6 giáº£i phÃ¡p Báº£o máº­t chuyÃªn sÃ¢u (OWASP)</h2>
+<table>
+  <tr><th style="width:5%;">STT</th><th style="width:20%;">Giáº£i phÃ¡p</th><th>MÃ´ táº£ ká»¹ thuáº­t chi tiáº¿t</th></tr>
+  <tr><td class="center bold">1</td><td><b>PBKDF2 &amp; Auto-Upgrade</b></td><td>BÄƒm PBKDF2/HMAC-SHA256, 100.000 vÃ²ng, salt ngáº«u nhiÃªn 16 bytes. LÆ°u dáº¡ng "PBKDF2$100000$[base64salt]$[base64hash]". So sÃ¡nh báº±ng <code>CryptographicOperations.FixedTimeEquals()</code> chá»‘ng Timing Attack. Tá»± Ä‘á»™ng nÃ¢ng cáº¥p MD5 â†’ PBKDF2 khi Ä‘Äƒng nháº­p thÃ nh cÃ´ng láº§n Ä‘áº§u.</td></tr>
+  <tr><td class="center bold">2</td><td><b>SafeHtml XSS Whitelist</b></td><td>Lá»›p SafeHtml (HtmlAgilityPack) chá»‰ cho phÃ©p tháº»: p, br, strong, b, em, i, u, ul, ol, li, h2, h3, a, span. Loáº¡i bá» 100% &lt;script&gt;, &lt;iframe&gt;, &lt;object&gt;, sá»± kiá»‡n onclick/onerror. Thuá»™c tÃ­nh href cá»§a &lt;a&gt; chá»‰ nháº­n http:// hoáº·c https://, tá»± thÃªm rel="noopener noreferrer nofollow".</td></tr>
+  <tr><td class="center bold">3</td><td><b>CSRF Token Ä‘a táº§ng</b></td><td>Táº¥t cáº£ form POST cÃ³ @Html.AntiForgeryToken() + [ValidateAntiForgeryToken]. AJAX Fetch API tÃ­ch há»£p header "RequestVerificationToken" láº¥y tá»« hidden input trong DOM.</td></tr>
+  <tr><td class="center bold">4</td><td><b>IDOR Guard</b></td><td>Má»i thao tÃ¡c Sá»­a/XÃ³a lá»›p há»c, bÃ i táº­p, Ä‘Æ¡n há»c thá»­ Ä‘á»u kiá»ƒm tra: <code>entity.MaGiaSu == currentTutor.MaGiaSu</code>. Náº¿u khÃ´ng khá»›p â†’ 404 Not Found (khÃ´ng tiáº¿t lá»™ ID tá»“n táº¡i hay khÃ´ng).</td></tr>
+  <tr><td class="center bold">5</td><td><b>Magic Bytes File Upload</b></td><td>FileUploadService giá»›i háº¡n 3MB, whitelist Ä‘uÃ´i (.jpg/.jpeg/.png/.webp). Äá»c 12 bytes Ä‘áº§u kiá»ƒm tra Magic Bytes: JPEG (FF D8 FF), PNG (89 50 4E 47), WEBP (52 49 46 46...57 45 42 50). NgÄƒn file script Ä‘á»•i tÃªn thÃ nh .jpg.</td></tr>
+  <tr><td class="center bold">6</td><td><b>Brute-force Limiter</b></td><td>IMemoryCache ghi nháº­n sá»‘ láº§n sai theo khÃ³a "BF_{IP}_{Email}". Sau 5 láº§n sai â†’ khÃ³a thá»­ 5 phÃºt â†’ hiá»ƒn thá»‹ Ä‘áº¿m ngÆ°á»£c. Reset counter khi Ä‘Äƒng nháº­p thÃ nh cÃ´ng.</td></tr>
+</table>
+
+<div class="page-break"></div>
+
+<h1>CHÆ¯Æ NG 4: HIá»†N THá»°C HÃ“A CÃC PHÃ‚N Há»† CHá»¨C NÄ‚NG</h1>
+
+<h2>4.1. PhÃ¢n há»‡ KhÃ¡ch vÃ£ng lai vÃ  Phá»¥ huynh</h2>
+
+<h3>4.1.1. Trang chá»§ &amp; Bá»™ lá»c tÃ¬m kiáº¿m AJAX 6 tiÃªu chÃ­</h3>
+<p>Trang chá»§ (<code>/</code>) hiá»ƒn thá»‹ 4 tháº» thá»‘ng kÃª tá»•ng quan (Tá»•ng gia sÆ°, ÄÃ£ xÃ¡c minh, Tá»•ng lá»›p, ÄÃ¡nh giÃ¡ TB) tÃ­nh trá»±c tiáº¿p tá»« CSDL. Bá»™ lá»c 6 tiÃªu chÃ­ káº¿t há»£p: MÃ´n há»c, Khá»‘i lá»›p, Khu vá»±c, HÃ¬nh thá»©c dáº¡y, TrÃ¬nh Ä‘á»™, Há»c phÃ­. Káº¿t quáº£ náº¡p qua API <code>/api/ApiTutor/filter</code> â€” khÃ´ng reload trang (Fetch API + AJAX).</p>
+
+<div class="screenshot-box">
+  <div class="screenshot-title">ðŸ“¸ HÃŒNH 4.1: GIAO DIá»†N TRANG CHá»¦ &amp; Bá»˜ Lá»ŒC TÃŒM KIáº¾M GIA SÆ¯ AJAX</div>
+  <img src="C:\Users\Admin\.gemini\antigravity-ide\brain\a8e743c3-4c3b-4ff6-a700-6510561e7af7\homepage_tutor_search_1792490883477.jpg" alt="Trang chá»§ EduMatch UTC" class="screenshot-img">
+  <p class="img-caption">HÃ¬nh 4.1: Trang chá»§ EduMatch UTC â€” Banner thá»‘ng kÃª 4 chá»‰ sá»‘ | Bá»™ lá»c cá»™t trÃ¡i 6 tiÃªu chÃ­ | Tháº» gia sÆ° vá»›i âœ“ TÃ­ch xanh, Ä‘iá»ƒm sao, mÃ´n dáº¡y vÃ  há»c phÃ­</p>
+  <p class="screenshot-desc"><b>URL:</b> <code>http://localhost:5084/</code></p>
+  <p class="screenshot-desc"><b>Äiá»ƒm ná»•i báº­t ká»¹ thuáº­t:</b> ApiTutorController tráº£ JSON â†’ JavaScript cáº­p nháº­t DOM â†’ KhÃ´ng nháº¥p nhÃ¡y trang; URL query string cáº­p nháº­t báº±ng history.pushState()</p>
+</div>
+
+<h3>4.1.2. Chi tiáº¿t há»“ sÆ¡ gia sÆ° &amp; Ma tráº­n lá»‹ch ráº£nh</h3>
+<p>Trang <code>/Home/Details/{id}</code> hiá»ƒn thá»‹ Bio (Ä‘Ã£ SafeHtml), thÃ nh tÃ­ch, Ma tráº­n lá»‹ch ráº£nh 21 Ã´ mÃ u (Xanh lÃ¡ = Ráº£nh, XÃ¡m = Báº­n), Ä‘Ã¡nh giÃ¡ sao phá»¥ huynh. Cookie 7 ngÃ y ghi nhá»› gia sÆ° xem gáº§n nháº¥t, hiá»ƒn thá»‹ gá»£i Ã½ nhanh trÃªn navbar.</p>
+
+<div class="screenshot-box">
+  <div class="screenshot-title">ðŸ“¸ HÃŒNH 4.2: CHI TIáº¾T Há»’ SÆ  GIA SÆ¯ VÃ€ MA TRáº¬N Lá»ŠCH Ráº¢NH TUáº¦N</div>
+  <p class="screenshot-desc"><b>URL:</b> <code>http://localhost:5084/Home/Details/1</code></p>
+  <p class="screenshot-desc"><b>Gá»“m:</b> (1) ThÃ´ng tin cÆ¡ báº£n + âœ“ TÃ­ch xanh xÃ¡c minh; (2) Bio CKEditor Ä‘Ã£ SafeHtml; (3) Ma tráº­n 21 Ã´ lá»‹ch ráº£nh; (4) ÄÃ¡nh giÃ¡ sao phá»¥ huynh; (5) Form há»c thá»­ bÃªn pháº£i</p>
+</div>
+
+<h3>4.1.3. Form Ä‘Äƒng kÃ½ há»c thá»­ 01 buá»•i miá»…n phÃ­</h3>
+<p>Form há»c thá»­ náº±m táº¡i trang chi tiáº¿t gia sÆ°. Tá»± Ä‘iá»n Há» tÃªn + SÄT náº¿u Ä‘Ã£ Ä‘Äƒng nháº­p. Custom validation [FutureDate]: thá»i gian pháº£i á»Ÿ tÆ°Æ¡ng lai. Server kiá»ƒm tra: mÃ´n há»c thuá»™c chuyÃªn mÃ´n gia sÆ°, khÃ´ng trÃ¹ng SÄT Ä‘ang cÃ³ Ä‘Æ¡n chá» duyá»‡t.</p>
+
+<div class="screenshot-box">
+  <div class="screenshot-title">ðŸ“¸ HÃŒNH 4.3: FORM ÄÄ‚NG KÃ Há»ŒC THá»¬ 01 BUá»”I MIá»„N PHÃ</div>
+  <p class="screenshot-desc"><b>URL:</b> <code>/Home/Details/1</code> (Form cá»™t pháº£i)</p>
+  <p class="screenshot-desc"><b>TrÆ°á»ng form:</b> Há» tÃªn PH | SÄT | MÃ´n há»c thá»­ (dropdown) | Há»c lá»±c HS (Giá»i/KhÃ¡/TB/Máº¥t gá»‘c) | NgÃ y giá» mong muá»‘n (DateTimePicker â€” pháº£i tÆ°Æ¡ng lai) | Ghi chÃº yÃªu cáº§u riÃªng</p>
+</div>
+
+<h3>4.1.4. Quáº£n lÃ½ Ä‘Æ¡n há»c thá»­ &amp; Viáº¿t Ä‘Ã¡nh giÃ¡ (Phá»¥ huynh)</h3>
+<p>Táº¡i <code>/Parent/MyBookings</code>, phá»¥ huynh xem tráº¡ng thÃ¡i Ä‘Æ¡n vá»›i badge mÃ u: VÃ ng=Chá» duyá»‡t, Xanh=ÄÃ£ xÃ¡c nháº­n, Äá»=Tá»« chá»‘i, XÃ¡m=ÄÃ£ há»§y. Cho phÃ©p há»§y Ä‘Æ¡n chá» vÃ  viáº¿t Ä‘Ã¡nh giÃ¡ 1â€“5 sao.</p>
+
+<div class="screenshot-box">
+  <div class="screenshot-title">ðŸ“¸ HÃŒNH 4.4: TRANG QUáº¢N LÃ ÄÆ N Há»ŒC THá»¬ Cá»¦A PHá»¤ HUYNH</div>
+  <p class="screenshot-desc"><b>URL:</b> <code>/Parent/MyBookings</code> | Demo: <code>lan.phuhuynh@gmail.com</code> / 123456</p>
+  <p class="screenshot-desc"><b>Báº£ng:</b> STT | Gia sÆ° | MÃ´n | Thá»i gian há»c thá»­ | Tráº¡ng thÃ¡i (badge mÃ u) | Thao tÃ¡c (Há»§y / Viáº¿t Ä‘Ã¡nh giÃ¡)</p>
+</div>
+
+<h3>4.1.5. ÄÄƒng kÃ½ &amp; ÄÄƒng nháº­p (PhÃ¢n loáº¡i vai trÃ²)</h3>
+<p>ÄÄƒng kÃ½ chia 2 tab: Phá»¥ huynh vÃ  Gia sÆ°. ÄÄƒng nháº­p cÃ³ "Ghi nhá»› tÃ i khoáº£n" (Cookie 30 ngÃ y), khÃ³a 5 phÃºt sau 5 láº§n sai, link "QuÃªn máº­t kháº©u" qua mÃ£ 6 sá»‘.</p>
+
+<div class="screenshot-box">
+  <div class="screenshot-title">ðŸ“¸ HÃŒNH 4.5: GIAO DIá»†N ÄÄ‚NG KÃ VÃ€ ÄÄ‚NG NHáº¬P PHÃ‚N QUYá»€N VAI TRÃ’</div>
+  <p class="screenshot-desc"><b>URL:</b> <code>/Account/Login</code> vÃ  <code>/Account/Register</code></p>
+  <p class="screenshot-desc"><b>Äáº·c Ä‘iá»ƒm:</b> Tab chuyá»ƒn vai trÃ² mÆ°á»£t | Checkbox Ghi nhá»› Ä‘Äƒng nháº­p | Äáº¿m ngÆ°á»£c khÃ³a | QuÃªn MK â†’ nháº­p email â†’ mÃ£ 6 sá»‘ â†’ Ä‘áº·t MK má»›i</p>
+</div>
+
+<h2>4.2. PhÃ¢n há»‡ Cá»•ng thÃ´ng tin Gia sÆ° (Tutor Portal)</h2>
+
+<h3>4.2.1. Dashboard KPI &amp; 2 Biá»ƒu Ä‘á»“ Chart.js</h3>
+<p>Dashboard (<code>/TutorPortal</code>): 4 tháº» KPI (Há»c sinh Ä‘ang dáº¡y, Doanh thu thÃ¡ng=caÃ—4tuáº§nÃ—lá»›p, ÄÆ¡n chá» duyá»‡t, Äiá»ƒm Ä‘Ã¡nh giÃ¡ TB). 2 biá»ƒu Ä‘á»“ Chart.js: cá»™t doanh thu theo tuáº§n vÃ  trÃ²n phÃ¢n bá»• há»c sinh theo mÃ´n.</p>
+
+<div class="screenshot-box">
+  <div class="screenshot-title">ðŸ“¸ HÃŒNH 4.6: Báº¢NG ÄIá»€U KHIá»‚N DASHBOARD GIA SÆ¯ &amp; BIá»‚U Äá»’ CHART.JS</div>
+  <img src="C:\Users\Admin\.gemini\antigravity-ide\brain\a8e743c3-4c3b-4ff6-a700-6510561e7af7\tutor_dashboard_1792490896444.jpg" alt="Dashboard gia sÆ° EduMatch UTC" class="screenshot-img">
+  <p class="img-caption">HÃ¬nh 4.6: Tutor Portal Dashboard â€” 4 KPI tháº» mÃ u + biá»ƒu Ä‘á»“ cá»™t doanh thu + biá»ƒu Ä‘á»“ trÃ²n phÃ¢n bá»• mÃ´n há»c (Chart.js)</p>
+  <p class="screenshot-desc"><b>URL:</b> <code>/TutorPortal</code> | Demo: <code>tuan.giasu@utc.edu.vn</code> / 123456</p>
+</div>
+
+<h3>4.2.2. Há»“ sÆ¡ nÄƒng lá»±c &amp; Upload áº£nh báº±ng cáº¥p</h3>
+<p>Gia sÆ° cáº­p nháº­t Ä‘áº§y Ä‘á»§ há»“ sÆ¡ táº¡i <code>/TutorPortal/Profile</code>: trÃ¬nh Ä‘á»™, trÆ°á»ng, há»c phÃ­/giá», khu vá»±c, hÃ¬nh thá»©c dáº¡y, bio CKEditor 5. Upload áº£nh tháº» SV/báº±ng cáº¥p cÃ³ kiá»ƒm tra Magic Bytes Ä‘á»ƒ Admin duyá»‡t TÃ­ch xanh.</p>
+
+<div class="screenshot-box">
+  <div class="screenshot-title">ðŸ“¸ HÃŒNH 4.7: CHá»ˆNH Sá»¬A Há»’ SÆ  NÄ‚NG Lá»°C &amp; UPLOAD áº¢NH THáºº SINH VIÃŠN</div>
+  <p class="screenshot-desc"><b>URL:</b> <code>/TutorPortal/Profile</code></p>
+  <p class="screenshot-desc"><b>TÃ­nh nÄƒng:</b> CKEditor 5 toolbar phong phÃº | Preview áº£nh trÆ°á»›c lÆ°u | Giá»›i háº¡n 3MB | Magic Bytes validation | Banner vÃ ng cáº£nh bÃ¡o náº¿u chÆ°a upload báº±ng cáº¥p</p>
+</div>
+
+<h3>4.2.3. Cáº¥u hÃ¬nh MÃ´n dáº¡y Ã— Khá»‘i lá»›p &amp; Ma tráº­n lá»‹ch ráº£nh</h3>
+<p>Chá»n tá»• há»£p MÃ´n Ã— Khá»‘i lá»›p Ä‘áº£m nháº­n (lÆ°u báº£ng GiaSuMonHoc). Ma tráº­n 21 Ã´ click-to-toggle mÃ u Xanh/XÃ¡m khÃ´ng reload â€” lÆ°u khi báº¥m "Cáº­p nháº­t lá»‹ch ráº£nh".</p>
+
+<div class="screenshot-box">
+  <div class="screenshot-title">ðŸ“¸ HÃŒNH 4.8: Cáº¤U HÃŒNH CHUYÃŠN MÃ”N &amp; MA TRáº¬N Lá»ŠCH Ráº¢NH TUáº¦N</div>
+  <p class="screenshot-desc"><b>URL:</b> <code>/TutorPortal/Availability</code></p>
+  <p class="screenshot-desc"><b>Pháº§n 1:</b> Checkbox matrix (ToÃ¡n Ã— Lá»›p10, LÃ½ Ã— THCS...) â†’ lÆ°u GiaSuMonHoc â†’ cÆ¡ sá»Ÿ lá»c AJAX trang chá»§</p>
+  <p class="screenshot-desc"><b>Pháº§n 2:</b> Ma tráº­n 7Ã—3 (Thá»© Haiâ†’Chá»§ Nháº­t Ã— SÃ¡ng/Chiá»u/Tá»‘i). Click Ã´ toggle mÃ u. Hiá»ƒn thá»‹ giá» cá»¥ thá»ƒ (08:00-10:00)</p>
+</div>
+
+<h3>4.2.4. Thá»i khÃ³a biá»ƒu &amp; Chá»‘ng trÃ¹ng lá»‹ch</h3>
+<p>Danh sÃ¡ch lá»›p theo thá»© vÃ  giá». Khi thÃªm lá»›p má»›i: há»‡ thá»‘ng cháº¡y Interval Overlap â†’ hiá»ƒn thá»‹ lá»—i Ä‘á» cá»¥ thá»ƒ náº¿u trÃ¹ng. NgÃ y há»c quÃ¡ khá»© tá»± Ä‘á»™ng tá»‹nh tiáº¿n sang tuáº§n tá»›i gáº§n nháº¥t.</p>
+
+<div class="screenshot-box">
+  <div class="screenshot-title">ðŸ“¸ HÃŒNH 4.9: THá»œI KHÃ“A BIá»‚U VÃ€ Cáº¢NH BÃO TRÃ™NG Lá»ŠCH Dáº Y</div>
+  <img src="C:\Users\Admin\.gemini\antigravity-ide\brain\a8e743c3-4c3b-4ff6-a700-6510561e7af7\tutor_schedule_1792490939181.jpg" alt="Thá»i khÃ³a biá»ƒu gia sÆ°" class="screenshot-img">
+  <p class="img-caption">HÃ¬nh 4.9: Thá»i khÃ³a biá»ƒu theo thá»© tuáº§n â€” Badge "Äang há»c" mÃ u xanh â€” Cáº£nh bÃ¡o Ä‘á» "TrÃ¹ng lá»‹ch" khi giao cáº¯t ca dáº¡y</p>
+  <p class="screenshot-desc"><b>URL:</b> <code>/TutorPortal/Schedule</code> | Cá»™t: MÃ´n | Há»c sinh | Thá»© + Giá» | Äá»‹a chá»‰/Link | Há»c phÃ­ ca | NgÃ y há»c káº¿ | Thao tÃ¡c Sá»­a/XÃ³a</p>
+</div>
+
+<h3>4.2.5. Giao bÃ i táº­p &amp; AJAX Toggle tráº¡ng thÃ¡i</h3>
+<p>Táº¡o bÃ i táº­p gáº¯n vá»›i lá»›p, Ä‘áº·t deadline. Báº£ng bÃ i táº­p: click badge "Pending" â†’ AJAX Fetch POST â†’ badge Ä‘á»•i ngay sang "HoÃ n thÃ nh" mÃ u xanh â€” khÃ´ng reload trang. Kiá»ƒm tra IDOR trÆ°á»›c khi xá»­ lÃ½.</p>
+
+<div class="screenshot-box">
+  <div class="screenshot-title">ðŸ“¸ HÃŒNH 4.10: QUáº¢N LÃ BÃ€I Táº¬P &amp; TOGGLE TRáº NG THÃI Báº°NG AJAX</div>
+  <p class="screenshot-desc"><b>URL:</b> <code>/TutorPortal/Assignments</code></p>
+  <p class="screenshot-desc"><b>Form trÃªn:</b> Chá»n lá»›p (dropdown) | TiÃªu Ä‘á» | Ná»™i dung | Deadline | Giao bÃ i</p>
+  <p class="screenshot-desc"><b>Báº£ng dÆ°á»›i:</b> TÃªn bÃ i | Lá»›p/MÃ´n | Deadline | Badge AJAX (Pendingâ†”Completed) | XÃ³a | Filter tab Táº¥t cáº£/Pending/Completed</p>
+</div>
+
+<h3>4.2.6. Tiáº¿p nháº­n &amp; PhÃª duyá»‡t Ä‘Æ¡n há»c thá»­</h3>
+<p>ÄÆ¡n "Chá» duyá»‡t" Æ°u tiÃªn hiá»ƒn thá»‹ trÆ°á»›c. Gia sÆ° báº¥m "Cháº¥p nháº­n" hoáº·c "Tá»« chá»‘i". Sidebar menu cÃ³ badge Ä‘á» hiá»ƒn thá»‹ sá»‘ Ä‘Æ¡n Ä‘ang chá» (tá»± Ä‘á»™ng cáº­p nháº­t qua OnActionExecutionAsync override).</p>
+
+<div class="screenshot-box">
+  <div class="screenshot-title">ðŸ“¸ HÃŒNH 4.11: DANH SÃCH ÄÆ N ÄÄ‚NG KÃ Há»ŒC THá»¬ CHá»œ PHÃŠ DUYá»†T</div>
+  <p class="screenshot-desc"><b>URL:</b> <code>/TutorPortal/Bookings</code></p>
+  <p class="screenshot-desc"><b>Cá»™t:</b> Phá»¥ huynh | SÄT (link tel:) | MÃ´n | Há»c lá»±c HS | Giá» mong muá»‘n | Ghi chÃº | Tráº¡ng thÃ¡i | 2 nÃºt: Cháº¥p nháº­n (xanh) / Tá»« chá»‘i (Ä‘á»)</p>
+  <p class="screenshot-desc"><b>Tabs:</b> "Táº¥t cáº£" | "Chá» duyá»‡t" | "ÄÃ£ xÃ¡c nháº­n" | "Tá»« chá»‘i"</p>
+</div>
+
+<h3>4.2.7. Desktop Notification nháº¯c lá»‹ch dáº¡y</h3>
+<p>Web Notification API trÃ¬nh duyá»‡t: polling 60s/láº§n kiá»ƒm tra lá»›p cÃ²n â‰¤30 phÃºt â†’ push pop-up gÃ³c pháº£i mÃ n hÃ¬nh. NgÆ°á»i dÃ¹ng cáº¥p quyá»n Allow Notifications má»™t láº§n.</p>
+
+<div class="screenshot-box">
+  <div class="screenshot-title">ðŸ“¸ HÃŒNH 4.12: DESKTOP NOTIFICATION NHáº®C GIá»œ Dáº Y TRÆ¯á»šC 30 PHÃšT</div>
+  <p class="screenshot-desc"><b>KÃ­ch hoáº¡t:</b> Báº¥t ká»³ trang <code>/TutorPortal</code> â†’ Banner "Báº­t nháº­n thÃ´ng bÃ¡o" â†’ Allow â†’ polling JavaScript 60s</p>
+  <p class="screenshot-desc"><b>Ná»™i dung thÃ´ng bÃ¡o:</b> TiÃªu Ä‘á» "Sáº¯p Ä‘áº¿n giá» dáº¡y!" | Body "[MÃ´n há»c] vá»›i [TÃªn HS] lÃºc [HH:mm] táº¡i [Äá»‹a Ä‘iá»ƒm/Link]"</p>
+</div>
+
+<h2>4.3. PhÃ¢n há»‡ Quáº£n trá»‹ viÃªn (Admin Area)</h2>
+
+<h3>4.3.1. Dashboard toÃ n sÃ n &amp; 3 Biá»ƒu Ä‘á»“ Chart.js</h3>
+<p>Admin Dashboard (<code>/Admin/HomeAdmin</code>): 4 KPI tháº» toÃ n sÃ n + 3 biá»ƒu Ä‘á»“ Chart.js: donut cÆ¡ cáº¥u tÃ i khoáº£n, cá»™t top mÃ´n há»c, Ä‘Æ°á»ng tiáº¿n trÃ¬nh Ä‘Æ¡n há»c thá»­ theo thÃ¡ng.</p>
+
+<div class="screenshot-box">
+  <div class="screenshot-title">ðŸ“¸ HÃŒNH 4.13: DASHBOARD ADMIN &amp; 3 BIá»‚U Äá»’ PHÃ‚N TÃCH TOÃ€N SÃ€N</div>
+  <img src="C:\Users\Admin\.gemini\antigravity-ide\brain\a8e743c3-4c3b-4ff6-a700-6510561e7af7\admin_dashboard_1792490926977.jpg" alt="Dashboard Admin EduMatch UTC" class="screenshot-img">
+  <p class="img-caption">HÃ¬nh 4.13: Báº£ng Ä‘iá»u khiá»ƒn Admin â€” 4 KPI (Gia sÆ°/Há»c sinh/Tá»· lá»‡ ghÃ©p/ÄÃ¡nh giÃ¡ TB) + Biá»ƒu Ä‘á»“ Donut + Cá»™t + ÄÆ°á»ng (Chart.js)</p>
+  <p class="screenshot-desc"><b>URL:</b> <code>/Admin/HomeAdmin</code> | Admin: <code>admin@utc.edu.vn</code> / 123456</p>
+</div>
+
+<h3>4.3.2. Kiá»ƒm duyá»‡t báº±ng cáº¥p &amp; Cáº¥p TÃ­ch xanh</h3>
+<p>Admin má»Ÿ Modal phÃ³ng to áº£nh báº±ng cáº¥p/tháº» SV â†’ kiá»ƒm tra â†’ báº¥m "Cáº¥p tÃ­ch xanh" â†’ DaXacMinh=1 â†’ Trang chá»§ hiá»ƒn thá»‹ âœ“ ngay láº­p tá»©c.</p>
+
+<div class="screenshot-box">
+  <div class="screenshot-title">ðŸ“¸ HÃŒNH 4.14: KIá»‚M DUYá»†T Báº°NG Cáº¤P VÃ€ Cáº¤P HUY HIá»†U TÃCH XANH</div>
+  <p class="screenshot-desc"><b>URL:</b> <code>/Admin/Tutors</code></p>
+  <p class="screenshot-desc"><b>Luá»“ng:</b> Báº£ng gia sÆ° chÆ°a xÃ¡c minh â†’ Báº¥m "Xem báº±ng cáº¥p" â†’ Modal áº£nh phÃ³ng to â†’ Báº¥m "Cáº¥p tÃ­ch xanh" â†’ POST Verify/{id} â†’ DaXacMinh=1 â†’ âœ“ trÃªn trang chá»§</p>
+</div>
+
+<h3>4.3.3. Äiá»u phá»‘i há»c thá»­ &amp; Kiá»ƒm duyá»‡t Ä‘Ã¡nh giÃ¡</h3>
+<p>GiÃ¡m sÃ¡t toÃ n bá»™ Ä‘Æ¡n há»c thá»­ trÃªn sÃ n. Kiá»ƒm duyá»‡t Ä‘Ã¡nh giÃ¡: nÃºt toggle áº¨n/Hiá»‡n (HienThi=0/1) â€” ngÄƒn ná»™i dung spam hoáº·c khÃ´ng há»£p lá»‡.</p>
+
+<div class="screenshot-box">
+  <div class="screenshot-title">ðŸ“¸ HÃŒNH 4.15: QUáº¢N LÃ Há»ŒC THá»¬ &amp; KIá»‚M DUYá»†T ÄÃNH GIÃ</div>
+  <p class="screenshot-desc"><b>URL:</b> <code>/Admin/Bookings</code> vÃ  <code>/Admin/Reviews</code></p>
+  <p class="screenshot-desc"><b>Reviews:</b> Báº£ng nháº­n xÃ©t vá»›i sá»‘ sao | NÃºt AJAX Hiá»‡n/áº¨n | Badge xanh=CÃ´ng khai / Äá»=Äang áº©n</p>
+</div>
+
+<h3>4.3.4. Quáº£n lÃ½ danh má»¥c MÃ´n há»c &amp; Khá»‘i lá»›p</h3>
+<p>CRUD MÃ´n há»c (kÃ¨m icon Font Awesome) vÃ  Khá»‘i lá»›p. XÃ³a MÃ´n há»c cáº£nh bÃ¡o náº¿u cÃ³ gia sÆ° Ä‘ang dáº¡y.</p>
+
+<div class="screenshot-box">
+  <div class="screenshot-title">ðŸ“¸ HÃŒNH 4.16: QUáº¢N LÃ DANH Má»¤C MÃ”N Há»ŒC VÃ€ KHá»I Lá»šP</div>
+  <p class="screenshot-desc"><b>URL:</b> <code>/Admin/Subjects</code> vÃ  <code>/Admin/Grades</code></p>
+  <p class="screenshot-desc"><b>Báº£ng MÃ´n há»c:</b> Icon FA | TÃªn mÃ´n | MÃ´ táº£ | Sá»‘ gia sÆ° dáº¡y | Sá»­a/XÃ³a</p>
+</div>
+
+<h3>4.3.5. Quáº£n trá»‹ ngÆ°á»i dÃ¹ng &amp; Báº£o vá»‡ tÃ i khoáº£n</h3>
+<p>KhÃ³a/Má»Ÿ khÃ³a tá»©c thá»i tÃ i khoáº£n vi pháº¡m (TrangThai=0 â†’ RoleAuthorize há»§y session ngay láº­p tá»©c). Äáº·t láº¡i máº­t kháº©u táº¡m thá»i ngáº«u nhiÃªn an toÃ n.</p>
+
+<div class="screenshot-box">
+  <div class="screenshot-title">ðŸ“¸ HÃŒNH 4.17: QUáº¢N TRá»Š NGÆ¯á»œI DÃ™NG, KHÃ“A TÃ€I KHOáº¢N &amp; Äáº¶T Láº I Máº¬T KHáº¨U</div>
+  <p class="screenshot-desc"><b>URL:</b> <code>/Admin/Users</code></p>
+  <p class="screenshot-desc"><b>Cá»™t:</b> Avatar | Há» tÃªn | Email | Vai trÃ² | NgÃ y Ä‘Äƒng kÃ½ | Tráº¡ng thÃ¡i | Thao tÃ¡c (KhÃ³a / Má»Ÿ khÃ³a / Äáº·t láº¡i MK)</p>
+  <p class="screenshot-desc"><b>CÆ¡ cháº¿ tá»©c thá»i:</b> KhÃ³a â†’ TrangThai=0 â†’ Request káº¿ tiáº¿p cá»§a ngÆ°á»i Ä‘Ã³ â†’ RoleAuthorize Ä‘á»c DB â†’ Session.Clear() â†’ Redirect Login ngay</p>
+</div>
+
+<div class="page-break"></div>
+
+<h1>CHÆ¯Æ NG 5: KIá»‚M THá»¬ VÃ€ ÄÃNH GIÃ Há»† THá»NG</h1>
+
+<h2>5.1. PhÆ°Æ¡ng phÃ¡p vÃ  mÃ´i trÆ°á»ng kiá»ƒm thá»­</h2>
+<p>Ãp dá»¥ng <b>Black-box Testing</b> káº¿t há»£p <b>Boundary Value Analysis</b> vÃ  <b>Manual Penetration Testing</b> theo chuáº©n OWASP.</p>
+<table>
+  <tr><th>ThÃ nh pháº§n</th><th>ThÃ´ng sá»‘ mÃ´i trÆ°á»ng</th></tr>
+  <tr><td><b>Há»‡ Ä‘iá»u hÃ nh</b></td><td>Windows 11 Pro 64-bit (Build 26100)</td></tr>
+  <tr><td><b>Runtime</b></td><td>.NET 10.0.401 (dotnet-sdk-10.0.401-win-x64)</td></tr>
+  <tr><td><b>CSDL</b></td><td>Microsoft SQL Server Developer Edition 2022 (16.0.4075.1)</td></tr>
+  <tr><td><b>TrÃ¬nh duyá»‡t</b></td><td>Google Chrome 130.0 vÃ  Microsoft Edge 130.0</td></tr>
+  <tr><td><b>CÃ´ng cá»¥ há»— trá»£</b></td><td>Browser DevTools (Network Tab, Console), SSMS, Postman (API testing)</td></tr>
+  <tr><td><b>TÃ i khoáº£n test</b></td><td>Admin: admin@utc.edu.vn | Tutor: tuan.giasu@utc.edu.vn | Parent: lan.phuhuynh@gmail.com</td></tr>
+</table>
+
+<h2>5.2. Báº£ng 12 Test Cases chi tiáº¿t (TC01 â€“ TC12)</h2>
+<table>
+  <tr>
+    <th style="width:7%;">MÃ£ TC</th>
+    <th style="width:22%;">Chá»©c nÄƒng kiá»ƒm thá»­</th>
+    <th style="width:36%;">Dá»¯ liá»‡u Ä‘áº§u vÃ o &amp; Thao tÃ¡c</th>
+    <th style="width:22%;">Káº¿t quáº£ ká»³ vá»ng</th>
+    <th style="width:13%;">ÄÃ¡nh giÃ¡</th>
+  </tr>
+  <tr><td class="center bold">TC01</td><td>Chá»‘ng Brute-force Ä‘Äƒng nháº­p</td><td>Sai MK 5 láº§n cho <code>admin@utc.edu.vn</code>; báº¥m láº§n 6</td><td>Cháº·n, hiá»ƒn thá»‹ Ä‘áº¿m ngÆ°á»£c "KhÃ³a 5 phÃºt"</td><td class="center"><span class="badge-pass">âœ“ Äáº T</span></td></tr>
+  <tr><td class="center bold">TC02</td><td>Auto-Upgrade MD5 â†’ PBKDF2</td><td>ÄÄƒng nháº­p tÃ i khoáº£n seed cÃ³ hash MD5 vá»›i MK <code>123456</code></td><td>ÄÄƒng nháº­p OK; DB tá»± nÃ¢ng lÃªn PBKDF2 format</td><td class="center"><span class="badge-pass">âœ“ Äáº T</span></td></tr>
+  <tr><td class="center bold">TC03</td><td>Lá»c AJAX khÃ´ng reload trang</td><td>Trang chá»§: chá»n MÃ´n "ToÃ¡n", HÃ¬nh thá»©c "Online", Sort "Sao cao nháº¥t"</td><td>LÆ°á»›i cáº­p nháº­t tá»©c thÃ¬; trang khÃ´ng nháº¥p nhÃ¡y</td><td class="center"><span class="badge-pass">âœ“ Äáº T</span></td></tr>
+  <tr><td class="center bold">TC04</td><td>Validation ngÃ y há»c thá»­</td><td>Äiá»n form há»c thá»­ vá»›i ngÃ y "hÃ´m qua 08:00"</td><td>Lá»—i: "Khung giá» pháº£i á»Ÿ thá»i Ä‘iá»ƒm tÆ°Æ¡ng lai"</td><td class="center"><span class="badge-pass">âœ“ Äáº T</span></td></tr>
+  <tr><td class="center bold" style="background-color:#fef9c3;">TC05</td><td><b>Thuáº­t toÃ¡n chá»‘ng trÃ¹ng ca dáº¡y</b></td><td>CÃ³ lá»›p Thá»© Ba 14:00â€“16:00; thÃªm lá»›p Thá»© Ba 15:00â€“17:00</td><td>Cháº·n lÆ°u: "TrÃ¹ng lá»‹ch vá»›i [HS] (14:00-16:00) vÃ o Thá»© Ba"</td><td class="center"><span class="badge-pass">âœ“ Äáº T</span></td></tr>
+  <tr><td class="center bold">TC06</td><td>Tá»± Ä‘á»™ng tá»‹nh tiáº¿n ngÃ y há»c</td><td>Lá»›p cÃ³ NgayHocTiepTheo = 2 tuáº§n trÆ°á»›c; má»Ÿ Dashboard</td><td>Hiá»ƒn thá»‹ ngÃ y há»c tuáº§n tá»›i; khÃ´ng sá»­a DB</td><td class="center"><span class="badge-pass">âœ“ Äáº T</span></td></tr>
+  <tr><td class="center bold">TC07</td><td>AJAX Toggle tráº¡ng thÃ¡i bÃ i táº­p</td><td>Click badge "Pending" trÃªn trang Assignments</td><td>Badge Ä‘á»•i "HoÃ n thÃ nh" mÃ u xanh ngay; DB cáº­p nháº­t</td><td class="center"><span class="badge-pass">âœ“ Äáº T</span></td></tr>
+  <tr><td class="center bold" style="background-color:#fef9c3;">TC08</td><td><b>PhÃ²ng chá»‘ng lá»— há»•ng IDOR</b></td><td>Gia sÆ° A POST xÃ³a lá»›p há»c ID cá»§a Gia sÆ° B</td><td>Server tráº£ 404 Not Found (khÃ´ng tiáº¿t lá»™ ID tá»“n táº¡i)</td><td class="center"><span class="badge-pass">âœ“ Äáº T</span></td></tr>
+  <tr><td class="center bold" style="background-color:#fef9c3;">TC09</td><td><b>Lá»c mÃ£ Ä‘á»™c XSS Bio</b></td><td>ChÃ¨n <code>&lt;script&gt;alert('XSS')&lt;/script&gt;</code> vÃ o Bio CKEditor</td><td>SafeHtml loáº¡i bá» script; chá»‰ lÆ°u vÄƒn báº£n an toÃ n</td><td class="center"><span class="badge-pass">âœ“ Äáº T</span></td></tr>
+  <tr><td class="center bold" style="background-color:#fef9c3;">TC10</td><td><b>Upload file giáº£ máº¡o Magic Bytes</b></td><td>Äá»•i tÃªn <code>shell.php</code> â†’ <code>photo.jpg</code> rá»“i upload</td><td>FileUploadService phÃ¡t hiá»‡n giáº£ máº¡o; tá»« chá»‘i vá»›i lá»—i</td><td class="center"><span class="badge-pass">âœ“ Äáº T</span></td></tr>
+  <tr><td class="center bold">TC11</td><td>Cáº¥p TÃ­ch xanh tá»« Admin</td><td>Admin xem áº£nh minh chá»©ng; báº¥m "Cáº¥p tÃ­ch xanh" gia sÆ° ID=3</td><td>DaXacMinh=1; âœ“ xanh xuáº¥t hiá»‡n ngay trÃªn Trang chá»§</td><td class="center"><span class="badge-pass">âœ“ Äáº T</span></td></tr>
+  <tr><td class="center bold" style="background-color:#fef9c3;">TC12</td><td><b>Äá»‘i soÃ¡t Session khi tÃ i khoáº£n bá»‹ khÃ³a</b></td><td>Admin khÃ³a tÃ i khoáº£n Gia sÆ° Ä‘ang Ä‘Äƒng nháº­p trÃªn Portal</td><td>RoleAuthorize Ä‘á»c DB TrangThai=false â†’ Session.Clear() â†’ Redirect Login</td><td class="center"><span class="badge-pass">âœ“ Äáº T</span></td></tr>
+</table>
+
+<div class="callout-info">
+  <b>Káº¿t quáº£ kiá»ƒm thá»­:</b> 12/12 Test Cases PASS (100%). Äáº·c biá»‡t 5 test cases báº£o máº­t (TC05, TC08, TC09, TC10, TC12) vÃ  thuáº­t toÃ¡n nghiá»‡p vá»¥ (TC05) Ä‘á»u vÆ°á»£t qua hoÃ n toÃ n â€” chá»©ng minh há»‡ thá»‘ng Ä‘áº¡t chuáº©n báº£o máº­t OWASP vÃ  nghiá»‡p vá»¥ chÃ­nh xÃ¡c.
+</div>
+
+<div class="page-break"></div>
+
+<h1>CHÆ¯Æ NG 6: Káº¾T LUáº¬N VÃ€ HÆ¯á»šNG PHÃT TRIá»‚N</h1>
+
+<h2>6.1. Nhá»¯ng káº¿t quáº£ Ä‘áº¡t Ä‘Æ°á»£c</h2>
+<p class="no-indent">
+<b>1. Kiáº¿n trÃºc &amp; Ká»¹ thuáº­t:</b> HoÃ n chá»‰nh kiáº¿n trÃºc phÃ¢n táº§ng ASP.NET Core MVC (.NET 10) + EF Core 8 + SQL Server vá»›i 10 báº£ng CSDL rÃ ng buá»™c FK cháº·t cháº½. ~506 dÃ²ng C# riÃªng TutorPortalController, ~217 dÃ²ng HomeController.<br><br>
+<b>2. Chá»©c nÄƒng:</b> 17 mÃ n hÃ¬nh chá»©c nÄƒng trong 3 phÃ¢n há»‡ (Phá»¥ huynh/KhÃ¡ch, Gia sÆ°, Admin). CÃ¡c tÃ­nh nÄƒng ná»•i báº­t: Bá»™ lá»c AJAX 6 tiÃªu chÃ­; Ma tráº­n lá»‹ch ráº£nh 21 Ã´; Thuáº­t toÃ¡n Interval Overlap chá»‘ng trÃ¹ng ca dáº¡y; Quy trÃ¬nh duyá»‡t TÃ­ch xanh + Magic Bytes; Desktop Notification nháº¯c lá»‹ch 30 phÃºt; Dashboard 5 biá»ƒu Ä‘á»“ Chart.js; AJAX Toggle bÃ i táº­p khÃ´ng reload.<br><br>
+<b>3. Báº£o máº­t:</b> 6 giáº£i phÃ¡p OWASP chuáº©n: PBKDF2 (100k vÃ²ng + salt) + Auto-upgrade MD5; Whitelist XSS SafeHtml; CSRF Token toÃ n bá»™ POST; IDOR Guard quyá»n sá»Ÿ há»¯u; Magic Bytes file validation; Brute-force Limiter 5/5min. Káº¿t quáº£: 12/12 test cases PASS.<br><br>
+<b>4. Kháº£o sÃ¡t thá»±c táº¿:</b> 60 phiáº¿u há»£p lá»‡, Ä‘iá»ƒm hÃ i lÃ²ng dá»± kiáº¿n 8.85/10, NPS Score +60 (xuáº¥t sáº¯c). ToÃ n bá»™ chá»©c nÄƒng Ä‘á»‹nh hÆ°á»›ng tá»« dá»¯ liá»‡u kháº£o sÃ¡t thá»±c táº¿.
+</p>
+
+<h2>6.2. HÆ°á»›ng phÃ¡t triá»ƒn tÆ°Æ¡ng lai (PhiÃªn báº£n 2.0)</h2>
+<table>
+  <tr><th>TÃ­nh nÄƒng</th><th>MÃ´ táº£</th><th>CÃ´ng nghá»‡</th><th>Æ¯u tiÃªn</th></tr>
+  <tr class="highlight"><td><b>Chat thá»i gian thá»±c</b></td><td>Nháº¯n tin trá»±c tiáº¿p Phá»¥ huynh â†” Gia sÆ° sau Ä‘áº·t lá»‹ch; Push notification tá»©c thÃ¬</td><td>SignalR, WebSocket</td><td class="center">ðŸ”´ Cao</td></tr>
+  <tr class="highlight"><td><b>Cá»•ng thanh toÃ¡n VNPAY</b></td><td>Thanh toÃ¡n há»c phÃ­ qua QR; CÆ¡ cháº¿ Escrow giá»¯ tiá»n Ä‘áº¿n khi xÃ¡c nháº­n buá»•i há»c</td><td>VNPAY SDK, Webhooks</td><td class="center">ðŸ”´ Cao</td></tr>
+  <tr><td><b>AI Gá»£i Ã½ gia sÆ°</b></td><td>Gá»£i Ã½ gia sÆ° phÃ¹ há»£p nháº¥t dá»±a trÃªn vá»‹ trÃ­, ngÃ¢n sÃ¡ch, lá»‹ch trá»‘ng, lá»‹ch sá»­ há»c</td><td>Gemini API, Python ML</td><td class="center">ðŸŸ¡ TB</td></tr>
+  <tr><td><b>Mobile App</b></td><td>App iOS/Android káº¿t ná»‘i RESTful API hiá»‡n cÃ³; FCM Push Notification</td><td>Flutter / React Native, FCM</td><td class="center">ðŸŸ¡ TB</td></tr>
+  <tr><td><b>Video lá»›p há»c trá»±c tiáº¿p</b></td><td>PhÃ²ng há»c video tÃ­ch há»£p trong ná»n táº£ng; Ghi láº¡i buá»•i há»c lÆ°u 30 ngÃ y</td><td>WebRTC, Agora SDK</td><td class="center">ðŸŸ¢ Tháº¥p</td></tr>
+</table>
+
+<h1 style="margin-top:25pt;">TÃ€I LIá»†U THAM KHáº¢O</h1>
+<p class="no-indent" style="line-height:1.8;">
+[1] Microsoft Corporation (2024â€“2026), <i>ASP.NET Core MVC Documentation, Fundamentals &amp; Best Practices</i>, Microsoft Learn. URL: <code>https://learn.microsoft.com/en-us/aspnet/core/mvc/overview</code><br>
+[2] Entity Framework Core Team (2024), <i>EF Core 8 Documentation: Modeling, Querying, Performance Tuning</i>, Microsoft Learn. URL: <code>https://learn.microsoft.com/en-us/ef/core/</code><br>
+[3] OWASP Foundation (2021), <i>OWASP Top 10 Web Application Security Risks 2021</i>. URL: <code>https://owasp.org/Top10/</code><br>
+[4] Chart.js Contributors (2023), <i>Chart.js v4.x Documentation: Flexible HTML5 Canvas Charting</i>. URL: <code>https://www.chartjs.org/docs/latest/</code><br>
+[5] CKEditor Ecosystem (2024), <i>CKEditor 5 Developer Guide for ASP.NET Core</i>. URL: <code>https://ckeditor.com/docs/ckeditor5/latest/</code><br>
+[6] IETF (2017), <i>RFC 8018: PKCS #5 â€” Password-Based Cryptography Specification v2.1 (PBKDF2)</i>. URL: <code>https://www.rfc-editor.org/rfc/rfc8018</code><br>
+[7] MDN Web Docs (2023), <i>Web Notifications API â€” Using the Notifications API</i>. URL: <code>https://developer.mozilla.org/en-US/docs/Web/API/Notifications_API</code><br>
+[8] Nguyá»…n ÄÃ¬nh PhÃºc (2022), <i>Láº­p trÃ¬nh Web vá»›i ASP.NET Core MVC â€” Thá»±c hÃ nh vÃ  Dá»± Ã¡n thá»±c táº¿</i>, NXB Khoa há»c Ká»¹ thuáº­t, HÃ  Ná»™i.
+</p>
+
+</body>
+</html>

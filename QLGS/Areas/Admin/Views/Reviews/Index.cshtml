@@ -1,0 +1,34 @@
+@model PagedResult<DanhGia>
+@{
+    ViewData["Title"] = "Kiểm duyệt đánh giá";
+    string status = ViewBag.Status as string ?? "all";
+    var pager = new PagerViewModel { Page = Model.Page, TotalPages = Model.TotalPages, Action = "Index", Controller = "Reviews", Area = "Admin", Query = new() { ["status"] = status } };
+}
+<partial name="_AdminNav" />
+<div class="card-soft p-4">
+    <div class="d-flex flex-wrap justify-content-between align-items-center gap-2 mb-3">
+        <h5 class="fw-bold mb-0">Đánh giá của phụ huynh <span class="text-muted fw-normal">(@Model.TotalItems)</span></h5>
+        <div class="btn-group btn-group-sm">
+            <a class="btn btn-outline-primary @(status == "all" ? "active" : "")" asp-action="Index" asp-route-status="all">Tất cả</a>
+            <a class="btn btn-outline-primary @(status == "visible" ? "active" : "")" asp-action="Index" asp-route-status="visible">Đang hiển thị</a>
+            <a class="btn btn-outline-primary @(status == "hidden" ? "active" : "")" asp-action="Index" asp-route-status="hidden">Đã ẩn</a>
+        </div>
+    </div>
+    @foreach (var r in Model.Items)
+    {
+        <div class="d-flex flex-wrap justify-content-between gap-3 border-top py-3">
+            <div class="flex-grow-1" style="min-width:260px">
+                <div class="fw-semibold">@r.MaPhuHuynhNavigation.HoTen <span class="text-muted fw-normal small">đánh giá</span> <a asp-area="" asp-controller="Home" asp-action="Details" asp-route-id="@r.MaGiaSu" class="text-decoration-none">@r.MaGiaSuNavigation.MaNguoiDungNavigation.HoTen</a></div>
+                <partial name="_Stars" model="(double)r.SoSao" /> <span class="small text-muted ms-2">@VnFormat.TimeAgo(r.NgayDanhGia)</span>
+                <div class="small text-secondary mt-1">@r.NoiDungBinhLuan</div>
+            </div>
+            <div class="text-end text-nowrap">
+                <span class="status-badge @(r.HienThi == true ? "bg-success-subtle text-success-emphasis" : "bg-secondary-subtle text-secondary-emphasis") me-2">@(r.HienThi == true ? "Hiển thị" : "Đã ẩn")</span>
+                <form asp-action="Toggle" asp-route-id="@r.MaDanhGia" method="post" class="d-inline"><button class="btn btn-sm btn-outline-secondary rounded-pill">@(r.HienThi == true ? "Ẩn" : "Hiện")</button></form>
+                <form asp-action="Delete" asp-route-id="@r.MaDanhGia" method="post" class="d-inline" data-confirm="Xóa vĩnh viễn đánh giá này?"><button class="btn btn-sm btn-outline-danger rounded-pill"><i class="fa-solid fa-trash"></i></button></form>
+            </div>
+        </div>
+    }
+    @if (Model.Items.Count == 0) { <div class="empty-state"><i class="fa-regular fa-star d-block"></i><p class="mb-0">Chưa có đánh giá nào.</p></div> }
+    <partial name="_Pager" model="pager" />
+</div>

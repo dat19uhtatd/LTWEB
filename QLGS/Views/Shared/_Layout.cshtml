@@ -1,0 +1,151 @@
+@inject Microsoft.AspNetCore.Antiforgery.IAntiforgery Antiforgery
+@{
+    var userRole = Context.Session.GetString(SessionKeys.UserRole);
+    var fullName = Context.Session.GetString(SessionKeys.FullName);
+    var csrfToken = Antiforgery.GetAndStoreTokens(Context).RequestToken;
+    string Active(string controller, string? area = null) =>
+        string.Equals(ViewContext.RouteData.Values["controller"]?.ToString(), controller, StringComparison.OrdinalIgnoreCase)
+        && string.Equals(ViewContext.RouteData.Values["area"]?.ToString() ?? "", area ?? "", StringComparison.OrdinalIgnoreCase) ? "active" : "";
+}
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="EduMatch UTC - Nền tảng kết nối gia sư, đăng ký học thử, quản lý thời khóa biểu và bài tập." />
+    <meta name="csrf-token" content="@csrfToken" />
+    <title>@ViewData["Title"] - EduMatch UTC</title>
+    <link rel="icon" href="~/favicon.ico" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    @await RenderSectionAsync("Styles", required: false)
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg app-navbar sticky-top">
+        <div class="container">
+            <a class="navbar-brand brand" asp-area="" asp-controller="Home" asp-action="Index">
+                <span class="brand-icon"><i class="fa-solid fa-graduation-cap"></i></span>EduMatch<span class="brand-sub">UTC</span>
+            </a>
+            <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav" aria-label="Mở menu">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+            <div class="collapse navbar-collapse" id="mainNav">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link @Active("Home")" asp-area="" asp-controller="Home" asp-action="Index">
+                            <i class="fa-solid fa-magnifying-glass me-1"></i> Tìm gia sư
+                        </a>
+                    </li>
+                    @if (userRole == Roles.Parent)
+                    {
+                        <li class="nav-item">
+                            <a class="nav-link @Active("Parent")" asp-area="" asp-controller="Parent" asp-action="MyBookings">
+                                <i class="fa-regular fa-calendar-check me-1"></i> Lịch học thử của tôi
+                            </a>
+                        </li>
+                    }
+                    @if (userRole == Roles.Tutor)
+                    {
+                        <li class="nav-item">
+                            <a class="nav-link @Active("TutorPortal")" asp-area="" asp-controller="TutorPortal" asp-action="Index">
+                                <i class="fa-solid fa-chalkboard-user me-1"></i> Không gian Gia sư
+                            </a>
+                        </li>
+                    }
+                    @if (userRole == Roles.Admin)
+                    {
+                        <li class="nav-item">
+                            <a class="nav-link @(ViewContext.RouteData.Values["area"]?.ToString() == "Admin" ? "active" : "")" asp-area="Admin" asp-controller="HomeAdmin" asp-action="Index">
+                                <i class="fa-solid fa-shield-halved me-1"></i> Quản trị hệ thống
+                            </a>
+                        </li>
+                    }
+                    <li class="nav-item">
+                        <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Privacy"><i class="fa-regular fa-circle-question me-1"></i> Giới thiệu & Chính sách</a>
+                    </li>
+                </ul>
+
+                <div class="d-flex align-items-center gap-2">
+                    @if (!string.IsNullOrEmpty(fullName))
+                    {
+                        <div class="dropdown">
+                            <button class="btn user-chip dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                <span class="avatar avatar-sm" style="background:@VnFormat.AvatarColor(fullName.Length)">@VnFormat.Initials(fullName)</span>
+                                <span class="d-none d-md-inline">@fullName</span>
+                                <span class="role-pill role-@userRole">@(userRole == Roles.Admin ? "Admin" : userRole == Roles.Tutor ? "Gia sư" : "Phụ huynh")</span>
+                            </button>
+                            <ul class="dropdown-menu dropdown-menu-end shadow border-0 rounded-4 p-2">
+                                <li><a class="dropdown-item rounded-3" asp-area="" asp-controller="Account" asp-action="Profile"><i class="fa-regular fa-id-card me-2 text-primary"></i>Thông tin tài khoản</a></li>
+                                @if (userRole == Roles.Parent)
+                                {
+                                    <li><a class="dropdown-item rounded-3" asp-area="" asp-controller="Parent" asp-action="MyBookings"><i class="fa-regular fa-calendar-check me-2 text-primary"></i>Lịch học thử của tôi</a></li>
+                                }
+                                <li><hr class="dropdown-divider" /></li>
+                                <li>
+                                    <form asp-area="" asp-controller="Account" asp-action="Logout" method="post" class="m-0">
+                                        <button type="submit" class="dropdown-item rounded-3 text-danger"><i class="fa-solid fa-right-from-bracket me-2"></i>Đăng xuất</button>
+                                    </form>
+                                </li>
+                            </ul>
+                        </div>
+                    }
+                    else
+                    {
+                        <a class="btn btn-outline-primary rounded-pill px-3" asp-area="" asp-controller="Account" asp-action="Register">Đăng ký</a>
+                        <a class="btn btn-primary rounded-pill px-3" asp-area="" asp-controller="Account" asp-action="Login">
+                            <i class="fa-solid fa-right-to-bracket me-1"></i> Đăng nhập
+                        </a>
+                    }
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <main class="container py-4 app-main">
+        @foreach (var (key, css, icon) in new[] { ("SuccessMsg", "success", "fa-circle-check"), ("ErrorMsg", "danger", "fa-triangle-exclamation"), ("InfoMsg", "info", "fa-circle-info") })
+        {
+            if (TempData[key] != null)
+            {
+                <div class="alert alert-@css alert-dismissible fade show flash-alert shadow-sm" role="alert">
+                    <i class="fa-solid @icon me-2"></i>@TempData[key]
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Đóng"></button>
+                </div>
+            }
+        }
+        @RenderBody()
+    </main>
+
+    <footer class="app-footer mt-5">
+        <div class="container py-5">
+            <div class="row g-4">
+                <div class="col-lg-5">
+                    <div class="brand text-white mb-2"><span class="brand-icon"><i class="fa-solid fa-graduation-cap"></i></span>EduMatch<span class="brand-sub">UTC</span></div>
+                    <p class="small opacity-75 mb-0">Hệ thống quản lý gia sư & lớp học: tìm gia sư phù hợp, đăng ký học thử 01 buổi, theo dõi thời khóa biểu và bài tập trong một nền tảng.</p>
+                </div>
+                <div class="col-6 col-lg-3">
+                    <h6 class="text-white fw-bold mb-3">Khám phá</h6>
+                    <ul class="list-unstyled small mb-0 footer-links">
+                        <li><a asp-area="" asp-controller="Home" asp-action="Index">Tìm gia sư</a></li>
+                        <li><a asp-area="" asp-controller="Account" asp-action="Register" asp-route-role="Tutor">Trở thành gia sư</a></li>
+                        <li><a asp-area="" asp-controller="Home" asp-action="Privacy">Chính sách & bảo mật</a></li>
+                    </ul>
+                </div>
+                <div class="col-6 col-lg-4">
+                    <h6 class="text-white fw-bold mb-3">Về đề tài</h6>
+                    <p class="small opacity-75 mb-0">Bài tập lớn học phần <strong>Lập trình Web</strong><br />ASP.NET Core MVC • Entity Framework Core • Web API • SQL Server</p>
+                </div>
+            </div>
+            <hr class="border-light opacity-25 my-4" />
+            <div class="small opacity-75 text-center">© @DateTime.Now.Year EduMatch UTC — Trường Đại học Giao thông Vận tải</div>
+        </div>
+    </footer>
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

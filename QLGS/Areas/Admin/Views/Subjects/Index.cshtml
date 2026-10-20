@@ -1,0 +1,31 @@
+@model List<SubjectRow>
+@{
+    ViewData["Title"] = "Quản lý môn học";
+}
+<partial name="_AdminNav" />
+<div class="card-soft p-4">
+    <div class="d-flex justify-content-between align-items-center mb-3">
+        <h5 class="fw-bold mb-0">Danh mục môn học (@Model.Count)</h5>
+        <a asp-action="Form" class="btn btn-primary rounded-pill px-4"><i class="fa-solid fa-plus me-1"></i>Thêm môn học</a>
+    </div>
+    <div class="table-responsive">
+        <table class="table table-modern">
+            <thead><tr><th>Môn học</th><th>Mô tả</th><th class="text-center">Gia sư</th><th class="text-center">Lớp</th><th></th></tr></thead>
+            <tbody>
+                @foreach (var r in Model)
+                {
+                    <tr>
+                        <td class="fw-semibold"><span class="icon-box bg-primary-subtle text-primary me-2" style="width:36px;height:36px"><i class="fa-solid @(r.Subject.IconClass ?? "fa-book")"></i></span>@r.Subject.TenMonHoc</td>
+                        <td class="small text-muted">@r.Subject.MoTa</td>
+                        <td class="text-center">@r.TutorCount</td>
+                        <td class="text-center">@r.ClassCount</td>
+                        <td class="text-end text-nowrap">
+                            <a asp-action="Form" asp-route-id="@r.Subject.MaMonHoc" class="btn btn-sm btn-outline-primary rounded-pill"><i class="fa-solid fa-pen"></i></a>
+                            <form asp-action="Delete" asp-route-id="@r.Subject.MaMonHoc" method="post" class="d-inline" data-confirm="Xóa môn @r.Subject.TenMonHoc?"><button class="btn btn-sm btn-outline-danger rounded-pill"><i class="fa-solid fa-trash"></i></button></form>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

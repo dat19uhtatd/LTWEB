@@ -1,0 +1,48 @@
+@model BookingsPageViewModel
+@{
+    ViewData["Title"] = "Yêu cầu học thử";
+    string F(string f) => Model.Status == f ? "active" : "";
+}
+<partial name="_TutorNav" />
+<div class="card-soft p-4">
+    <div class="d-flex flex-wrap justify-content-between align-items-center gap-2 mb-3">
+        <h5 class="fw-bold mb-0"><i class="fa-regular fa-envelope-open text-primary me-2"></i>Yêu cầu đăng ký học thử gửi tới bạn</h5>
+        <div class="btn-group btn-group-sm">
+            <a class="btn btn-outline-primary @F("all")" asp-action="Bookings" asp-route-status="all">Tất cả</a>
+            <a class="btn btn-outline-primary @F("Chờ duyệt")" asp-action="Bookings" asp-route-status="Chờ duyệt">Chờ duyệt (@Model.PendingCount)</a>
+            <a class="btn btn-outline-primary @F("Đã xác nhận")" asp-action="Bookings" asp-route-status="Đã xác nhận">Đã xác nhận</a>
+            <a class="btn btn-outline-primary @F("Từ chối")" asp-action="Bookings" asp-route-status="Từ chối">Từ chối</a>
+        </div>
+    </div>
+    @if (Model.Items.Count == 0)
+    {
+        <div class="empty-state"><i class="fa-regular fa-inbox d-block"></i><p class="mb-0">Chưa có yêu cầu nào.</p></div>
+    }
+    else
+    {
+        <div class="table-responsive">
+            <table class="table table-modern">
+                <thead><tr><th>Phụ huynh</th><th>Môn / Trình độ</th><th>Thời gian mong muốn</th><th>Ghi chú</th><th>Trạng thái</th><th></th></tr></thead>
+                <tbody>
+                    @foreach (var b in Model.Items)
+                    {
+                        <tr>
+                            <td><div class="fw-semibold">@b.HoTenPhuHuynh</div><a class="small" href="tel:@b.SoDienThoai"><i class="fa-solid fa-phone me-1"></i>@b.SoDienThoai</a></td>
+                            <td><span class="badge-soft m-0">@b.MaMonHocNavigation.TenMonHoc</span><div class="small text-muted mt-1">@b.TrinhDoHienTaiHs</div></td>
+                            <td>@b.KhungGioMongMuon.ToString("dd/MM/yyyy HH:mm")<div class="small text-muted">Gửi @VnFormat.TimeAgo(b.NgayTao)</div></td>
+                            <td class="small" style="max-width:220px">@(string.IsNullOrWhiteSpace(b.GhiChuYeuCau) ? "—" : b.GhiChuYeuCau)</td>
+                            <td><span class="status-badge @VnFormat.BookingBadge(b.TrangThai)">@b.TrangThai</span></td>
+                            <td class="text-end text-nowrap">
+                                @if (b.TrangThai == "Chờ duyệt")
+                                {
+                                    <form asp-action="ConfirmBooking" asp-route-id="@b.MaDangKy" method="post" class="d-inline"><button class="btn btn-sm btn-success rounded-pill">Xác nhận</button></form>
+                                    <form asp-action="RejectBooking" asp-route-id="@b.MaDangKy" method="post" class="d-inline" data-confirm="Từ chối yêu cầu này?"><button class="btn btn-sm btn-outline-danger rounded-pill">Từ chối</button></form>
+                                }
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    }
+</div>

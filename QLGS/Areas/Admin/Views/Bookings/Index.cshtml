@@ -1,0 +1,48 @@
+@model PagedResult<DangKyHocThu>
+@{
+    ViewData["Title"] = "Điều phối đăng ký học thử";
+    string status = ViewBag.Status as string ?? "all";
+    string q = ViewBag.Q as string ?? "";
+    var pager = new PagerViewModel { Page = Model.Page, TotalPages = Model.TotalPages, Action = "Index", Controller = "Bookings", Area = "Admin", Query = new() { ["q"] = q, ["status"] = status } };
+    string curUrl = Url.Action("Index", "Bookings", new { area = "Admin", q, status, page = Model.Page }) ?? "/";
+}
+<partial name="_AdminNav" />
+<div class="card-soft p-4">
+    <div class="d-flex flex-wrap justify-content-between align-items-center gap-2 mb-3">
+        <h5 class="fw-bold mb-0">Yêu cầu đăng ký học thử 01 buổi <span class="text-muted fw-normal">(@Model.TotalItems)</span></h5>
+        <form method="get" class="d-flex gap-2">
+            <input name="q" value="@q" class="form-control form-control-sm" placeholder="Tên PH / SĐT / gia sư..." style="width:210px" />
+            <select name="status" class="form-select form-select-sm" style="width:150px" onchange="this.form.submit()">
+                <option value="all" selected="@(status == "all")">Mọi trạng thái</option>
+                @foreach (var s in new[] { "Chờ duyệt", "Đã xác nhận", "Từ chối", "Đã hủy" }) { <option value="@s" selected="@(status == s)">@s</option> }
+            </select>
+            <button class="btn btn-sm btn-primary rounded-pill px-3">Lọc</button>
+        </form>
+    </div>
+    <div class="table-responsive">
+        <table class="table table-modern">
+            <thead><tr><th>Phụ huynh & SĐT</th><th>Gia sư & Môn</th><th>Thời gian mong muốn</th><th>Trạng thái</th><th></th></tr></thead>
+            <tbody>
+                @foreach (var b in Model.Items)
+                {
+                    <tr>
+                        <td><div class="fw-semibold">@b.HoTenPhuHuynh</div><div class="small text-muted"><i class="fa-solid fa-phone me-1"></i>@b.SoDienThoai</div>@if (!string.IsNullOrWhiteSpace(b.GhiChuYeuCau)){<div class="small text-secondary fst-italic">"@b.GhiChuYeuCau"</div>}</td>
+                        <td><div>@b.MaGiaSuNavigation.MaNguoiDungNavigation.HoTen</div><span class="badge-soft m-0">@b.MaMonHocNavigation.TenMonHoc</span> <span class="small text-muted">@b.TrinhDoHienTaiHs</span></td>
+                        <td>@b.KhungGioMongMuon.ToString("dd/MM/yyyy HH:mm")<div class="small text-muted">Gửi @VnFormat.TimeAgo(b.NgayTao)</div></td>
+                        <td><span class="status-badge @VnFormat.BookingBadge(b.TrangThai)">@b.TrangThai</span></td>
+                        <td class="text-end text-nowrap">
+                            @if (b.TrangThai == "Chờ duyệt")
+                            {
+                                <form asp-action="Approve" asp-route-id="@b.MaDangKy" method="post" class="d-inline"><input type="hidden" name="returnUrl" value="@curUrl" /><button class="btn btn-sm btn-success rounded-pill">Xác nhận</button></form>
+                                <form asp-action="Reject" asp-route-id="@b.MaDangKy" method="post" class="d-inline" data-confirm="Từ chối yêu cầu này?"><input type="hidden" name="returnUrl" value="@curUrl" /><button class="btn btn-sm btn-outline-danger rounded-pill">Từ chối</button></form>
+                            }
+                            <form asp-action="Delete" asp-route-id="@b.MaDangKy" method="post" class="d-inline" data-confirm="Xóa vĩnh viễn yêu cầu này?"><button class="btn btn-sm btn-link text-secondary" title="Xóa"><i class="fa-solid fa-trash"></i></button></form>
+                        </td>
+                    </tr>
+                }
+                @if (Model.Items.Count == 0) { <tr><td colspan="5" class="text-center text-muted py-4">Không có yêu cầu nào.</td></tr> }
+            </tbody>
+        </table>
+    </div>
+    <partial name="_Pager" model="pager" />
+</div>

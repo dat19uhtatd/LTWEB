@@ -1,0 +1,28 @@
+@{
+    ViewData["Title"] = "Giới thiệu & Chính sách";
+}
+<div class="row justify-content-center">
+    <div class="col-lg-9">
+        <div class="card-soft p-4 p-lg-5">
+            <h2 class="section-title mb-3">Giới thiệu hệ thống EduMatch UTC</h2>
+            <p class="text-muted">EduMatch là hệ thống quản lý gia sư & lớp học xây dựng bằng <strong>ASP.NET Core MVC, Entity Framework Core, Web API và SQL Server</strong> cho học phần Lập trình Web.</p>
+            <div class="row g-3 my-3">
+                <div class="col-md-4"><div class="p-3 bg-light rounded-4 h-100"><i class="fa-solid fa-users text-primary fs-4 mb-2"></i><h6 class="fw-bold">Phụ huynh / Học sinh</h6><p class="small text-muted mb-0">Tìm kiếm, lọc gia sư, xem lịch rảnh, đăng ký học thử, đánh giá.</p></div></div>
+                <div class="col-md-4"><div class="p-3 bg-light rounded-4 h-100"><i class="fa-solid fa-chalkboard-user text-success fs-4 mb-2"></i><h6 class="fw-bold">Gia sư</h6><p class="small text-muted mb-0">Quản lý hồ sơ, thời khóa biểu, bài tập, lịch rảnh và yêu cầu học thử.</p></div></div>
+                <div class="col-md-4"><div class="p-3 bg-light rounded-4 h-100"><i class="fa-solid fa-shield-halved text-danger fs-4 mb-2"></i><h6 class="fw-bold">Quản trị viên</h6><p class="small text-muted mb-0">Xác minh bằng cấp, duyệt yêu cầu, quản lý danh mục, người dùng, đánh giá.</p></div></div>
+            </div>
+            <h4 class="fw-bold mt-4">Chính sách bảo mật</h4>
+            <ul class="text-secondary">
+                <li>Mật khẩu được băm bằng thuật toán PBKDF2 kèm salt, hệ thống không lưu mật khẩu gốc.</li>
+                <li>Thông tin liên hệ (số điện thoại) chỉ hiển thị cho gia sư được đăng ký và quản trị viên.</li>
+                <li>Ảnh bằng cấp / thẻ sinh viên chỉ dùng để quản trị viên xác minh và không hiển thị trên trang công khai của gia sư.</li>
+                <li>Cookie chỉ dùng để ghi nhớ email đăng nhập và gia sư xem gần nhất; bạn có thể xóa bất kỳ lúc nào.</li>
+            </ul>
+            <h4 class="fw-bold mt-4">Quy định sử dụng</h4>
+            <ul class="text-secondary mb-0">
+                <li>Mỗi phụ huynh chỉ đánh giá mỗi gia sư một lần; nhận xét cần trung thực, lịch sự.</li>
+                <li>Quản trị viên có quyền ẩn đánh giá vi phạm và khóa tài khoản vi phạm quy định.</li>
+            </ul>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,83 @@
+@model ClassFormPageViewModel
+@{
+    ViewData["Title"] = Model.IsEdit ? "Sửa lớp học" : "Thêm lớp học";
+}
+<partial name="_TutorNav" />
+<div class="row justify-content-center">
+    <div class="col-lg-8">
+        <div class="card-soft p-4 p-lg-5">
+            <h4 class="section-title mb-4">@(Model.IsEdit ? "Cập nhật lớp học" : "Thêm lớp học vào thời khóa biểu")</h4>
+            <form asp-action="SaveClass" method="post" novalidate>
+                <input type="hidden" asp-for="Form.MaLichHoc" />
+                <div asp-validation-summary="ModelOnly" class="alert alert-danger small"></div>
+                <div class="row g-3">
+                    <div class="col-md-6">
+                        <label asp-for="Form.TenHocSinh" class="form-label"></label>
+                        <input asp-for="Form.TenHocSinh" class="form-control" placeholder="VD: Nguyễn Gia Bảo" />
+                        <span asp-validation-for="Form.TenHocSinh"></span>
+                    </div>
+                    <div class="col-md-6">
+                        <label asp-for="Form.MaMonHoc" class="form-label"></label>
+                        <select asp-for="Form.MaMonHoc" class="form-select" asp-items="@(new SelectList(Model.Subjects, "MaMonHoc", "TenMonHoc", Model.Form.MaMonHoc))"></select>
+                        <span asp-validation-for="Form.MaMonHoc"></span>
+                    </div>
+                    <div class="col-md-4">
+                        <label asp-for="Form.NgayHocTiepTheo" class="form-label"></label>
+                        <input asp-for="Form.NgayHocTiepTheo" type="date" class="form-control" asp-format="{0:yyyy-MM-dd}" id="dateInput" />
+                        <div class="form-text" id="dayLabel"></div>
+                        <span asp-validation-for="Form.NgayHocTiepTheo"></span>
+                    </div>
+                    <div class="col-md-4">
+                        <label asp-for="Form.GioBatDau" class="form-label"></label>
+                        <input asp-for="Form.GioBatDau" type="time" class="form-control" asp-format="{0:HH\:mm}" />
+                        <span asp-validation-for="Form.GioBatDau"></span>
+                    </div>
+                    <div class="col-md-4">
+                        <label asp-for="Form.GioKetThuc" class="form-label"></label>
+                        <input asp-for="Form.GioKetThuc" type="time" class="form-control" asp-format="{0:HH\:mm}" />
+                        <span asp-validation-for="Form.GioKetThuc"></span>
+                    </div>
+                    <div class="col-md-8">
+                        <label asp-for="Form.PhongHocHoacLink" class="form-label"></label>
+                        <input asp-for="Form.PhongHocHoacLink" class="form-control" placeholder="Địa chỉ phòng học hoặc link Google Meet/Zoom" />
+                        <span asp-validation-for="Form.PhongHocHoacLink"></span>
+                    </div>
+                    <div class="col-md-4">
+                        <label asp-for="Form.HocPhiCaDay" class="form-label"></label>
+                        <input asp-for="Form.HocPhiCaDay" type="number" step="10000" class="form-control" />
+                        <span asp-validation-for="Form.HocPhiCaDay"></span>
+                    </div>
+                    <div class="col-md-6">
+                        <label asp-for="Form.TrangThai" class="form-label"></label>
+                        <select asp-for="Form.TrangThai" class="form-select">
+                            <option>Đang học</option><option>Tạm nghỉ</option><option>Đã kết thúc</option>
+                        </select>
+                        <span asp-validation-for="Form.TrangThai"></span>
+                    </div>
+                    <div class="col-md-6 d-flex align-items-end">
+                        <div class="form-check form-switch">
+                            <input asp-for="Form.BatNhacNhoTruoc30P" class="form-check-input" />
+                            <label asp-for="Form.BatNhacNhoTruoc30P" class="form-check-label"></label>
+                        </div>
+                    </div>
+                </div>
+                <div class="alert alert-light border small mt-3 mb-0"><i class="fa-solid fa-circle-info text-primary me-1"></i>"Thứ trong tuần" được tự suy ra từ ngày học. Hệ thống sẽ cảnh báo nếu ca dạy trùng giờ với lớp khác.</div>
+                <div class="d-flex justify-content-end gap-2 mt-4">
+                    <a asp-action="Schedule" class="btn btn-light rounded-pill px-4">Hủy</a>
+                    <button class="btn btn-primary rounded-pill px-4">@(Model.IsEdit ? "Lưu thay đổi" : "Thêm lớp học")</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+    <script>
+        (function () {
+            var names = ['Chủ nhật', 'Thứ 2', 'Thứ 3', 'Thứ 4', 'Thứ 5', 'Thứ 6', 'Thứ 7'];
+            var input = document.getElementById('dateInput'), label = document.getElementById('dayLabel');
+            function upd() { if (!input.value) { label.textContent = ''; return; } label.textContent = 'Lớp học lặp lại vào ' + names[new Date(input.value + 'T00:00:00').getDay()] + ' hàng tuần'; }
+            input.addEventListener('change', upd); upd();
+        })();
+    </script>
+}

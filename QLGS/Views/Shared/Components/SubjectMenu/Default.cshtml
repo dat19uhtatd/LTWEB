@@ -1,0 +1,13 @@
+@model IEnumerable<MonHoc>
+
+<div class="d-flex flex-wrap gap-2" id="subjectChips">
+    <button type="button" class="subject-chip active" data-mon="">
+        <i class="fa-solid fa-border-all me-1"></i> Tất cả môn học
+    </button>
+    @foreach (var item in Model)
+    {
+        <button type="button" class="subject-chip" data-mon="@item.MaMonHoc" title="@item.MoTa">
+            <i class="fa-solid @(string.IsNullOrWhiteSpace(item.IconClass) ? "fa-book" : item.IconClass) me-1"></i> @item.TenMonHoc
+        </button>
+    }
+</div>

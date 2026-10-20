@@ -1,0 +1,80 @@
+@model AccountPageViewModel
+@{
+    ViewData["Title"] = "Thông tin tài khoản";
+    var pwTab = (ViewBag.ActiveTab as string) == "password";
+}
+<div class="row justify-content-center">
+    <div class="col-lg-8">
+        <div class="card-soft p-4 mb-3 d-flex flex-wrap align-items-center gap-3">
+            <partial name="_Avatar" model="@(new AvatarModel(Model.Profile.HoTen, Model.Profile.AnhDaiDien, 1, 72))" />
+            <div>
+                <h4 class="fw-bold mb-0">@Model.Profile.HoTen</h4>
+                <div class="text-muted small">@Model.Profile.Email • <span class="role-pill role-@Model.Profile.VaiTro">@(Model.Profile.VaiTro == "Admin" ? "Quản trị viên" : Model.Profile.VaiTro == "Tutor" ? "Gia sư" : "Phụ huynh / Học sinh")</span></div>
+            </div>
+        </div>
+
+        <div class="card-soft p-4">
+            <ul class="nav nav-pills mb-4 gap-2">
+                <li class="nav-item"><button class="nav-link @(pwTab ? "" : "active")" data-bs-toggle="pill" data-bs-target="#tabInfo" type="button">Thông tin cá nhân</button></li>
+                <li class="nav-item"><button class="nav-link @(pwTab ? "active" : "")" data-bs-toggle="pill" data-bs-target="#tabPw" type="button">Đổi mật khẩu</button></li>
+            </ul>
+            <div class="tab-content">
+                <div class="tab-pane fade @(pwTab ? "" : "show active")" id="tabInfo">
+                    <form asp-action="UpdateProfile" method="post" enctype="multipart/form-data" novalidate>
+                        <div class="row g-3">
+                            <div class="col-md-6">
+                                <label asp-for="Profile.HoTen" class="form-label"></label>
+                                <input asp-for="Profile.HoTen" class="form-control" />
+                                <span asp-validation-for="Profile.HoTen"></span>
+                            </div>
+                            <div class="col-md-6">
+                                <label asp-for="Profile.Email" class="form-label"></label>
+                                <input asp-for="Profile.Email" class="form-control" disabled />
+                            </div>
+                            <div class="col-md-6">
+                                <label asp-for="Profile.SoDienThoai" class="form-label"></label>
+                                <input asp-for="Profile.SoDienThoai" class="form-control" />
+                                <span asp-validation-for="Profile.SoDienThoai"></span>
+                            </div>
+                            <div class="col-md-6">
+                                <label asp-for="Profile.FileAnhDaiDien" class="form-label">Ảnh đại diện (jpg/png/webp ≤ 3MB)</label>
+                                <input asp-for="Profile.FileAnhDaiDien" type="file" class="form-control" accept=".jpg,.jpeg,.png,.webp" />
+                                <span asp-validation-for="Profile.FileAnhDaiDien"></span>
+                            </div>
+                            <div class="col-12">
+                                <div class="form-check form-switch">
+                                    <input asp-for="Profile.NhanThongBaoDesktop" class="form-check-input" />
+                                    <label asp-for="Profile.NhanThongBaoDesktop" class="form-check-label"></label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="text-end mt-3"><button class="btn btn-primary rounded-pill px-4">Lưu thay đổi</button></div>
+                    </form>
+                </div>
+                <div class="tab-pane fade @(pwTab ? "show active" : "")" id="tabPw">
+                    <form asp-action="ChangePassword" method="post" novalidate>
+                        <div class="row g-3">
+                            <div class="col-12">
+                                <label asp-for="Password.CurrentPassword" class="form-label"></label>
+                                <input asp-for="Password.CurrentPassword" type="password" class="form-control" autocomplete="current-password" />
+                                <span asp-validation-for="Password.CurrentPassword"></span>
+                            </div>
+                            <div class="col-md-6">
+                                <label asp-for="Password.NewPassword" class="form-label"></label>
+                                <input asp-for="Password.NewPassword" type="password" class="form-control" autocomplete="new-password" />
+                                <span asp-validation-for="Password.NewPassword"></span>
+                            </div>
+                            <div class="col-md-6">
+                                <label asp-for="Password.ConfirmNewPassword" class="form-label"></label>
+                                <input asp-for="Password.ConfirmNewPassword" type="password" class="form-control" autocomplete="new-password" />
+                                <span asp-validation-for="Password.ConfirmNewPassword"></span>
+                            </div>
+                        </div>
+                        <div class="text-end mt-3"><button class="btn btn-primary rounded-pill px-4">Đổi mật khẩu</button></div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@section Scripts { <partial name="_ValidationScriptsPartial" /> }

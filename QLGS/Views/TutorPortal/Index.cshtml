@@ -1,0 +1,193 @@
+@model TutorDashboardViewModel
+@{
+    ViewData["Title"] = "Không gian Gia sư";
+    var t = Model.Tutor;
+    var byDay = Model.Classes.GroupBy(c => VnFormat.NormalizeDay(c.ThuTrongTuan))
+        .OrderBy(g => VnFormat.DayOrder(g.Key)).ToList();
+    var today = DateOnly.FromDateTime(DateTime.Today);
+    int pct = Model.AssignmentsTotal == 0 ? 0 : Model.AssignmentsDone * 100 / Model.AssignmentsTotal;
+}
+<partial name="_TutorNav" />
+
+<div class="d-flex flex-wrap justify-content-between align-items-center gap-2 mb-4">
+    <div>
+        <h3 class="section-title mb-1">Xin chào, @t.MaNguoiDungNavigation.HoTen 👋</h3>
+        <div class="text-muted">
+            @if (t.DaXacMinh == true) { <span class="badge-verified"><i class="fa-solid fa-circle-check me-1"></i>Hồ sơ đã được xác minh</span> }
+            else { <span class="badge bg-warning-subtle text-warning-emphasis rounded-pill px-3 py-2"><i class="fa-solid fa-hourglass-half me-1"></i>Hồ sơ chờ xác minh — hãy <a asp-action="Profile">tải ảnh bằng cấp</a></span> }
+        </div>
+    </div>
+    <button type="button" id="btnEnableNotify" class="btn btn-outline-primary rounded-pill" data-no-lock>
+        <i class="fa-solid fa-bell me-1"></i>Bật thông báo nhắc lịch dạy
+    </button>
+</div>
+
+<div class="row g-3 mb-4">
+    <div class="col-6 col-lg-3"><div class="card-soft stat-card"><span class="icon-box bg-primary-subtle text-primary"><i class="fa-solid fa-sack-dollar"></i></span><div><div class="num">@Model.MonthlyRevenue.VndShort()</div><div class="lbl">Thu nhập ước tính / tháng</div></div></div></div>
+    <div class="col-6 col-lg-3"><div class="card-soft stat-card"><span class="icon-box bg-success-subtle text-success"><i class="fa-solid fa-chalkboard"></i></span><div><div class="num">@Model.Classes.Count</div><div class="lbl">Lớp đang dạy</div></div></div></div>
+    <div class="col-6 col-lg-3"><div class="card-soft stat-card"><span class="icon-box bg-warning-subtle text-warning"><i class="fa-regular fa-envelope-open"></i></span><div><div class="num">@Model.PendingBookings</div><div class="lbl">Yêu cầu học thử chờ duyệt</div></div></div></div>
+    <div class="col-6 col-lg-3"><div class="card-soft stat-card"><span class="icon-box bg-info-subtle text-info"><i class="fa-solid fa-star"></i></span><div><div class="num">@((t.TongSoDanhGia ?? 0) > 0 ? (t.DiemDanhGiaTb ?? 0).ToString("0.0") : "—")</div><div class="lbl">Điểm đánh giá (@(t.TongSoDanhGia ?? 0) lượt)</div></div></div></div>
+</div>
+
+<div class="row g-4">
+    <div class="col-lg-8">
+        <div class="card-soft p-4 mb-4">
+            <div class="d-flex justify-content-between align-items-center mb-3">
+                <h5 class="fw-bold mb-0"><i class="fa-regular fa-clock text-primary me-2"></i>Ca dạy sắp tới</h5>
+                <a asp-action="Schedule" class="btn btn-sm btn-outline-primary rounded-pill">Xem thời khóa biểu</a>
+            </div>
+            @if (Model.Classes.Count == 0)
+            {
+                <div class="empty-state py-4"><i class="fa-regular fa-calendar d-block"></i><p>Chưa có lớp nào. <a asp-action="ClassForm">Thêm lớp học đầu tiên</a></p></div>
+            }
+            else
+            {
+                <div class="table-responsive">
+                    <table class="table table-modern">
+                        <thead><tr><th>Ngày & giờ</th><th>Môn học / Học sinh</th><th>Phòng / Link</th><th>Học phí</th><th>Nhắc -30p</th></tr></thead>
+                        <tbody>
+                            @foreach (var ca in Model.Classes)
+                            {
+                                var startIso = ca.NgayHocTiepTheo.ToString("yyyy-MM-dd") + "T" + ca.GioBatDau.ToString("HH:mm");
+                                <tr class="class-row" data-start="@startIso" data-remind="@(ca.BatNhacNhoTruoc30P == true ? "1" : "0")" data-title="@ca.TenHocSinh - @ca.MaMonHocNavigation.TenMonHoc">
+                                    <td>
+                                        <span class="badge @(ca.NgayHocTiepTheo == today ? "bg-danger" : "bg-primary")">@(ca.NgayHocTiepTheo == today ? "Hôm nay" : ca.ThuTrongTuan)</span>
+                                        <span class="ms-1">@ca.NgayHocTiepTheo.ToString("dd/MM")</span>
+                                        <div class="small text-muted">@ca.GioBatDau.ToString("HH:mm") - @ca.GioKetThuc.ToString("HH:mm")</div>
+                                    </td>
+                                    <td><div class="fw-semibold">@ca.MaMonHocNavigation.TenMonHoc</div><div class="small text-muted">HS: @ca.TenHocSinh</div></td>
+                                    <td class="small">
+                                        @if (ca.PhongHocHoacLink.StartsWith("http", StringComparison.OrdinalIgnoreCase)) { <a href="@ca.PhongHocHoacLink" target="_blank" rel="noopener"><i class="fa-solid fa-video me-1"></i>Vào lớp online</a> }
+                                        else { <span><i class="fa-solid fa-location-dot text-danger me-1"></i>@ca.PhongHocHoacLink</span> }
+                                    </td>
+                                    <td class="fw-semibold text-success">@ca.HocPhiCaDay.Vnd()</td>
+                                    <td>
+                                        <div class="form-check form-switch">
+                                            <input class="form-check-input reminder-toggle" type="checkbox" data-id="@ca.MaLichHoc" @(ca.BatNhacNhoTruoc30P == true ? "checked" : "") />
+                                        </div>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            }
+        </div>
+
+        <div class="card-soft p-4">
+            <div class="d-flex justify-content-between align-items-center mb-3">
+                <h5 class="fw-bold mb-0"><i class="fa-solid fa-list-check text-primary me-2"></i>Bài tập sắp đến hạn</h5>
+                <a asp-action="Assignments" class="btn btn-sm btn-outline-primary rounded-pill">Quản lý bài tập</a>
+            </div>
+            @if (Model.PendingAssignments.Count == 0)
+            {
+                <p class="text-muted mb-0">Không có bài tập nào đang chờ. 🎉</p>
+            }
+            @foreach (var bt in Model.PendingAssignments)
+            {
+                bool overdue = bt.HanNop < DateTime.Now;
+                <div class="d-flex justify-content-between align-items-center border rounded-4 p-3 mb-2">
+                    <div>
+                        <div class="fw-semibold">@bt.TieuDe</div>
+                        <div class="small text-muted">Hạn nộp: <strong class="@(overdue ? "text-danger" : "text-dark")">@bt.HanNop.ToString("dd/MM/yyyy HH:mm")</strong>@if (overdue){<span class="badge bg-danger ms-2">Quá hạn</span>}</div>
+                    </div>
+                    <button class="btn btn-sm btn-warning rounded-pill assign-toggle" data-id="@bt.MaBaiTap" data-no-lock>Cần làm</button>
+                </div>
+            }
+        </div>
+    </div>
+
+    <div class="col-lg-4">
+        <div class="card-soft p-4 mb-4 bg-grad" style="border:0">
+            <div class="small opacity-75">Doanh thu dự kiến mỗi tuần</div>
+            <h2 class="fw-bold my-1">@Model.WeeklyRevenue.Vnd()</h2>
+            <div class="small opacity-90">≈ @Model.MonthlyRevenue.Vnd() / tháng (4 tuần × @Model.Classes.Count lớp cố định)</div>
+        </div>
+        <div class="card-soft p-4 mb-4">
+            <h6 class="fw-bold mb-3">Phân bổ lớp học theo ngày</h6>
+            @if (byDay.Count == 0) { <p class="text-muted small mb-0">Chưa có dữ liệu.</p> }
+            else { <canvas id="classChart" height="230"></canvas> }
+        </div>
+        <div class="card-soft p-4">
+            <h6 class="fw-bold mb-2">Tiến độ bài tập</h6>
+            <div class="d-flex justify-content-between small text-muted mb-1"><span>@Model.AssignmentsDone / @Model.AssignmentsTotal đã hoàn thành</span><span>@pct%</span></div>
+            <div class="progress" style="height:10px"><div class="progress-bar bg-success" style="width:@(pct)%"></div></div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+    <script>
+        // ---- Biểu đồ phân bổ lớp theo ngày (dữ liệu thật từ CSDL) ----
+        (function () {
+            var el = document.getElementById('classChart');
+            if (!el || typeof Chart === 'undefined') return;
+            new Chart(el, {
+                type: 'doughnut',
+                data: {
+                    labels: @Json.Serialize(byDay.Select(g => g.Key).ToList()),
+                    datasets: [{ data: @Json.Serialize(byDay.Select(g => g.Count()).ToList()), backgroundColor: ['#2563eb', '#10b981', '#f59e0b', '#7c3aed', '#ef4444', '#06b6d4', '#ec4899'] }]
+                },
+                options: { plugins: { legend: { position: 'bottom' } }, cutout: '62%' }
+            });
+        })();
+
+        // ---- Đổi trạng thái bài tập bằng AJAX (Web API PUT) ----
+        document.querySelectorAll('.assign-toggle').forEach(function (btn) {
+            btn.addEventListener('click', function () {
+                apiFetch('@Url.Content("~/api/ApiTutor/assignment-status/")' + btn.dataset.id, 'PUT').then(function (res) {
+                    var done = res.newStatus === 'Completed';
+                    btn.classList.toggle('btn-success', done); btn.classList.toggle('btn-warning', !done);
+                    btn.textContent = done ? 'Đã hoàn thành' : 'Cần làm';
+                    showToast(done ? 'Đã đánh dấu hoàn thành' : 'Đã chuyển về "Cần làm"', 'success');
+                }).catch(function (e) { showToast(e.message, 'danger'); });
+            });
+        });
+
+        // ---- Bật/tắt nhắc giờ cho từng ca ----
+        document.querySelectorAll('.reminder-toggle').forEach(function (cb) {
+            cb.addEventListener('change', function () {
+                apiFetch('@Url.Content("~/api/ApiTutor/class-reminder/")' + cb.dataset.id, 'PUT').then(function (res) {
+                    cb.closest('tr').dataset.remind = res.enabled ? '1' : '0';
+                    showToast(res.enabled ? 'Đã bật nhắc trước 30 phút' : 'Đã tắt nhắc giờ', 'success');
+                }).catch(function (e) { cb.checked = !cb.checked; showToast(e.message, 'danger'); });
+            });
+        });
+
+        // ---- Desktop Notification: nhắc trước 30 phút khi đang mở trang ----
+        (function () {
+            var btn = document.getElementById('btnEnableNotify');
+            function refreshBtn() {
+                if (!('Notification' in window)) { btn.disabled = true; btn.textContent = 'Trình duyệt không hỗ trợ thông báo'; return; }
+                if (Notification.permission === 'granted') {
+                    btn.classList.replace('btn-outline-primary', 'btn-success');
+                    btn.innerHTML = '<i class="fa-solid fa-bell me-1"></i>Thông báo nhắc lịch: ĐANG BẬT';
+                }
+            }
+            btn.addEventListener('click', function () {
+                if (!('Notification' in window)) return;
+                Notification.requestPermission().then(function () {
+                    refreshBtn();
+                    if (Notification.permission === 'granted') new Notification('EduMatch', { body: 'Đã bật nhắc lịch dạy trước 30 phút.' });
+                });
+            });
+            refreshBtn();
+
+            function check() {
+                var now = Date.now();
+                document.querySelectorAll('.class-row').forEach(function (row) {
+                    if (row.dataset.remind !== '1') return;
+                    var start = new Date(row.dataset.start).getTime(), diff = start - now, key = 'notified:' + row.dataset.start + row.dataset.title;
+                    if (diff > 0 && diff <= 30 * 60000 && !sessionStorage.getItem(key)) {
+                        sessionStorage.setItem(key, '1');
+                        var msg = 'Ca dạy "' + row.dataset.title + '" bắt đầu sau ' + Math.ceil(diff / 60000) + ' phút.';
+                        if ('Notification' in window && Notification.permission === 'granted') new Notification('🔔 Sắp đến giờ dạy', { body: msg });
+                        showToast('🔔 ' + msg, 'warning');
+                    }
+                });
+            }
+            check(); setInterval(check, 30000);
+        })();
+    </script>
+}

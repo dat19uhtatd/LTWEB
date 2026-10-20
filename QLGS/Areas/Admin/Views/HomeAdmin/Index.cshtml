@@ -1,0 +1,103 @@
+@model AdminDashboardViewModel
+@{
+    ViewData["Title"] = "Bảng điều khiển Quản trị";
+}
+<partial name="_AdminNav" />
+
+<div class="row g-3 mb-4">
+    @foreach (var (label, val, css, icon, hint) in new[] {
+        ("Gia sư", Model.TotalTutors.ToString(), "primary", "fa-chalkboard-user", $"{Model.VerifiedTutors} đã xác minh"),
+        ("Chờ xác minh", Model.PendingTutors.ToString(), "warning", "fa-user-clock", "cần kiểm duyệt bằng cấp"),
+        ("Phụ huynh / HS", Model.TotalParents.ToString(), "info", "fa-people-roof", "tài khoản đã đăng ký"),
+        ("Lớp đang quản lý", Model.TotalClasses.ToString(), "success", "fa-chalkboard", $"{Model.WeeklyRevenue.VndShort()} / tuần"),
+        ("Đăng ký học thử", Model.TotalBookings.ToString(), "danger", "fa-paper-plane", $"{Model.PendingBookings} đang chờ duyệt"),
+        ("Đánh giá", Model.TotalReviews.ToString(), "secondary", "fa-star", Model.TotalReviews > 0 ? $"TB {Model.AverageRating:0.0}/5" : "chưa có") })
+    {
+        <div class="col-6 col-lg-4 col-xl-2">
+            <div class="card-soft stat-card flex-column align-items-start gap-2 h-100">
+                <span class="icon-box bg-@css-subtle text-@css"><i class="fa-solid @icon"></i></span>
+                <div><div class="num">@val</div><div class="lbl fw-semibold">@label</div><div class="lbl">@hint</div></div>
+            </div>
+        </div>
+    }
+</div>
+
+<div class="row g-4 mb-4">
+    <div class="col-lg-4">
+        <div class="card-soft p-4 h-100">
+            <h6 class="fw-bold mb-3">Đăng ký học thử theo trạng thái</h6>
+            @if (Model.BookingsByStatus.Count == 0) { <p class="text-muted small">Chưa có dữ liệu.</p> } else { <canvas id="statusChart" height="220"></canvas> }
+        </div>
+    </div>
+    <div class="col-lg-4">
+        <div class="card-soft p-4 h-100">
+            <h6 class="fw-bold mb-3">Yêu cầu học thử 7 ngày gần nhất</h6>
+            <canvas id="dayChart" height="220"></canvas>
+        </div>
+    </div>
+    <div class="col-lg-4">
+        <div class="card-soft p-4 h-100">
+            <h6 class="fw-bold mb-3">Số gia sư theo môn học</h6>
+            @if (Model.TutorsBySubject.Count == 0) { <p class="text-muted small">Chưa có dữ liệu.</p> } else { <canvas id="subjectChart" height="220"></canvas> }
+        </div>
+    </div>
+</div>
+
+<div class="row g-4">
+    <div class="col-lg-6">
+        <div class="card-soft p-4 h-100">
+            <div class="d-flex justify-content-between align-items-center mb-3">
+                <h5 class="fw-bold mb-0">Gia sư chờ xác minh</h5>
+                <a asp-controller="Tutors" asp-action="Index" asp-route-status="pending" class="btn btn-sm btn-outline-primary rounded-pill">Xem tất cả</a>
+            </div>
+            @if (Model.TutorsToVerify.Count == 0) { <p class="text-muted mb-0">Tất cả gia sư đã được xác minh. 🎉</p> }
+            @foreach (var t in Model.TutorsToVerify)
+            {
+                <div class="d-flex align-items-center gap-3 border-top py-3">
+                    <partial name="_Avatar" model="@(new AvatarModel(t.MaNguoiDungNavigation.HoTen, t.MaNguoiDungNavigation.AnhDaiDien, t.MaGiaSu, 42))" />
+                    <div class="flex-grow-1">
+                        <div class="fw-semibold">@t.MaNguoiDungNavigation.HoTen</div>
+                        <div class="small text-muted">@t.TrinhDo • @(string.IsNullOrEmpty(t.AnhBangCapTheSv) ? "chưa tải bằng cấp" : "đã tải bằng cấp")</div>
+                    </div>
+                    <form asp-controller="Tutors" asp-action="ToggleVerify" asp-route-id="@t.MaGiaSu" method="post">
+                        <input type="hidden" name="returnUrl" value="@Url.Action("Index", "HomeAdmin", new { area = "Admin" })" />
+                        <button class="btn btn-sm btn-success rounded-pill">Cấp Tích xanh</button>
+                    </form>
+                </div>
+            }
+        </div>
+    </div>
+    <div class="col-lg-6">
+        <div class="card-soft p-4 h-100">
+            <div class="d-flex justify-content-between align-items-center mb-3">
+                <h5 class="fw-bold mb-0">Yêu cầu học thử mới nhất</h5>
+                <a asp-controller="Bookings" asp-action="Index" class="btn btn-sm btn-outline-primary rounded-pill">Xem tất cả</a>
+            </div>
+            @if (Model.RecentBookings.Count == 0) { <p class="text-muted mb-0">Chưa có yêu cầu nào.</p> }
+            @foreach (var b in Model.RecentBookings)
+            {
+                <div class="d-flex align-items-center justify-content-between gap-2 border-top py-3">
+                    <div>
+                        <div class="fw-semibold">@b.HoTenPhuHuynh <span class="text-muted fw-normal small">→ @b.MaGiaSuNavigation.MaNguoiDungNavigation.HoTen</span></div>
+                        <div class="small text-muted">@b.MaMonHocNavigation.TenMonHoc • @VnFormat.TimeAgo(b.NgayTao)</div>
+                    </div>
+                    <span class="status-badge @VnFormat.BookingBadge(b.TrangThai)">@b.TrangThai</span>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+    <script>
+        if (typeof Chart !== 'undefined') {
+            var palette = ['#2563eb', '#f59e0b', '#10b981', '#ef4444', '#7c3aed', '#06b6d4', '#ec4899', '#64748b'];
+            var statusEl = document.getElementById('statusChart');
+            if (statusEl) new Chart(statusEl, { type: 'doughnut', data: { labels: @Json.Serialize(Model.BookingsByStatus.Keys.ToList()), datasets: [{ data: @Json.Serialize(Model.BookingsByStatus.Values.ToList()), backgroundColor: palette }] }, options: { plugins: { legend: { position: 'bottom' } }, cutout: '60%' } });
+            new Chart(document.getElementById('dayChart'), { type: 'bar', data: { labels: @Json.Serialize(Model.LastDaysLabels), datasets: [{ label: 'Yêu cầu', data: @Json.Serialize(Model.LastDaysCounts), backgroundColor: '#2563eb', borderRadius: 8 }] }, options: { plugins: { legend: { display: false } }, scales: { y: { beginAtZero: true, ticks: { precision: 0 } } } } });
+            var subEl = document.getElementById('subjectChart');
+            if (subEl) new Chart(subEl, { type: 'bar', data: { labels: @Json.Serialize(Model.TutorsBySubject.Keys.ToList()), datasets: [{ label: 'Gia sư', data: @Json.Serialize(Model.TutorsBySubject.Values.ToList()), backgroundColor: '#7c3aed', borderRadius: 8 }] }, options: { indexAxis: 'y', plugins: { legend: { display: false } }, scales: { x: { beginAtZero: true, ticks: { precision: 0 } } } } });
+        }
+    </script>
+}

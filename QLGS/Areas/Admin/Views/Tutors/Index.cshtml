@@ -1,0 +1,87 @@
+@model PagedResult<HoSoGiaSu>
+@{
+    ViewData["Title"] = "Gia sư & Xác minh";
+    string status = ViewBag.Status as string ?? "all";
+    string q = ViewBag.Q as string ?? "";
+    var pager = new PagerViewModel { Page = Model.Page, TotalPages = Model.TotalPages, Action = "Index", Controller = "Tutors", Area = "Admin", Query = new() { ["q"] = q, ["status"] = status } };
+    string curUrl = Url.Action("Index", "Tutors", new { area = "Admin", q, status, page = Model.Page }) ?? "/";
+}
+<partial name="_AdminNav" />
+<div class="card-soft p-4">
+    <div class="d-flex flex-wrap justify-content-between align-items-center gap-2 mb-3">
+        <h5 class="fw-bold mb-0">Kiểm duyệt bằng cấp & cấp Tích xanh <span class="text-muted fw-normal">(@Model.TotalItems)</span></h5>
+        <form method="get" class="d-flex gap-2">
+            <input name="q" value="@q" class="form-control form-control-sm" placeholder="Tìm tên / email..." style="width:200px" />
+            <select name="status" class="form-select form-select-sm" style="width:150px" onchange="this.form.submit()">
+                <option value="all" selected="@(status == "all")">Tất cả</option>
+                <option value="pending" selected="@(status == "pending")">Chờ xác minh</option>
+                <option value="verified" selected="@(status == "verified")">Đã xác minh</option>
+                <option value="locked" selected="@(status == "locked")">Đang bị khóa</option>
+            </select>
+            <button class="btn btn-sm btn-primary rounded-pill px-3">Tìm</button>
+        </form>
+    </div>
+    <div class="table-responsive">
+        <table class="table table-modern">
+            <thead><tr><th>Gia sư</th><th>Trình độ / Trường</th><th>Học phí</th><th>Đánh giá</th><th>Bằng cấp</th><th>Trạng thái</th><th></th></tr></thead>
+            <tbody>
+                @foreach (var item in Model.Items)
+                {
+                    var u = item.MaNguoiDungNavigation;
+                    <tr>
+                        <td>
+                            <div class="d-flex align-items-center gap-2">
+                                <partial name="_Avatar" model="@(new AvatarModel(u.HoTen, u.AnhDaiDien, item.MaGiaSu, 38))" />
+                                <div><a asp-area="" asp-controller="Home" asp-action="Details" asp-route-id="@item.MaGiaSu" class="fw-semibold text-decoration-none">@u.HoTen</a><div class="small text-muted">@u.Email</div></div>
+                            </div>
+                        </td>
+                        <td class="small">@item.TrinhDo<div class="text-muted">@item.TruongDaoTao</div></td>
+                        <td class="fw-semibold">@item.HocPhiTheoGio.Vnd()</td>
+                        <td class="small">@if ((item.TongSoDanhGia ?? 0) > 0){<span><i class="fa-solid fa-star text-warning"></i> @((item.DiemDanhGiaTb ?? 0).ToString("0.0")) (@item.TongSoDanhGia)</span>}else{<span class="text-muted">Chưa có</span>}</td>
+                        <td>
+                            @if (!string.IsNullOrEmpty(item.AnhBangCapTheSv))
+                            {
+                                <img src="@item.AnhBangCapTheSv" class="cert-thumb" style="max-height:44px" alt="Bằng cấp" data-bs-toggle="modal" data-bs-target="#certModal" data-src="@item.AnhBangCapTheSv" data-name="@u.HoTen" />
+                            }
+                            else { <span class="small text-muted">Chưa tải lên</span> }
+                        </td>
+                        <td>
+                            @if (u.TrangThai == false) { <span class="status-badge bg-danger-subtle text-danger-emphasis">Đã khóa</span> }
+                            else if (item.DaXacMinh == true) { <span class="status-badge bg-success-subtle text-success-emphasis"><i class="fa-solid fa-circle-check me-1"></i>Đã xác minh</span> }
+                            else { <span class="status-badge bg-warning-subtle text-warning-emphasis">Chờ duyệt</span> }
+                        </td>
+                        <td class="text-end text-nowrap">
+                            <form asp-action="ToggleVerify" asp-route-id="@item.MaGiaSu" method="post" class="d-inline">
+                                <input type="hidden" name="returnUrl" value="@curUrl" />
+                                <button class="btn btn-sm rounded-pill @(item.DaXacMinh == true ? "btn-outline-danger" : "btn-success")">@(item.DaXacMinh == true ? "Thu hồi" : "Cấp Tích xanh")</button>
+                            </form>
+                            <form asp-action="ToggleLock" asp-route-id="@item.MaGiaSu" method="post" class="d-inline" data-confirm="@(u.TrangThai == false ? "Mở khóa tài khoản này?" : "Khóa tài khoản này? Gia sư sẽ bị ẩn khỏi trang tìm kiếm.")">
+                                <button class="btn btn-sm btn-outline-secondary rounded-pill" title="@(u.TrangThai == false ? "Mở khóa" : "Khóa")"><i class="fa-solid @(u.TrangThai == false ? "fa-lock-open" : "fa-lock")"></i></button>
+                            </form>
+                        </td>
+                    </tr>
+                }
+                @if (Model.Items.Count == 0) { <tr><td colspan="7" class="text-center text-muted py-4">Không có gia sư nào phù hợp.</td></tr> }
+            </tbody>
+        </table>
+    </div>
+    <partial name="_Pager" model="pager" />
+</div>
+
+<div class="modal fade" id="certModal" tabindex="-1">
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+        <div class="modal-content rounded-4 border-0">
+            <div class="modal-header border-0"><h6 class="modal-title fw-bold" id="certTitle">Bằng cấp</h6><button class="btn-close" data-bs-dismiss="modal"></button></div>
+            <div class="modal-body text-center pt-0"><img id="certImg" class="img-fluid rounded-3" alt="Ảnh bằng cấp" /></div>
+        </div>
+    </div>
+</div>
+@section Scripts {
+    <script>
+        document.getElementById('certModal').addEventListener('show.bs.modal', function (e) {
+            var t = e.relatedTarget;
+            document.getElementById('certImg').src = t.dataset.src;
+            document.getElementById('certTitle').textContent = 'Bằng cấp / thẻ SV — ' + t.dataset.name;
+        });
+    </script>
+}
